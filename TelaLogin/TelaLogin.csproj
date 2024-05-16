@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Jenga.NET" Version="4.0.0" />
     <PackageReference Include="Npgsql" Version="8.0.3" />
   </ItemGroup>
 

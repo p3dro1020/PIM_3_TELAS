@@ -59,7 +59,7 @@
             panelMenu.Dock = DockStyle.Left;
             panelMenu.Location = new Point(0, 0);
             panelMenu.Name = "panelMenu";
-            panelMenu.Size = new Size(220, 509);
+            panelMenu.Size = new Size(220, 598);
             panelMenu.TabIndex = 0;
             // 
             // btnProduction
@@ -209,7 +209,7 @@
             panelForm.Dock = DockStyle.Fill;
             panelForm.Location = new Point(220, 0);
             panelForm.Name = "panelForm";
-            panelForm.Size = new Size(584, 509);
+            panelForm.Size = new Size(903, 598);
             panelForm.TabIndex = 1;
             // 
             // labelFormulario
@@ -225,7 +225,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(804, 509);
+            ClientSize = new Size(1123, 598);
             Controls.Add(panelForm);
             Controls.Add(panelMenu);
             Name = "MainMenu";

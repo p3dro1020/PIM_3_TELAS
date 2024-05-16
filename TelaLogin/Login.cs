@@ -15,7 +15,10 @@ namespace TelaLogin
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            User userLogin = new User();
+
+
+            //User userLogin = new User(); userLogin.scanUserPassword
+            DBconnect db = new DBconnect();
             string userTxtLogin = txtUser.Text;
             string userTxtPassword = txtPassword.Text;
 
@@ -26,7 +29,7 @@ namespace TelaLogin
                 return;
             }
 
-            if (userLogin.scanUserPassword(userTxtLogin, userTxtPassword))
+            if (db.VerifyUser(userTxtLogin, userTxtPassword))
             {
                 this.Hide();
                 MainMenu Menu = new MainMenu();
@@ -37,6 +40,7 @@ namespace TelaLogin
                 txtPassword.Clear();
                 txtUser.Focus();
             }
+            
         }
     }
 }
