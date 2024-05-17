@@ -7,16 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TelaLogin.Class;
+using TelaLogin.Infra;
+using TelaPIM;
 
 namespace TelaLogin.FormsMenu
 {
-    public partial class FrmNewProduct : Form
+    public partial class FrmProductManagement : Form
     {
-        public FrmNewProduct()
+        public int id;
+        DBconnect db = new DBconnect();
+        public FrmProductManagement()
         {
             InitializeComponent();
         }
-
 
 
 
@@ -87,6 +91,69 @@ namespace TelaLogin.FormsMenu
         private void dt_plantio_ValueChanged(object sender, EventArgs e)
         {
             alterarDataFinal();
+        }
+
+        private void bt_addNewPlantio_Click(object sender, EventArgs e)
+        {
+            if (cb_hortalica.Text == "")
+            {
+                MessageBox.Show("Preencha o campo de hortaliças");
+                return;
+            }
+            if (txt_qtd.Text == "")
+            {
+                MessageBox.Show("Preencha o campo de quantidade");
+                return;
+            }
+            // if (cb_hortalica.Text == "") MessageBox.Show("Preencha o campo de hortaliças");
+            // declara variaveis pra utilizar
+            DBconnect db = new DBconnect();
+            Produto p = new Produto();
+
+            // insere os dados digitados nos textbox's para a classe produto
+            p.Nome = cb_hortalica.Text;
+            p.Data_plantio = dt_plantio.Value;
+            p.Data_colheita = dt_colheita.Value;
+            p.Quantidade = int.Parse(txt_qtd.Text);
+
+            if (db.CreateProduct(p))
+            {
+                MessageBox.Show("Produto adicionado com sucesso!");
+                this.Close();
+            }
+
+        }
+
+        private void bt_cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void bt_save_Click(object sender, EventArgs e)
+        {
+
+
+            // enviar pergunta se deseja realmente editar
+            DialogResult res = MessageBox.Show("Deseja realmente editar o produto?", "Editar", MessageBoxButtons.YesNo);
+
+            // alterar o produto
+            if (res == DialogResult.Yes)
+            {
+                Produto p = new Produto();
+                p.Id = id;
+                p.Nome = cb_hortalica.Text;
+                p.Quantidade = int.Parse(txt_qtd.Text);
+                p.Data_plantio = Convert.ToDateTime(dt_plantio.Text);
+                p.Data_colheita = Convert.ToDateTime(dt_colheita.Text);
+                
+                if(db.UpdateProduct(p))
+                {
+                    MessageBox.Show("Produto alterado com sucesso!");
+                    this.Close();
+                }
+
+            }
+
         }
     }
 }

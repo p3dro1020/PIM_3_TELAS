@@ -28,10 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProduction));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProduction));
             panel1 = new Panel();
+            bt_search = new Button();
+            txt_search = new TextBox();
+            label1 = new Label();
             bt_add = new Button();
             dgv_Production = new DataGridView();
             cod = new DataGridViewTextBoxColumn();
@@ -42,6 +45,7 @@
             status = new DataGridViewTextBoxColumn();
             Edit = new DataGridViewImageColumn();
             Delete = new DataGridViewImageColumn();
+            bt_listAll = new Button();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_Production).BeginInit();
             SuspendLayout();
@@ -49,12 +53,47 @@
             // panel1
             // 
             panel1.BackColor = Color.Sienna;
+            panel1.Controls.Add(bt_listAll);
+            panel1.Controls.Add(bt_search);
+            panel1.Controls.Add(txt_search);
+            panel1.Controls.Add(label1);
             panel1.Controls.Add(bt_add);
             panel1.Dock = DockStyle.Bottom;
             panel1.Location = new Point(0, 523);
             panel1.Name = "panel1";
             panel1.Size = new Size(903, 75);
             panel1.TabIndex = 0;
+            // 
+            // bt_search
+            // 
+            bt_search.Anchor = AnchorStyles.None;
+            bt_search.BackColor = Color.Sienna;
+            bt_search.Cursor = Cursors.Hand;
+            bt_search.FlatStyle = FlatStyle.Flat;
+            bt_search.ForeColor = Color.Sienna;
+            bt_search.Image = (Image)resources.GetObject("bt_search.Image");
+            bt_search.Location = new Point(494, 23);
+            bt_search.Name = "bt_search";
+            bt_search.Size = new Size(37, 31);
+            bt_search.TabIndex = 4;
+            bt_search.UseVisualStyleBackColor = true;
+            bt_search.Click += bt_search_Click;
+            // 
+            // txt_search
+            // 
+            txt_search.Location = new Point(351, 25);
+            txt_search.Name = "txt_search";
+            txt_search.Size = new Size(137, 23);
+            txt_search.TabIndex = 3;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(288, 28);
+            label1.Name = "label1";
+            label1.Size = new Size(57, 15);
+            label1.TabIndex = 2;
+            label1.Text = "Pesquisar";
             // 
             // bt_add
             // 
@@ -100,6 +139,7 @@
             dgv_Production.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             dgv_Production.Size = new Size(903, 523);
             dgv_Production.TabIndex = 1;
+            dgv_Production.CellContentClick += dgv_Production_CellContentClick;
             // 
             // cod
             // 
@@ -159,6 +199,21 @@
             Delete.Name = "Delete";
             Delete.Width = 5;
             // 
+            // bt_listAll
+            // 
+            bt_listAll.Anchor = AnchorStyles.None;
+            bt_listAll.BackColor = Color.Sienna;
+            bt_listAll.Cursor = Cursors.Hand;
+            bt_listAll.FlatStyle = FlatStyle.Flat;
+            bt_listAll.ForeColor = Color.Sienna;
+            bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
+            bt_listAll.Location = new Point(12, 23);
+            bt_listAll.Name = "bt_listAll";
+            bt_listAll.Size = new Size(37, 31);
+            bt_listAll.TabIndex = 5;
+            bt_listAll.UseVisualStyleBackColor = true;
+            bt_listAll.Click += bt_listAll_Click;
+            // 
             // FrmProduction
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -169,8 +224,8 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmProduction";
             Text = "FrmProduction";
-            Load += FrmProduction_Load;
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_Production).EndInit();
             ResumeLayout(false);
         }
@@ -178,7 +233,6 @@
         #endregion
 
         private Panel panel1;
-        private DataGridView dgv_Production;
         private Button bt_add;
         private DataGridViewTextBoxColumn cod;
         private DataGridViewTextBoxColumn name;
@@ -188,5 +242,10 @@
         private DataGridViewTextBoxColumn status;
         private DataGridViewImageColumn Edit;
         private DataGridViewImageColumn Delete;
+        public DataGridView dgv_Production;
+        private TextBox txt_search;
+        private Label label1;
+        private Button bt_search;
+        private Button bt_listAll;
     }
 }

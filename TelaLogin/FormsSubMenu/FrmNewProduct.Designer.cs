@@ -1,6 +1,6 @@
 ﻿namespace TelaLogin.FormsMenu
 {
-    partial class FrmNewProduct
+    partial class FrmProductManagement
     {
         /// <summary>
         /// Required designer variable.
@@ -33,12 +33,13 @@
             dt_plantio = new DateTimePicker();
             label2 = new Label();
             label3 = new Label();
-            textBox1 = new TextBox();
+            txt_qtd = new TextBox();
             label4 = new Label();
             dt_colheita = new DateTimePicker();
             txt_days = new Label();
             bt_addNewPlantio = new Button();
             bt_cancel = new Button();
+            bt_save = new Button();
             SuspendLayout();
             // 
             // label1
@@ -90,12 +91,12 @@
             label3.TabIndex = 4;
             label3.Text = "Quantidade pés:";
             // 
-            // textBox1
+            // txt_qtd
             // 
-            textBox1.Location = new Point(125, 157);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(121, 23);
-            textBox1.TabIndex = 3;
+            txt_qtd.Location = new Point(125, 157);
+            txt_qtd.Name = "txt_qtd";
+            txt_qtd.Size = new Size(121, 23);
+            txt_qtd.TabIndex = 3;
             // 
             // label4
             // 
@@ -129,41 +130,54 @@
             // 
             // bt_addNewPlantio
             // 
-            bt_addNewPlantio.Location = new Point(171, 217);
+            bt_addNewPlantio.Location = new Point(142, 222);
             bt_addNewPlantio.Name = "bt_addNewPlantio";
             bt_addNewPlantio.Size = new Size(75, 23);
             bt_addNewPlantio.TabIndex = 5;
             bt_addNewPlantio.Text = "Adicionar";
             bt_addNewPlantio.UseVisualStyleBackColor = true;
+            bt_addNewPlantio.Click += bt_addNewPlantio_Click;
             // 
             // bt_cancel
             // 
-            bt_cancel.Location = new Point(293, 217);
+            bt_cancel.Location = new Point(334, 222);
             bt_cancel.Name = "bt_cancel";
             bt_cancel.Size = new Size(75, 23);
-            bt_cancel.TabIndex = 6;
+            bt_cancel.TabIndex = 7;
             bt_cancel.Text = "Cancelar";
             bt_cancel.UseVisualStyleBackColor = true;
+            bt_cancel.Click += bt_cancel_Click;
             // 
-            // FrmNewProduct
+            // bt_save
+            // 
+            bt_save.Location = new Point(239, 222);
+            bt_save.Name = "bt_save";
+            bt_save.Size = new Size(75, 23);
+            bt_save.TabIndex = 6;
+            bt_save.Text = "Salvar";
+            bt_save.UseVisualStyleBackColor = true;
+            bt_save.Click += bt_save_Click;
+            // 
+            // FrmProductManagement
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(537, 280);
+            Controls.Add(bt_save);
             Controls.Add(bt_cancel);
             Controls.Add(bt_addNewPlantio);
             Controls.Add(txt_days);
             Controls.Add(label4);
             Controls.Add(dt_colheita);
-            Controls.Add(textBox1);
+            Controls.Add(txt_qtd);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(dt_plantio);
             Controls.Add(cb_hortalica);
             Controls.Add(label1);
-            Name = "FrmNewProduct";
+            Name = "FrmProductManagement";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Novo plantio";
+            Text = "Plantação";
             ResumeLayout(false);
             PerformLayout();
         }
@@ -171,15 +185,16 @@
         #endregion
 
         private Label label1;
-        private ComboBox cb_hortalica;
-        private DateTimePicker dt_plantio;
         private Label label2;
         private Label label3;
-        private TextBox textBox1;
         private Label label4;
         private DateTimePicker dt_colheita;
         private Label txt_days;
-        private Button bt_addNewPlantio;
-        private Button bt_cancel;
+        public Button bt_save;
+        public Button bt_addNewPlantio;
+        public Button bt_cancel;
+        public ComboBox cb_hortalica;
+        public DateTimePicker dt_plantio;
+        public TextBox txt_qtd;
     }
 }

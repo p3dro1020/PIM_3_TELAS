@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TelaLogin.Class;
-using Npgsql;
 using System.Data;
 
 namespace TelaLogin.Infra
@@ -13,12 +12,13 @@ namespace TelaLogin.Infra
     internal interface IDBconnect 
     {
         public void OpenConnection();
-        public void CloseConnection();
         public bool VerifyUser(string user, string password);
         public bool CreateProduct(Produto produto);
-        public void UpdateProduct(DataTable dt);
+        public bool UpdateProduct(Produto produto);
         List<Produto> ListAllProducts();
-        /*void ExcludeProduto(int id);
+        List<Produto> SearchProduct(string text);
+        void ExcludeProduct(int id);
+        /*
         void CreateFuncionario(Funcionario funcionario);
         void UpdateFuncionario(Funcionario funcionario);
         void ExcludeFuncionario(int id);

@@ -15,6 +15,7 @@ namespace TelaLogin.Infra
         public string senha_usuario { get; set; }
 
         // Validação do nome de usuário e senha do User
+        /*
         public bool scanUserPassword (string txtUser, string txtPassword)
         {
             try 
@@ -42,6 +43,6 @@ namespace TelaLogin.Infra
                 MessageBox.Show("Erro ao analisar dados");
                 return false;
             }
-        }
+        }*/
     }
 }

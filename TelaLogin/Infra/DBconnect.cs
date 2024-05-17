@@ -12,16 +12,17 @@ namespace TelaLogin.Infra
 {
     public class DBconnect : IDBconnect, IDisposable
     {
-        
-        public NpgsqlConnection Connection { get; set; }
+        private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
+        private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
+        //public NpgsqlConnection Connection { get; set; }
 
-        public DBconnect()
+       /* public DBconnect()
         {
-            OpenConnection();
-        }
+            Connection.Open();
+        }*/
         public void Dispose()
         {
-            Connection.Dispose();
+            Connection.Close();
         }
 
         public void OpenConnection()
@@ -33,18 +34,13 @@ namespace TelaLogin.Infra
                 "Uid = postgres;" +
                 "Psw = admin;");
 
-            Connection.Open();
-        }
-        public void CloseConnection()
-        {
-            Connection.Dispose();
         }
 
         public bool VerifyUser(string user, string password)
         {
             try
             {
-                OpenConnection();
+                Connection.Open();
 
                 NpgsqlCommand cmd = new NpgsqlCommand($"SELECT nome  FROM funcionario WHERE usuario = @usuario AND senha = @senha;", Connection);
                 cmd.Parameters.AddWithValue("@usuario", user);
@@ -57,21 +53,22 @@ namespace TelaLogin.Infra
                 {
                     MessageBox.Show("Logado com sucesso!");
                     //Globais.nomeUsuario = dr["nome"].ToString();
-                    Connection.Close();
                     return true;
                 }
                 else
                 {
                     MessageBox.Show($"Usuário ou senha inválidos! Tentativa:"); //{Globais.clickUsuarioLogin}/3
-                    Connection.Close();
                     return false;
                 }
             }
             catch (Exception e)
             {
-                Connection.Close();
                 MessageBox.Show("Erro ao verificar dados: " + e.Message);
                 return false;
+            }
+            finally
+            {
+                Connection.Close();
             }
         }
 
@@ -80,52 +77,58 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string query = "insert into cultivos(nome, quantidade, data_plantio, data_colheita)values(@nome,@quantidade,@plantio,@colheita);"; //   
+                string query = "insert into cultivos(nome, quantidade, data_plantio, data_colheita)values(@nome,@quantidade,@plantio,@colheita);";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@nome", p.Nome);
                 cmd.Parameters.AddWithValue("@quantidade", p.Quantidade);
                 cmd.Parameters.AddWithValue("@plantio", p.Data_plantio);
                 cmd.Parameters.AddWithValue("@colheita", p.Data_colheita);
                 cmd.ExecuteNonQuery();
-                Connection.Close();
                 return true;
             }
             catch (Exception e)
             {
-                Connection.Close();
                 MessageBox.Show("Erro ao inserir novo produto: " + e.Message);
                 return false;
             }
+            finally
+            {
+                Connection.Close();
+            }
         }
 
-        public void UpdateProduct(DataTable dt)
+        public bool UpdateProduct(Produto p)
         {
             try
             {
                 Connection.Open();
-                string sql = "update cultivos set nome = @nome, quantidade = @quantidade, data_plantio = @plantio, data_colheita = @colheita where id = @id;";
+                string sql = "update cultivos set nome = @nome, quantidade = @quantidade, data_plantio = @plantio, data_colheita = @colheita where cultivo_id = @id;";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, Connection);
-                cmd.Parameters.AddWithValue("@nome", dt.Rows[0]["nome"]);
-                cmd.Parameters.AddWithValue("@quantidade", dt.Rows[0]["quantidade"]);
-                cmd.Parameters.AddWithValue("@plantio", dt.Rows[0]["data_plantio"]);
-                cmd.Parameters.AddWithValue("@colheita", dt.Rows[0]["data_colheita"]);
-                cmd.Parameters.AddWithValue("@id", dt.Rows[0]["id"]);
+                cmd.Parameters.AddWithValue("@nome", p.Nome);
+                cmd.Parameters.AddWithValue("@quantidade", p.Quantidade);
+                cmd.Parameters.AddWithValue("@plantio", p.Data_plantio);
+                cmd.Parameters.AddWithValue("@colheita", p.Data_colheita);
+                cmd.Parameters.AddWithValue("@id", p.Id);
                 cmd.ExecuteNonQuery();
-                Connection.Close();
+                return true;
             }
             catch (Exception e)
             {
-                Connection.Close();
+                return false;
                 MessageBox.Show("Erro ao atualizar produto: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
             }
         }
 
         public List<Produto> ListAllProducts()
         {
             List<Produto> produtos = new List<Produto>();
-            OpenConnection();
+            Connection.Open();
 
-            string query = "SELECT * FROM cultivos order by cultivo_id;";
+            string query = "SELECT * FROM cultivos_view ORDER BY cultivo_id;";
             NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
             NpgsqlDataReader dr = cmd.ExecuteReader();
 
@@ -138,10 +141,63 @@ namespace TelaLogin.Infra
                 // transformar em data
                 p.Data_plantio = Convert.ToDateTime(dr["data_plantio"]).Date;
                 p.Data_colheita = Convert.ToDateTime(dr["data_colheita"]).Date;
+                p.Status = dr["status"].ToString();
                 produtos.Add(p);
             }
 
+            dr.Close();
+            Connection.Close();
             return produtos;
+        }
+
+        public List<Produto> SearchProduct(string text)
+        {
+            List<Produto> produtos = new List<Produto>();
+            Connection.Open();
+
+            string query = "SELECT * FROM cultivos_view WHERE nome LIKE @text ORDER BY cultivo_id;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@text", $"%{text}%");
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Produto p = new Produto();
+                p.Id = Convert.ToInt32(dr["cultivo_id"]);
+                p.Nome = dr["nome"].ToString();
+                p.Quantidade = Convert.ToInt32(dr["quantidade"]);
+                // transformar em data
+                p.Data_plantio = Convert.ToDateTime(dr["data_plantio"]).Date;
+                p.Data_colheita = Convert.ToDateTime(dr["data_colheita"]).Date;
+                p.Status = dr["status"].ToString();
+                produtos.Add(p);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return produtos;
+        }
+
+        public void ExcludeProduct(int id)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "DELETE FROM cultivos WHERE cultivo_id = " + id;
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (Exception e)
+            {
+                Connection.Close();
+                MessageBox.Show("Erro ao tentar deletar: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
         }
 
     }

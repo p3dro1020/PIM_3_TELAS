@@ -63,8 +63,8 @@
             txtUser.MaxLength = 20;
             txtUser.Name = "txtUser";
             txtUser.Size = new Size(132, 23);
-            txtUser.TabIndex = 3;
-            txtUser.WordWrap = false;           
+            txtUser.TabIndex = 1;
+            txtUser.WordWrap = false;
             // 
             // txtPassword
             // 
@@ -76,7 +76,7 @@
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '●';
             txtPassword.Size = new Size(132, 23);
-            txtPassword.TabIndex = 4;
+            txtPassword.TabIndex = 2;
             txtPassword.WordWrap = false;
             // 
             // linkPassword
@@ -85,7 +85,7 @@
             linkPassword.Location = new Point(579, 384);
             linkPassword.Name = "linkPassword";
             linkPassword.Size = new Size(90, 15);
-            linkPassword.TabIndex = 5;
+            linkPassword.TabIndex = 4;
             linkPassword.TabStop = true;
             linkPassword.Text = "Esqueci a senha";
             // 
@@ -96,7 +96,7 @@
             btnLogin.Location = new Point(553, 339);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(139, 33);
-            btnLogin.TabIndex = 6;
+            btnLogin.TabIndex = 3;
             btnLogin.Text = "Entrar";
             btnLogin.UseVisualStyleBackColor = true;
             btnLogin.Click += btnLogin_Click;
@@ -145,7 +145,7 @@
             pictureBox2.TabIndex = 11;
             pictureBox2.TabStop = false;
             // 
-            // Form1
+            // Login
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -163,7 +163,7 @@
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
-            Name = "Form1";
+            Name = "Login";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VisionFarm";
             ((System.ComponentModel.ISupportInitialize)pictureLogin).EndInit();
