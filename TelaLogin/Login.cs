@@ -31,9 +31,9 @@ namespace TelaLogin
 
             if (db.VerifyUser(userTxtLogin, userTxtPassword))
             {
-                this.Hide();
                 MainMenu Menu = new MainMenu();
                 Menu.Show();
+                this.Hide();
             }
             else
             {
