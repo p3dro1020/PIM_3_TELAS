@@ -114,8 +114,8 @@ namespace TelaLogin.Infra
             }
             catch (Exception e)
             {
-                return false;
                 MessageBox.Show("Erro ao atualizar produto: " + e.Message);
+                return false;
             }
             finally
             {
@@ -139,8 +139,8 @@ namespace TelaLogin.Infra
                 p.Nome = dr["nome"].ToString();
                 p.Quantidade = Convert.ToInt32(dr["quantidade"]);
                 // transformar em data
-                p.Data_plantio = Convert.ToDateTime(dr["data_plantio"]).Date;
-                p.Data_colheita = Convert.ToDateTime(dr["data_colheita"]).Date;
+                p.Data_plantio = Convert.ToDateTime(dr["data_plantio"]);
+                p.Data_colheita = Convert.ToDateTime(dr["data_colheita"]);
                 p.Status = dr["status"].ToString();
                 produtos.Add(p);
             }
@@ -155,7 +155,7 @@ namespace TelaLogin.Infra
             List<Produto> produtos = new List<Produto>();
             Connection.Open();
 
-            string query = "SELECT * FROM cultivos_view WHERE nome LIKE @text ORDER BY cultivo_id;";
+            string query = "SELECT * FROM cultivos_view WHERE UPPER(nome) LIKE UPPER(@text) ORDER BY cultivo_id;";
             NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
             cmd.Parameters.AddWithValue("@text", $"%{text}%");
 

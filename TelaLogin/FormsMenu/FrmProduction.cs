@@ -30,7 +30,7 @@ namespace TelaPIM
             // insere os produtos no datagridview
             foreach (Produto p in produtos)
             {
-                dgv_Production.Rows.Add(p.Id, p.Nome, p.Quantidade, p.Data_plantio, p.Data_colheita, p.Status);
+                dgv_Production.Rows.Add(p.Id, p.Nome, p.Quantidade, p.DataPlantioFormatada, p.DataColheitaFormatada, p.Status);
             }
         }
 

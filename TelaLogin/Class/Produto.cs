@@ -17,6 +17,8 @@ namespace TelaLogin.Class
         public DateTime Data_colheita { get; set; }
         //public DateBoldEventArgs Data_colheita_ideal { get; set; }
         public DateTime Data_plantio { get; set; }
+        public string DataPlantioFormatada => Data_plantio.ToString("dd/MM/yyyy"); 
+        public string DataColheitaFormatada => Data_colheita.ToString("dd/MM/yyyy");
         public DateBoldEventArgs Data_validade { get; set; }
 
     }

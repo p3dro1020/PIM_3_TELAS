@@ -16,7 +16,8 @@ namespace TelaLogin.FormsMenu
     public partial class FrmProductManagement : Form
     {
         public int id;
-        DBconnect db = new DBconnect();
+
+     
         public FrmProductManagement()
         {
             InitializeComponent();
@@ -95,17 +96,13 @@ namespace TelaLogin.FormsMenu
 
         private void bt_addNewPlantio_Click(object sender, EventArgs e)
         {
-            if (cb_hortalica.Text == "")
+            if (cb_hortalica.Text == "" || txt_qtd.Text == "")
             {
-                MessageBox.Show("Preencha o campo de hortaliças");
+                MessageBox.Show("Preencha todos os campos");
                 return;
             }
-            if (txt_qtd.Text == "")
-            {
-                MessageBox.Show("Preencha o campo de quantidade");
-                return;
-            }
-            // if (cb_hortalica.Text == "") MessageBox.Show("Preencha o campo de hortaliças");
+
+
             // declara variaveis pra utilizar
             DBconnect db = new DBconnect();
             Produto p = new Produto();
@@ -132,14 +129,16 @@ namespace TelaLogin.FormsMenu
         private void bt_save_Click(object sender, EventArgs e)
         {
 
-
+            
             // enviar pergunta se deseja realmente editar
             DialogResult res = MessageBox.Show("Deseja realmente editar o produto?", "Editar", MessageBoxButtons.YesNo);
 
             // alterar o produto
             if (res == DialogResult.Yes)
             {
+                DBconnect db = new DBconnect();
                 Produto p = new Produto();
+
                 p.Id = id;
                 p.Nome = cb_hortalica.Text;
                 p.Quantidade = int.Parse(txt_qtd.Text);
