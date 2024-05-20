@@ -54,7 +54,7 @@
             // cb_hortalica
             // 
             cb_hortalica.FormattingEnabled = true;
-            cb_hortalica.Items.AddRange(new object[] { "Alface", "Berinjela", "Brócolis", "Cebola", "Couve", "Couve Flor", "Morango", "Tomate", "Repolho", "Pimentão" });
+            cb_hortalica.Items.AddRange(new object[] { "Alface", "Repolho", "Couve" });
             cb_hortalica.Location = new Point(125, 53);
             cb_hortalica.Name = "cb_hortalica";
             cb_hortalica.Size = new Size(121, 23);
