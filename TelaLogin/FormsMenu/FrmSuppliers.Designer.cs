@@ -43,6 +43,7 @@
             name = new DataGridViewTextBoxColumn();
             email = new DataGridViewTextBoxColumn();
             phone = new DataGridViewTextBoxColumn();
+            dt_cadastro = new DataGridViewTextBoxColumn();
             edit = new DataGridViewImageColumn();
             remove = new DataGridViewImageColumn();
             panel1.SuspendLayout();
@@ -135,7 +136,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv_suppliers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_suppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv_suppliers.Columns.AddRange(new DataGridViewColumn[] { cod, cnpj, name, email, phone, edit, remove });
+            dgv_suppliers.Columns.AddRange(new DataGridViewColumn[] { cod, cnpj, name, email, phone, dt_cadastro, edit, remove });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -186,6 +187,13 @@
             phone.Name = "phone";
             phone.Width = 80;
             // 
+            // dt_cadastro
+            // 
+            dt_cadastro.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dt_cadastro.HeaderText = "Data cadastro";
+            dt_cadastro.Name = "dt_cadastro";
+            dt_cadastro.Width = 107;
+            // 
             // edit
             // 
             edit.HeaderText = "";
@@ -230,6 +238,7 @@
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn email;
         private DataGridViewTextBoxColumn phone;
+        private DataGridViewTextBoxColumn dt_cadastro;
         private DataGridViewImageColumn edit;
         private DataGridViewImageColumn remove;
     }

@@ -39,11 +39,32 @@
             panel1 = new Panel();
             pictureBox1 = new PictureBox();
             panelForm = new Panel();
-            labelFormulario = new Label();
+            dataGridView3 = new DataGridView();
+            label3 = new Label();
+            dgv_colheitas = new DataGridView();
+            item_colheita = new DataGridViewTextBoxColumn();
+            qtdPes = new DataGridViewTextBoxColumn();
+            dateColheita = new DataGridViewTextBoxColumn();
+            label2 = new Label();
+            dgv_lastSale = new DataGridView();
+            date = new DataGridViewTextBoxColumn();
+            item = new DataGridViewTextBoxColumn();
+            valor = new DataGridViewTextBoxColumn();
+            qtd = new DataGridViewTextBoxColumn();
+            label1 = new Label();
+            cdg = new DataGridViewTextBoxColumn();
+            name = new DataGridViewTextBoxColumn();
+            qtdPlantacoes = new DataGridViewTextBoxColumn();
+            datePlantio = new DataGridViewTextBoxColumn();
+            dateColheitaEsperada = new DataGridViewTextBoxColumn();
+            status = new DataGridViewTextBoxColumn();
             panelMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_colheitas).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_lastSale).BeginInit();
             SuspendLayout();
             // 
             // panelMenu
@@ -205,21 +226,159 @@
             // 
             // panelForm
             // 
-            panelForm.Controls.Add(labelFormulario);
+            panelForm.Controls.Add(dataGridView3);
+            panelForm.Controls.Add(label3);
+            panelForm.Controls.Add(dgv_colheitas);
+            panelForm.Controls.Add(label2);
+            panelForm.Controls.Add(dgv_lastSale);
+            panelForm.Controls.Add(label1);
             panelForm.Dock = DockStyle.Fill;
             panelForm.Location = new Point(220, 0);
             panelForm.Name = "panelForm";
             panelForm.Size = new Size(903, 598);
             panelForm.TabIndex = 1;
             // 
-            // labelFormulario
+            // dataGridView3
             // 
-            labelFormulario.Location = new Point(136, 38);
-            labelFormulario.Name = "labelFormulario";
-            labelFormulario.Size = new Size(196, 23);
-            labelFormulario.TabIndex = 0;
-            labelFormulario.Text = "Formulário Home";
-            labelFormulario.TextAlign = ContentAlignment.MiddleRight;
+            dataGridView3.BackgroundColor = Color.White;
+            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { cdg, name, qtdPlantacoes, datePlantio, dateColheitaEsperada, status });
+            dataGridView3.Location = new Point(45, 334);
+            dataGridView3.Name = "dataGridView3";
+            dataGridView3.Size = new Size(820, 174);
+            dataGridView3.TabIndex = 5;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(45, 304);
+            label3.Name = "label3";
+            label3.Size = new Size(146, 15);
+            label3.TabIndex = 4;
+            label3.Text = "Plantações últimos 15 dias";
+            // 
+            // dgv_colheitas
+            // 
+            dgv_colheitas.BackgroundColor = Color.White;
+            dgv_colheitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_colheitas.Columns.AddRange(new DataGridViewColumn[] { item_colheita, qtdPes, dateColheita });
+            dgv_colheitas.Location = new Point(481, 58);
+            dgv_colheitas.Name = "dgv_colheitas";
+            dgv_colheitas.Size = new Size(384, 174);
+            dgv_colheitas.TabIndex = 3;
+            // 
+            // item_colheita
+            // 
+            item_colheita.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            item_colheita.HeaderText = "Item";
+            item_colheita.Name = "item_colheita";
+            // 
+            // qtdPes
+            // 
+            qtdPes.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            qtdPes.HeaderText = "Quantidade Pés";
+            qtdPes.Name = "qtdPes";
+            qtdPes.Width = 106;
+            // 
+            // dateColheita
+            // 
+            dateColheita.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dateColheita.HeaderText = "Data colheita";
+            dateColheita.Name = "dateColheita";
+            dateColheita.Width = 93;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(481, 28);
+            label2.Name = "label2";
+            label2.Size = new Size(106, 15);
+            label2.TabIndex = 2;
+            label2.Text = "Próximas colheitas";
+            // 
+            // dgv_lastSale
+            // 
+            dgv_lastSale.BackgroundColor = Color.White;
+            dgv_lastSale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_lastSale.Columns.AddRange(new DataGridViewColumn[] { date, item, valor, qtd });
+            dgv_lastSale.Location = new Point(45, 58);
+            dgv_lastSale.Name = "dgv_lastSale";
+            dgv_lastSale.Size = new Size(384, 174);
+            dgv_lastSale.TabIndex = 1;
+            // 
+            // date
+            // 
+            date.HeaderText = "Data";
+            date.Name = "date";
+            date.Width = 70;
+            // 
+            // item
+            // 
+            item.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            item.HeaderText = "Item";
+            item.Name = "item";
+            // 
+            // valor
+            // 
+            valor.HeaderText = "Valor";
+            valor.Name = "valor";
+            valor.Width = 50;
+            // 
+            // qtd
+            // 
+            qtd.HeaderText = "Quantidade";
+            qtd.Name = "qtd";
+            qtd.Width = 80;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(45, 28);
+            label1.Name = "label1";
+            label1.Size = new Size(87, 15);
+            label1.TabIndex = 0;
+            label1.Text = "Últimas vendas";
+            // 
+            // cdg
+            // 
+            cdg.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            cdg.HeaderText = "Código";
+            cdg.Name = "cdg";
+            cdg.Width = 71;
+            // 
+            // name
+            // 
+            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            name.HeaderText = "Nome";
+            name.Name = "name";
+            // 
+            // qtdPlantacoes
+            // 
+            qtdPlantacoes.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            qtdPlantacoes.HeaderText = "Quantidade";
+            qtdPlantacoes.Name = "qtdPlantacoes";
+            qtdPlantacoes.Width = 94;
+            // 
+            // datePlantio
+            // 
+            datePlantio.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            datePlantio.HeaderText = "Data plantio";
+            datePlantio.Name = "datePlantio";
+            datePlantio.Width = 96;
+            // 
+            // dateColheitaEsperada
+            // 
+            dateColheitaEsperada.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dateColheitaEsperada.HeaderText = "Data colheita esperada";
+            dateColheitaEsperada.Name = "dateColheitaEsperada";
+            dateColheitaEsperada.Width = 138;
+            // 
+            // status
+            // 
+            status.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            status.HeaderText = "Status";
+            status.Name = "status";
+            status.Width = 64;
             // 
             // MainMenu
             // 
@@ -236,6 +395,10 @@
             panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelForm.ResumeLayout(false);
+            panelForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_colheitas).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_lastSale).EndInit();
             ResumeLayout(false);
         }
 
@@ -251,6 +414,24 @@
         private Button btnSuppliers;
         private Button btnProduction;
         private Panel panelForm;
-        private Label labelFormulario;
+        private DataGridView dataGridView3;
+        private Label label3;
+        private DataGridView dgv_colheitas;
+        private Label label2;
+        private DataGridView dgv_lastSale;
+        private DataGridViewTextBoxColumn date;
+        private DataGridViewTextBoxColumn item;
+        private DataGridViewTextBoxColumn valor;
+        private DataGridViewTextBoxColumn qtd;
+        private Label label1;
+        private DataGridViewTextBoxColumn item_colheita;
+        private DataGridViewTextBoxColumn qtdPes;
+        private DataGridViewTextBoxColumn dateColheita;
+        private DataGridViewTextBoxColumn cdg;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn qtdPlantacoes;
+        private DataGridViewTextBoxColumn datePlantio;
+        private DataGridViewTextBoxColumn dateColheitaEsperada;
+        private DataGridViewTextBoxColumn status;
     }
 }
