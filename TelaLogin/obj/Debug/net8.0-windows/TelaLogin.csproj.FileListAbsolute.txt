@@ -56,3 +56,33 @@ P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogi
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\ref\TelaLogin.dll
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.sourcelink.json
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsMenu.FrmProductManagement.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\TelaLogin.exe
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\TelaLogin.deps.json
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\TelaLogin.runtimeconfig.json
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\TelaLogin.dll
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\TelaLogin.pdb
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\Microsoft.Extensions.Logging.Abstractions.dll
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\Npgsql.dll
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.csproj.AssemblyReference.cache
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmEmployees.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmProduction.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmProducts.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmSales.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmSuppliers.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.MainMenu.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsMenu.FrmProductManagement.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.Login.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.Properties.Resources.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.csproj.GenerateResource.cache
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.AssemblyInfoInputs.cache
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.AssemblyInfo.cs
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.csproj.CoreCompileInputs.cache
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.sourcelink.json
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.csproj.Up2Date
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.dll
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\refint\TelaLogin.dll
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.pdb
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.genruntimeconfig.cache
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\ref\TelaLogin.dll

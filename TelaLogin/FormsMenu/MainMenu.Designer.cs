@@ -40,6 +40,12 @@
             pictureBox1 = new PictureBox();
             panelForm = new Panel();
             dataGridView3 = new DataGridView();
+            cdg = new DataGridViewTextBoxColumn();
+            name = new DataGridViewTextBoxColumn();
+            qtdPlantacoes = new DataGridViewTextBoxColumn();
+            datePlantio = new DataGridViewTextBoxColumn();
+            dateColheitaEsperada = new DataGridViewTextBoxColumn();
+            status = new DataGridViewTextBoxColumn();
             label3 = new Label();
             dgv_colheitas = new DataGridView();
             item_colheita = new DataGridViewTextBoxColumn();
@@ -52,12 +58,6 @@
             valor = new DataGridViewTextBoxColumn();
             qtd = new DataGridViewTextBoxColumn();
             label1 = new Label();
-            cdg = new DataGridViewTextBoxColumn();
-            name = new DataGridViewTextBoxColumn();
-            qtdPlantacoes = new DataGridViewTextBoxColumn();
-            datePlantio = new DataGridViewTextBoxColumn();
-            dateColheitaEsperada = new DataGridViewTextBoxColumn();
-            status = new DataGridViewTextBoxColumn();
             panelMenu.SuspendLayout();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -248,6 +248,47 @@
             dataGridView3.Size = new Size(820, 174);
             dataGridView3.TabIndex = 5;
             // 
+            // cdg
+            // 
+            cdg.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            cdg.HeaderText = "Código";
+            cdg.Name = "cdg";
+            cdg.Width = 71;
+            // 
+            // name
+            // 
+            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            name.HeaderText = "Nome";
+            name.Name = "name";
+            // 
+            // qtdPlantacoes
+            // 
+            qtdPlantacoes.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            qtdPlantacoes.HeaderText = "Quantidade";
+            qtdPlantacoes.Name = "qtdPlantacoes";
+            qtdPlantacoes.Width = 94;
+            // 
+            // datePlantio
+            // 
+            datePlantio.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            datePlantio.HeaderText = "Data plantio";
+            datePlantio.Name = "datePlantio";
+            datePlantio.Width = 88;
+            // 
+            // dateColheitaEsperada
+            // 
+            dateColheitaEsperada.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dateColheitaEsperada.HeaderText = "Data colheita esperada";
+            dateColheitaEsperada.Name = "dateColheitaEsperada";
+            dateColheitaEsperada.Width = 138;
+            // 
+            // status
+            // 
+            status.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            status.HeaderText = "Status";
+            status.Name = "status";
+            status.Width = 64;
+            // 
             // label3
             // 
             label3.AutoSize = true;
@@ -339,47 +380,6 @@
             label1.TabIndex = 0;
             label1.Text = "Últimas vendas";
             // 
-            // cdg
-            // 
-            cdg.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            cdg.HeaderText = "Código";
-            cdg.Name = "cdg";
-            cdg.Width = 71;
-            // 
-            // name
-            // 
-            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            name.HeaderText = "Nome";
-            name.Name = "name";
-            // 
-            // qtdPlantacoes
-            // 
-            qtdPlantacoes.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            qtdPlantacoes.HeaderText = "Quantidade";
-            qtdPlantacoes.Name = "qtdPlantacoes";
-            qtdPlantacoes.Width = 94;
-            // 
-            // datePlantio
-            // 
-            datePlantio.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            datePlantio.HeaderText = "Data plantio";
-            datePlantio.Name = "datePlantio";
-            datePlantio.Width = 96;
-            // 
-            // dateColheitaEsperada
-            // 
-            dateColheitaEsperada.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dateColheitaEsperada.HeaderText = "Data colheita esperada";
-            dateColheitaEsperada.Name = "dateColheitaEsperada";
-            dateColheitaEsperada.Width = 138;
-            // 
-            // status
-            // 
-            status.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            status.HeaderText = "Status";
-            status.Name = "status";
-            status.Width = 64;
-            // 
             // MainMenu
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -387,9 +387,10 @@
             ClientSize = new Size(1123, 598);
             Controls.Add(panelForm);
             Controls.Add(panelMenu);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainMenu";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Form1";
+            Text = "VisionFarm";
             Closed += MainMenu_Closed;
             panelMenu.ResumeLayout(false);
             panel1.ResumeLayout(false);

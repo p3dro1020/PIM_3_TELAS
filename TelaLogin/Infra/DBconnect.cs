@@ -42,7 +42,7 @@ namespace TelaLogin.Infra
             {
                 Connection.Open();
 
-                NpgsqlCommand cmd = new NpgsqlCommand($"SELECT nome  FROM funcionario WHERE usuario = @usuario AND senha = @senha;", Connection);
+                NpgsqlCommand cmd = new NpgsqlCommand($"SELECT * FROM funcionario WHERE usuario = @usuario AND senha = @senha;", Connection);
                 cmd.Parameters.AddWithValue("@usuario", user);
                 cmd.Parameters.AddWithValue("@senha", password);
 

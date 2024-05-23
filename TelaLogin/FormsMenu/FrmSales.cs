@@ -16,5 +16,10 @@ namespace TelaPIM
         {
             InitializeComponent();
         }
+
+        private void FrmSales_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
