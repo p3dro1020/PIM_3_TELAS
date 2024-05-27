@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducts));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducts));
             panel1 = new Panel();
-            dgv_products = new DataGridView();
             bt_listAll = new Button();
             bt_search = new Button();
             txt_search = new TextBox();
             label1 = new Label();
             bt_add = new Button();
+            dgv_products = new DataGridView();
             cod = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
             qtd = new DataGridViewTextBoxColumn();
@@ -64,36 +64,6 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(903, 75);
             panel1.TabIndex = 0;
-            // 
-            // dgv_products
-            // 
-            dgv_products.AllowUserToAddRows = false;
-            dgv_products.BackgroundColor = Color.White;
-            dgv_products.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Sienna;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgv_products.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgv_products.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv_products.Columns.AddRange(new DataGridViewColumn[] { cod, name, qtd, preco_unico, preco_total, fornecedor, dt_vencimento, edit, delete });
-            dgv_products.Dock = DockStyle.Fill;
-            dgv_products.EnableHeadersVisualStyles = false;
-            dgv_products.Location = new Point(0, 0);
-            dgv_products.Name = "dgv_products";
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgv_products.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgv_products.Size = new Size(903, 523);
-            dgv_products.TabIndex = 1;
             // 
             // bt_listAll
             // 
@@ -153,6 +123,36 @@
             bt_add.TabIndex = 6;
             bt_add.UseVisualStyleBackColor = true;
             // 
+            // dgv_products
+            // 
+            dgv_products.AllowUserToAddRows = false;
+            dgv_products.BackgroundColor = Color.White;
+            dgv_products.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Sienna;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_products.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgv_products.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv_products.Columns.AddRange(new DataGridViewColumn[] { cod, name, qtd, preco_unico, preco_total, fornecedor, dt_vencimento, edit, delete });
+            dgv_products.Dock = DockStyle.Fill;
+            dgv_products.EnableHeadersVisualStyles = false;
+            dgv_products.Location = new Point(0, 0);
+            dgv_products.Name = "dgv_products";
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Control;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            dgv_products.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgv_products.Size = new Size(903, 523);
+            dgv_products.TabIndex = 1;
+            // 
             // cod
             // 
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -184,9 +184,9 @@
             // preco_total
             // 
             preco_total.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            preco_total.HeaderText = "Preço total";
+            preco_total.HeaderText = "Preço estoque total";
             preco_total.Name = "preco_total";
-            preco_total.Width = 92;
+            preco_total.Width = 140;
             // 
             // fornecedor
             // 
@@ -205,6 +205,7 @@
             // 
             edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             edit.HeaderText = "";
+            edit.Image = (Image)resources.GetObject("edit.Image");
             edit.Name = "edit";
             edit.Width = 5;
             // 
@@ -212,6 +213,7 @@
             // 
             delete.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             delete.HeaderText = "";
+            delete.Image = (Image)resources.GetObject("delete.Image");
             delete.Name = "delete";
             delete.Width = 5;
             // 

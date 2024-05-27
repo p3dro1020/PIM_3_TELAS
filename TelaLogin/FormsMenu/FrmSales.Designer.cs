@@ -32,49 +32,53 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSales));
             panel1 = new Panel();
-            label1 = new Label();
-            label2 = new Label();
-            label3 = new Label();
+            bt_confirm = new Button();
+            txt_total_itens = new Label();
             label4 = new Label();
+            txt_valor_total = new Label();
+            label1 = new Label();
             label5 = new Label();
-            textBox1 = new TextBox();
+            txt_num_venda = new TextBox();
             label6 = new Label();
-            textBox2 = new TextBox();
-            textBox3 = new TextBox();
+            txt_data = new TextBox();
+            txt_operador = new TextBox();
             label7 = new Label();
-            textBox4 = new TextBox();
+            txt_cod_operador = new TextBox();
             label8 = new Label();
-            textBox5 = new TextBox();
+            txt_qtd_produto = new TextBox();
             label9 = new Label();
-            textBox6 = new TextBox();
+            txt_produto = new TextBox();
             label10 = new Label();
-            textBox8 = new TextBox();
+            txt_cod_barras = new TextBox();
             label12 = new Label();
-            textBox7 = new TextBox();
+            txt_valor_un = new TextBox();
             label11 = new Label();
-            textBox9 = new TextBox();
+            txt_valor_tot = new TextBox();
             label13 = new Label();
             bt_add = new Button();
-            dataGridView1 = new DataGridView();
+            dgv_sales = new DataGridView();
             contador = new DataGridViewTextBoxColumn();
             cod = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
             qtd = new DataGridViewTextBoxColumn();
             unity = new DataGridViewTextBoxColumn();
             preco_total = new DataGridViewTextBoxColumn();
-            button1 = new Button();
+            bt_search = new Button();
+            bt_excluir = new Button();
+            bt_edit = new Button();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_sales).BeginInit();
             SuspendLayout();
             // 
             // panel1
             // 
             panel1.AutoScroll = true;
             panel1.BackColor = Color.Sienna;
-            panel1.Controls.Add(button1);
-            panel1.Controls.Add(label3);
+            panel1.Controls.Add(bt_excluir);
+            panel1.Controls.Add(bt_confirm);
+            panel1.Controls.Add(txt_total_itens);
             panel1.Controls.Add(label4);
-            panel1.Controls.Add(label2);
+            panel1.Controls.Add(txt_valor_total);
             panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Bottom;
             panel1.ForeColor = SystemColors.ControlText;
@@ -83,32 +87,28 @@
             panel1.Size = new Size(903, 75);
             panel1.TabIndex = 2;
             // 
-            // label1
+            // bt_confirm
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(261, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(84, 15);
-            label1.TabIndex = 0;
-            label1.Text = "VALOR TOTAL";
+            bt_confirm.Anchor = AnchorStyles.None;
+            bt_confirm.BackColor = Color.Sienna;
+            bt_confirm.Cursor = Cursors.Hand;
+            bt_confirm.FlatStyle = FlatStyle.Flat;
+            bt_confirm.ForeColor = Color.Sienna;
+            bt_confirm.Image = (Image)resources.GetObject("bt_confirm.Image");
+            bt_confirm.Location = new Point(857, 21);
+            bt_confirm.Name = "bt_confirm";
+            bt_confirm.Size = new Size(34, 31);
+            bt_confirm.TabIndex = 24;
+            bt_confirm.UseVisualStyleBackColor = false;
             // 
-            // label2
+            // txt_total_itens
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(271, 37);
-            label2.Name = "label2";
-            label2.Size = new Size(49, 15);
-            label2.TabIndex = 1;
-            label2.Text = "R$ 0,00";
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(571, 37);
-            label3.Name = "label3";
-            label3.Size = new Size(14, 15);
-            label3.TabIndex = 3;
-            label3.Text = "0";
+            txt_total_itens.AutoSize = true;
+            txt_total_itens.Location = new Point(571, 37);
+            txt_total_itens.Name = "txt_total_itens";
+            txt_total_itens.Size = new Size(14, 15);
+            txt_total_itens.TabIndex = 3;
+            txt_total_itens.Text = "0";
             // 
             // label4
             // 
@@ -119,6 +119,24 @@
             label4.TabIndex = 2;
             label4.Text = "TOTAL ITENS";
             // 
+            // txt_valor_total
+            // 
+            txt_valor_total.AutoSize = true;
+            txt_valor_total.Location = new Point(271, 37);
+            txt_valor_total.Name = "txt_valor_total";
+            txt_valor_total.Size = new Size(49, 15);
+            txt_valor_total.TabIndex = 1;
+            txt_valor_total.Text = "R$ 0,00";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(261, 16);
+            label1.Name = "label1";
+            label1.Size = new Size(84, 15);
+            label1.TabIndex = 0;
+            label1.Text = "VALOR TOTAL";
+            // 
             // label5
             // 
             label5.AutoSize = true;
@@ -128,13 +146,15 @@
             label5.TabIndex = 3;
             label5.Text = "Nº Venda:";
             // 
-            // textBox1
+            // txt_num_venda
             // 
-            textBox1.Enabled = false;
-            textBox1.Location = new Point(83, 12);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(72, 23);
-            textBox1.TabIndex = 4;
+            txt_num_venda.Enabled = false;
+            txt_num_venda.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_num_venda.Location = new Point(83, 12);
+            txt_num_venda.Name = "txt_num_venda";
+            txt_num_venda.Size = new Size(72, 23);
+            txt_num_venda.TabIndex = 4;
+            txt_num_venda.Text = "135";
             // 
             // label6
             // 
@@ -145,21 +165,25 @@
             label6.TabIndex = 5;
             label6.Text = "Data:";
             // 
-            // textBox2
+            // txt_data
             // 
-            textBox2.Enabled = false;
-            textBox2.Location = new Point(220, 12);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(90, 23);
-            textBox2.TabIndex = 6;
+            txt_data.Enabled = false;
+            txt_data.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_data.Location = new Point(220, 12);
+            txt_data.Name = "txt_data";
+            txt_data.Size = new Size(90, 23);
+            txt_data.TabIndex = 6;
+            txt_data.Text = "26/05/2024";
             // 
-            // textBox3
+            // txt_operador
             // 
-            textBox3.Enabled = false;
-            textBox3.Location = new Point(417, 12);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(230, 23);
-            textBox3.TabIndex = 8;
+            txt_operador.Enabled = false;
+            txt_operador.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_operador.Location = new Point(417, 12);
+            txt_operador.Name = "txt_operador";
+            txt_operador.Size = new Size(230, 23);
+            txt_operador.TabIndex = 8;
+            txt_operador.Text = "Pedro Teste";
             // 
             // label7
             // 
@@ -170,13 +194,15 @@
             label7.TabIndex = 7;
             label7.Text = "Operador:";
             // 
-            // textBox4
+            // txt_cod_operador
             // 
-            textBox4.Enabled = false;
-            textBox4.Location = new Point(758, 12);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(90, 23);
-            textBox4.TabIndex = 10;
+            txt_cod_operador.Enabled = false;
+            txt_cod_operador.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_cod_operador.Location = new Point(758, 12);
+            txt_cod_operador.Name = "txt_cod_operador";
+            txt_cod_operador.Size = new Size(90, 23);
+            txt_cod_operador.TabIndex = 10;
+            txt_cod_operador.Text = "001";
             // 
             // label8
             // 
@@ -187,13 +213,14 @@
             label8.TabIndex = 9;
             label8.Text = "Cód. Operador:";
             // 
-            // textBox5
+            // txt_qtd_produto
             // 
-            textBox5.Enabled = false;
-            textBox5.Location = new Point(448, 128);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(90, 23);
-            textBox5.TabIndex = 18;
+            txt_qtd_produto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_qtd_produto.Location = new Point(448, 128);
+            txt_qtd_produto.Name = "txt_qtd_produto";
+            txt_qtd_produto.Size = new Size(90, 23);
+            txt_qtd_produto.TabIndex = 18;
+            txt_qtd_produto.Text = "3";
             // 
             // label9
             // 
@@ -204,13 +231,14 @@
             label9.TabIndex = 17;
             label9.Text = "Quantidade:";
             // 
-            // textBox6
+            // txt_produto
             // 
-            textBox6.Enabled = false;
-            textBox6.Location = new Point(171, 128);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(230, 23);
-            textBox6.TabIndex = 16;
+            txt_produto.Enabled = false;
+            txt_produto.Location = new Point(171, 128);
+            txt_produto.Name = "txt_produto";
+            txt_produto.Size = new Size(230, 23);
+            txt_produto.TabIndex = 16;
+            txt_produto.Text = "Alface";
             // 
             // label10
             // 
@@ -221,13 +249,14 @@
             label10.TabIndex = 15;
             label10.Text = "Produto:";
             // 
-            // textBox8
+            // txt_cod_barras
             // 
-            textBox8.Enabled = false;
-            textBox8.Location = new Point(18, 128);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(111, 23);
-            textBox8.TabIndex = 12;
+            txt_cod_barras.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_cod_barras.Location = new Point(18, 128);
+            txt_cod_barras.Name = "txt_cod_barras";
+            txt_cod_barras.Size = new Size(111, 23);
+            txt_cod_barras.TabIndex = 12;
+            txt_cod_barras.Text = "001";
             // 
             // label12
             // 
@@ -238,13 +267,15 @@
             label12.TabIndex = 11;
             label12.Text = "Cód. Barras:";
             // 
-            // textBox7
+            // txt_valor_un
             // 
-            textBox7.Enabled = false;
-            textBox7.Location = new Point(553, 128);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(90, 23);
-            textBox7.TabIndex = 20;
+            txt_valor_un.Enabled = false;
+            txt_valor_un.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_valor_un.Location = new Point(553, 128);
+            txt_valor_un.Name = "txt_valor_un";
+            txt_valor_un.Size = new Size(90, 23);
+            txt_valor_un.TabIndex = 20;
+            txt_valor_un.Text = "R$ 5,00";
             // 
             // label11
             // 
@@ -255,13 +286,14 @@
             label11.TabIndex = 19;
             label11.Text = "Unidade:";
             // 
-            // textBox9
+            // txt_valor_tot
             // 
-            textBox9.Enabled = false;
-            textBox9.Location = new Point(662, 128);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(90, 23);
-            textBox9.TabIndex = 22;
+            txt_valor_tot.Enabled = false;
+            txt_valor_tot.Location = new Point(662, 128);
+            txt_valor_tot.Name = "txt_valor_tot";
+            txt_valor_tot.Size = new Size(90, 23);
+            txt_valor_tot.TabIndex = 22;
+            txt_valor_tot.Text = "R$ 15,00";
             // 
             // label13
             // 
@@ -286,10 +318,11 @@
             bt_add.TabIndex = 23;
             bt_add.UseVisualStyleBackColor = false;
             // 
-            // dataGridView1
+            // dgv_sales
             // 
-            dataGridView1.BackgroundColor = Color.White;
-            dataGridView1.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgv_sales.BackgroundColor = Color.White;
+            dgv_sales.BorderStyle = BorderStyle.None;
+            dgv_sales.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.Sienna;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -297,9 +330,9 @@
             dataGridViewCellStyle1.SelectionBackColor = Color.Sienna;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { contador, cod, name, qtd, unity, preco_total });
+            dgv_sales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgv_sales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgv_sales.Columns.AddRange(new DataGridViewColumn[] { contador, cod, name, qtd, unity, preco_total });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -307,13 +340,13 @@
             dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            dataGridView1.EnableHeadersVisualStyles = false;
-            dataGridView1.Location = new Point(18, 175);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersVisible = false;
-            dataGridView1.Size = new Size(830, 314);
-            dataGridView1.TabIndex = 24;
+            dgv_sales.DefaultCellStyle = dataGridViewCellStyle2;
+            dgv_sales.EnableHeadersVisualStyles = false;
+            dgv_sales.Location = new Point(18, 175);
+            dgv_sales.Name = "dgv_sales";
+            dgv_sales.RowHeadersVisible = false;
+            dgv_sales.Size = new Size(830, 314);
+            dgv_sales.TabIndex = 24;
             // 
             // contador
             // 
@@ -326,7 +359,7 @@
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             cod.HeaderText = "Cód. Produto";
             cod.Name = "cod";
-            cod.Width = 95;
+            cod.Width = 103;
             // 
             // name
             // 
@@ -355,44 +388,74 @@
             preco_total.Name = "preco_total";
             preco_total.Width = 58;
             // 
-            // button1
+            // bt_search
             // 
-            button1.Anchor = AnchorStyles.None;
-            button1.BackColor = Color.Sienna;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Sienna;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(857, 21);
-            button1.Name = "button1";
-            button1.Size = new Size(34, 31);
-            button1.TabIndex = 24;
-            button1.UseVisualStyleBackColor = false;
+            bt_search.Anchor = AnchorStyles.None;
+            bt_search.BackColor = Color.White;
+            bt_search.Cursor = Cursors.Hand;
+            bt_search.FlatStyle = FlatStyle.Flat;
+            bt_search.ForeColor = Color.White;
+            bt_search.Image = (Image)resources.GetObject("bt_search.Image");
+            bt_search.Location = new Point(135, 125);
+            bt_search.Name = "bt_search";
+            bt_search.Size = new Size(20, 26);
+            bt_search.TabIndex = 25;
+            bt_search.UseVisualStyleBackColor = false;
+            // 
+            // bt_excluir
+            // 
+            bt_excluir.Anchor = AnchorStyles.None;
+            bt_excluir.BackColor = Color.Sienna;
+            bt_excluir.Cursor = Cursors.Hand;
+            bt_excluir.FlatStyle = FlatStyle.Flat;
+            bt_excluir.ForeColor = Color.Sienna;
+            bt_excluir.Image = (Image)resources.GetObject("bt_excluir.Image");
+            bt_excluir.Location = new Point(817, 21);
+            bt_excluir.Name = "bt_excluir";
+            bt_excluir.Size = new Size(34, 31);
+            bt_excluir.TabIndex = 25;
+            bt_excluir.UseVisualStyleBackColor = false;
+            // 
+            // bt_edit
+            // 
+            bt_edit.Anchor = AnchorStyles.None;
+            bt_edit.BackColor = Color.White;
+            bt_edit.Cursor = Cursors.Hand;
+            bt_edit.FlatStyle = FlatStyle.Flat;
+            bt_edit.ForeColor = Color.White;
+            bt_edit.Image = (Image)resources.GetObject("bt_edit.Image");
+            bt_edit.Location = new Point(798, 123);
+            bt_edit.Name = "bt_edit";
+            bt_edit.Size = new Size(34, 31);
+            bt_edit.TabIndex = 26;
+            bt_edit.UseVisualStyleBackColor = false;
             // 
             // FrmSales
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(903, 598);
-            Controls.Add(dataGridView1);
+            Controls.Add(bt_edit);
+            Controls.Add(bt_search);
+            Controls.Add(dgv_sales);
             Controls.Add(bt_add);
-            Controls.Add(textBox9);
+            Controls.Add(txt_valor_tot);
             Controls.Add(label13);
-            Controls.Add(textBox7);
+            Controls.Add(txt_valor_un);
             Controls.Add(label11);
-            Controls.Add(textBox5);
+            Controls.Add(txt_qtd_produto);
             Controls.Add(label9);
-            Controls.Add(textBox6);
+            Controls.Add(txt_produto);
             Controls.Add(label10);
-            Controls.Add(textBox8);
+            Controls.Add(txt_cod_barras);
             Controls.Add(label12);
-            Controls.Add(textBox4);
+            Controls.Add(txt_cod_operador);
             Controls.Add(label8);
-            Controls.Add(textBox3);
+            Controls.Add(txt_operador);
             Controls.Add(label7);
-            Controls.Add(textBox2);
+            Controls.Add(txt_data);
             Controls.Add(label6);
-            Controls.Add(textBox1);
+            Controls.Add(txt_num_venda);
             Controls.Add(label5);
             Controls.Add(panel1);
             Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -402,43 +465,46 @@
             Load += FrmSales_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_sales).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private Panel panel1;
-        private Label label2;
+        private Label txt_valor_total;
         private Label label1;
-        private Label label3;
+        private Label txt_total_itens;
         private Label label4;
         private Label label5;
-        private TextBox textBox1;
+        private TextBox txt_num_venda;
         private Label label6;
-        private TextBox textBox2;
-        private TextBox textBox3;
+        private TextBox txt_data;
+        private TextBox txt_operador;
         private Label label7;
-        private TextBox textBox4;
+        private TextBox txt_cod_operador;
         private Label label8;
-        private TextBox textBox5;
+        private TextBox txt_qtd_produto;
         private Label label9;
-        private TextBox textBox6;
+        private TextBox txt_produto;
         private Label label10;
-        private TextBox textBox8;
+        private TextBox txt_cod_barras;
         private Label label12;
-        private TextBox textBox7;
+        private TextBox txt_valor_un;
         private Label label11;
-        private TextBox textBox9;
+        private TextBox txt_valor_tot;
         private Label label13;
         private Button bt_add;
-        private DataGridView dataGridView1;
+        private DataGridView dgv_sales;
         private DataGridViewTextBoxColumn contador;
         private DataGridViewTextBoxColumn cod;
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn qtd;
         private DataGridViewTextBoxColumn unity;
         private DataGridViewTextBoxColumn preco_total;
-        private Button button1;
+        private Button bt_confirm;
+        private Button bt_search;
+        private Button bt_excluir;
+        private Button bt_edit;
     }
 }
