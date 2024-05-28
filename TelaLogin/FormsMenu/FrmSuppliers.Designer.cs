@@ -121,6 +121,7 @@
             bt_addSuppliers.Size = new Size(34, 31);
             bt_addSuppliers.TabIndex = 2;
             bt_addSuppliers.UseVisualStyleBackColor = true;
+            bt_addSuppliers.Click += bt_addSuppliers_Click;
             // 
             // dgv_suppliers
             // 
@@ -152,6 +153,7 @@
             dgv_suppliers.Name = "dgv_suppliers";
             dgv_suppliers.Size = new Size(903, 523);
             dgv_suppliers.TabIndex = 1;
+            dgv_suppliers.CellContentClick += dgv_suppliers_CellContentClick;
             // 
             // cod
             // 
@@ -196,6 +198,7 @@
             // 
             // edit
             // 
+            edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             edit.HeaderText = "";
             edit.Image = (Image)resources.GetObject("edit.Image");
             edit.Name = "edit";
@@ -203,6 +206,7 @@
             // 
             // remove
             // 
+            remove.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             remove.HeaderText = "";
             remove.Image = (Image)resources.GetObject("remove.Image");
             remove.Name = "remove";

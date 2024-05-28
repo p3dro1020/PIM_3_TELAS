@@ -1,29 +1,41 @@
-﻿using Npgsql;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TelaLogin.Class;
-using System.Data;
+﻿using TelaLogin.Class;
 
 namespace TelaLogin.Infra
 {
-    internal interface IDBconnect 
+    internal interface IDBuser
+    {
+        public bool VerifyUser(string user, string password);
+    }
+    internal interface IDBproduct 
     {
         public void OpenConnection();
-        public bool VerifyUser(string user, string password);
+        // metodos Product
         public bool CreateProduct(Produto produto);
         public bool UpdateProduct(Produto produto);
         List<Produto> ListAllProducts();
         List<Produto> SearchProduct(string text);
-        void ExcludeProduct(int id);
+        public void DeleteProduct(int id);
+    }
+    internal interface IDBsupplier
+    {
         /*
-        void CreateFuncionario(Funcionario funcionario);
-        void UpdateFuncionario(Funcionario funcionario);
-        void ExcludeFuncionario(int id);
-        Produto ObterPorId(int id);
-        List<Produto> ObterTodos();*/
+        // metodos suppliers
+         
+        public bool CreateSuppliers(Fornecedor fornecedor);
+        void UpdateSuppliers(Fornecedor fornecedor);
+        void DeleteSuppliers(int id);
+        void SearchSuppliers(int id);
+        List<Fornecedor> ObterTodos();
+         */
+    }
 
+    internal interface IDBemployee
+    {
+        // metodos employee
+        void CreateEmployee(Funcionario funcionario);
+        void UpdateEmployee(Funcionario funcionario);
+        void DeleteEmployee(int id);
+        void SearchEmployee(int id);
+        List<Funcionario> ObterTodos();
     }
 }

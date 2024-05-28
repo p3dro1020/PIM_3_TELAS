@@ -18,7 +18,7 @@ namespace TelaLogin
 
 
             //User userLogin = new User(); userLogin.scanUserPassword
-            DBconnect db = new DBconnect();
+            DBuser dbUser = new DBuser();
             string userTxtLogin = txtUser.Text;
             string userTxtPassword = txtPassword.Text;
 
@@ -29,7 +29,7 @@ namespace TelaLogin
                 return;
             }
 
-            if (db.VerifyUser(userTxtLogin, userTxtPassword))
+            if (dbUser.VerifyUser(userTxtLogin, userTxtPassword))
             {
                 MainMenu Menu = new MainMenu();
                 Menu.Show();

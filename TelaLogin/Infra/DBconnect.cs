@@ -10,31 +10,10 @@ using TelaLogin.Class;
 
 namespace TelaLogin.Infra
 {
-    public class DBconnect : IDBconnect, IDisposable
+    public class DBuser : IDBuser
     {
         private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
         private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
-        //public NpgsqlConnection Connection { get; set; }
-
-       /* public DBconnect()
-        {
-            Connection.Open();
-        }*/
-        public void Dispose()
-        {
-            Connection.Close();
-        }
-
-        public void OpenConnection()
-        {
-            Connection = new NpgsqlConnection(
-                "Server = localhost;" +
-                "Port = 5432;" +
-                "Database = PIM;" +
-                "Uid = postgres;" +
-                "Psw = admin;");
-
-        }
 
         public bool VerifyUser(string user, string password)
         {
@@ -70,6 +49,32 @@ namespace TelaLogin.Infra
             {
                 Connection.Close();
             }
+        }
+    }
+    public class DBproduct : IDBproduct, IDisposable
+    {
+        private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
+        private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
+        //public NpgsqlConnection Connection { get; set; }
+
+       /* public DBconnect()
+        {
+            Connection.Open();
+        }*/
+        public void Dispose()
+        {
+            Connection.Close();
+        }
+            
+        public void OpenConnection()
+        {
+            Connection = new NpgsqlConnection(
+                "Server = localhost;" +
+                "Port = 5432;" +
+                "Database = PIM;" +
+                "Uid = postgres;" +
+                "Psw = admin;");
+
         }
 
         public bool CreateProduct(Produto p)
@@ -179,7 +184,7 @@ namespace TelaLogin.Infra
             return produtos;
         }
 
-        public void ExcludeProduct(int id)
+        public void DeleteProduct(int id)
         {
             try
             {
@@ -199,6 +204,11 @@ namespace TelaLogin.Infra
                 Connection.Close();
             }
         }
+
+    }
+
+    public class DBfornecedor : IDBsupplier
+    {
 
     }
 }

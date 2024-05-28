@@ -15,7 +15,7 @@ namespace TelaPIM
 {
     public partial class FrmProduction : Form
     {
-        DBconnect db = new DBconnect();
+        DBproduct dbProduct = new DBproduct();
 
         public FrmProduction()
         {
@@ -26,7 +26,7 @@ namespace TelaPIM
         private void LoadProduct()
         {
             dgv_Production.Rows.Clear();
-            List<Produto> produtos = db.ListAllProducts();
+            List<Produto> produtos = dbProduct.ListAllProducts();
             // insere os produtos no datagridview
             foreach (Produto p in produtos)
             {
@@ -52,13 +52,17 @@ namespace TelaPIM
             if (colName == "Edit")
             {
                 FrmProductManagement frmProductManagement = new FrmProductManagement();
+                // ativa o bt de salvar e desativa botao de adicionar
                 frmProductManagement.bt_save.Enabled = true;
                 frmProductManagement.bt_addNewPlantio.Enabled = false;
+
+                // envia dados do formulario Production para o formulario Product Management
                 frmProductManagement.cb_hortalica.Text = dgv_Production.Rows[e.RowIndex].Cells[1].Value.ToString();
                 frmProductManagement.txt_qtd.Text = dgv_Production.Rows[e.RowIndex].Cells[2].Value.ToString();
                 frmProductManagement.dt_plantio.Text = Convert.ToDateTime(dgv_Production.Rows[e.RowIndex].Cells[3].Value).ToString();
                 frmProductManagement.id = Convert.ToInt32(dgv_Production.Rows[e.RowIndex].Cells["cod"].Value);
                 frmProductManagement.ShowDialog();
+
                 // recarrega o datagridview
                 LoadProduct();
             }
@@ -72,7 +76,7 @@ namespace TelaPIM
                     // pega o id do produto
                     int id = Convert.ToInt32(dgv_Production.Rows[e.RowIndex].Cells["cod"].Value);
                     // exclui o produto
-                    db.ExcludeProduct(id);
+                    dbProduct.DeleteProduct(id);
                     // recarrega o datagridview
                     LoadProduct();
                 }
@@ -85,16 +89,30 @@ namespace TelaPIM
         {
             if (txt_search.Text == "")
             {
-                MessageBox.Show("Por favor digite algo");
+                MessageBox.Show("Por favor digite algo para pesquisar");
+                txt_search.Focus();
                 return;
             }
 
+            // busca os produtos
+            List<Produto> produtos = dbProduct.SearchProduct(txt_search.Text);
+
+            // verifica se a lista de produtos esta vazia
+            if (produtos.Count == 0)
+            {
+                MessageBox.Show("Nenhum produto encontrado");
+                //LoadProduct();
+
+                txt_search.Focus();
+                return;
+            }
+
+            // limpa o datagridview
             dgv_Production.Rows.Clear();
-            List<Produto> produtos = db.SearchProduct(txt_search.Text);
-            // insere os produtos no datagridview
+            // insere os produtos buscados no datagridview
             foreach (Produto p in produtos)
             {
-                dgv_Production.Rows.Add(p.Id, p.Nome, p.Quantidade, p.Data_plantio, p.Data_colheita, p.Status);
+                dgv_Production.Rows.Add(p.Id, p.Nome, p.Quantidade, p.DataPlantioFormatada, p.DataColheitaFormatada, p.Status);
             }
         }
 
