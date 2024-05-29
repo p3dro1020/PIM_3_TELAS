@@ -373,6 +373,7 @@
             // 
             // btnAdd
             // 
+            btnAdd.Cursor = Cursors.Hand;
             btnAdd.Location = new Point(717, 126);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(69, 26);
@@ -382,6 +383,7 @@
             // 
             // btnEdict
             // 
+            btnEdict.Cursor = Cursors.Hand;
             btnEdict.Location = new Point(797, 126);
             btnEdict.Name = "btnEdict";
             btnEdict.Size = new Size(69, 26);
@@ -391,12 +393,14 @@
             // 
             // txtTotal
             // 
+            txtTotal.Enabled = false;
             txtTotal.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txtTotal.Location = new Point(36, 480);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
             txtTotal.Size = new Size(111, 23);
             txtTotal.TabIndex = 29;
+            txtTotal.TabStop = false;
             // 
             // label2
             // 
@@ -409,12 +413,14 @@
             // 
             // textBox1
             // 
+            textBox1.Enabled = false;
             textBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             textBox1.Location = new Point(159, 480);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(111, 23);
             textBox1.TabIndex = 31;
+            textBox1.TabStop = false;
             // 
             // label3
             // 
