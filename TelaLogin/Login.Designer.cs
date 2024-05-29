@@ -82,7 +82,7 @@
             // linkPassword
             // 
             linkPassword.AutoSize = true;
-            linkPassword.Location = new Point(579, 384);
+            linkPassword.Location = new Point(578, 384);
             linkPassword.Name = "linkPassword";
             linkPassword.Size = new Size(90, 15);
             linkPassword.TabIndex = 4;
@@ -93,7 +93,7 @@
             // 
             btnLogin.Cursor = Cursors.Hand;
             btnLogin.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLogin.Location = new Point(553, 339);
+            btnLogin.Location = new Point(554, 339);
             btnLogin.Name = "btnLogin";
             btnLogin.Size = new Size(139, 33);
             btnLogin.TabIndex = 3;
@@ -105,7 +105,7 @@
             // 
             labelUser.AutoSize = true;
             labelUser.Font = new Font("Arial", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            labelUser.Location = new Point(554, 222);
+            labelUser.Location = new Point(557, 222);
             labelUser.Name = "labelUser";
             labelUser.Size = new Size(59, 16);
             labelUser.TabIndex = 8;
@@ -138,7 +138,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(527, 45);
+            pictureBox2.Location = new Point(528, 45);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(190, 164);
             pictureBox2.SizeMode = PictureBoxSizeMode.Zoom;
