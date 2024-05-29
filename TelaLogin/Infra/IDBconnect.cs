@@ -18,15 +18,19 @@ namespace TelaLogin.Infra
     }
     internal interface IDBsupplier
     {
-        /*
+
         // metodos suppliers
-         
-        public bool CreateSuppliers(Fornecedor fornecedor);
+
+        List<Fornecedor> ListAllSuppliers();
+        bool CreateSuppliers(Fornecedor fornecedor);
+        Fornecedor SearchSupplier(int id);
+
+        /*
         void UpdateSuppliers(Fornecedor fornecedor);
         void DeleteSuppliers(int id);
         void SearchSuppliers(int id);
-        List<Fornecedor> ObterTodos();
-         */
+        */
+
     }
 
     internal interface IDBemployee

@@ -162,40 +162,33 @@
   <metadata name="email.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="phone.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="dt_cadastro.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="edit.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="info.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="edit.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="info.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAcBJREFUOE/t
-        1N0rQ2EcB/BDcqGwFlqLJW8ttHbh/+ACF5Y6ERG5UW7I86NcKAt52WxmW2QXu1iZl9CZGy4otFaW7XA6
-        Xpo5O47/4Gfm5CQuOLlw4Vu/m9/Fp6fn+fZQv5HTniHLcSMtnTTRZnmlPizL0ul5PhsYvnxF5TVFmQ8k
-        jXlfIqYdkdQGBWIMCKTKnyQVvgQpX70npd57onfdEt0ST4oWOKKd5ci4u33jOBxOxWIxTM/z60lljqIa
-        GAnMe09o2haxLiigMfCI1f4HrPQlMA1imecO9cs3qLPzWDzPYZdjBAUmGy92y/Ho9DwVjUZpmXrLT8Bu
-        52gGE0NUZsaWLZsyo+S7YM+KgqWYLOyzD2LexCXIjJLvgL0eomChLKRto5g/GVcH9q3CB6xjCbDQyqoD
-        +9fG3rEkk4OdTkDtzLU6cGB9HIWQgrU5pjKvrAqsXOPw6dqB4kEOPjC52OayvtdGFdjqPcRIJIIS78Pm
-        lcUPPVQHOvawxX2IBhf7qdiq7/CrYv+DX4OZ72tXBNOWCPVBAYyBJNT4E1DlS0AaBIP7FvROHnQ2Hkrm
-        ONBOX4HGGoeCyThogNPIzJ8PRb0ArZanWoFeFAgAAAAASUVORK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAPhJREFUOE/F
+        k40NAiEMRhnBERzBDXQT3URHcAMdxU10A91A+y5gwP5djIkv+RIOaGk/uPIPVqJ1FeOvWIj2orvo+aGr
+        iDX2zIIqSHQT7UR9IGPmWGNPWjEbqOI4fcWcRex1k3I6p1rJWLNaJCkx1lo5iGjF4lJlQQyxiocIfyw2
+        VRbEcFEDzTuzdGFZZcG88pLTmfTAV/zyIHboIEuIR56HoBJmLUcJiSFWPZ/oUqKE7aErCFK3VYkSus+G
+        0qnSetj4M3hU4aKI8ax6e3mavmLSX6/BBk6l/a2oP50xc6yxJ03WIBBf8IcqejXP3DYzqKJ5OLuiH1HK
+        CwaIRHya2FDPAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="remove.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="cellphone.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <data name="remove.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="cellphone.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAT5JREFUOE9j
-        GPpAwcBAQEFJJx+MgWyoMGkApNFLz7LLS9divom60WEQjcIGyhFtuIuOeYmHrsXVvb4x/7HhkwEJ//cA
-        aV89y4uuOubFUG3YAcjWiY7+37AZhA1Pcgz4RtClCsraEdPCMv/vS6/Fi0FqQGqh2vCD3ek1nz/Xzfi/
-        yD3s//X81v/XU6sgGMgGiYHkdqRVPocqJwza/RNvgzSBwmpvQsn/T7lNYHw9uxEsBpIDqYEqJwyqPKPu
-        EzIQpAaqnDBYHJN/GZuBIDbMwPmReSegygmDBu/YDYQMBKmBKicM0h0C9hMyEKQGqpwwoLoLSz0i22EG
-        ngKmuScZEAxiwwzMdgmqgSonDDyNnbqfVkz8/6SsD6wZRCOzQXLBlu5ToMoJA1B2SncKmDQvMmcBNlzo
-        FjqH6MJhuAMGBgCpZldoZwloJwAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABGdBTUEAALGPC/xhBQAAAQ9JREFUOE9j
+        GAUMRv5ehdbJ4fct4oPnQIXIBzo2Dj7+U8s/R6xq/R+zpfu/SYjvMqgUeQBkQMK+Sf9BOGRBPdhQfXfX
+        Oqg06cAuO+YSzEAQ9p1QTJmBDkWJh2GGUcXLus7OaaDwAxloHhWwHipMGTAN9d0PMtClIuW6goGBAFSY
+        fKCgYaDgWpP+EORlIz/PuVBhygAoLQbPr/0EwtgixTjQuwOEoVziAMggmKEgl8K8D4qoiNVkplOYoSDN
+        oDC1iAxcB2KDwhiW+M3C/SdBlRMHQN4HhSksOSHjgOkV/60SQ69DlRIPQBEFin1YkoJhUDY18HSvgioj
+        HYDSqX1O7C6Qq0Dhp+fsbguVGrmAgQEA022lQQcYIB8AAAAASUVORK5CYII=
 </value>
   </data>
 </root>

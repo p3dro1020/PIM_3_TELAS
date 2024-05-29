@@ -7,17 +7,52 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TelaLogin.Class;
 using TelaLogin.FormsMenu;
 using TelaLogin.FormsSubMenu;
+using TelaLogin.Infra;
 
 namespace TelaPIM
 {
     public partial class FrmSuppliers : Form
     {
+        private DBsupplier dbSupplier = new DBsupplier();
         public FrmSuppliers()
         {
             InitializeComponent();
-            dgv_suppliers.Rows.Add(001, "12.345.678/0001-00", "Fornedor Y", "fornecedor@gmail.com", "(00) 12345-6789", "21/05/2024");
+            LoadSupplier();
+        }
+
+        private void ClearFieldsNewSupplier()
+        {
+            FrmNewSupplier frmNewSupplier = new FrmNewSupplier();
+            // limpa todos os campos do formulario new supplier
+            frmNewSupplier.txt_cnpj.Clear();
+            frmNewSupplier.txt_razaoSocial.Clear();
+            frmNewSupplier.txt_email.Clear();
+            frmNewSupplier.txt_nomeFantasia.Clear();
+            frmNewSupplier.txt_cep.Clear();
+            frmNewSupplier.txt_endereco.Clear();
+            frmNewSupplier.txt_num.Clear();
+            frmNewSupplier.txt_complemento.Clear();
+            frmNewSupplier.txt_bairro.Clear();
+            frmNewSupplier.txt_cidade.Clear();
+            frmNewSupplier.txt_uf.Text = "";
+
+        }
+
+        private void LoadSupplier()
+        {
+
+            dgv_suppliers.Rows.Clear();
+            List<Fornecedor> fornecedor = dbSupplier.ListAllSuppliers();
+
+            // insere os produtos no datagridview
+            foreach (Fornecedor f in fornecedor)
+            {
+                dgv_suppliers.Rows.Add(f.Id, f.Cnpj, f.Nome, f.Email, f.DataCadastroFormatada);
+            }
+
         }
 
         private void dgv_suppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -58,9 +93,44 @@ namespace TelaPIM
         private void bt_addSuppliers_Click(object sender, EventArgs e)
         {
             FrmNewSupplier frmNewSupplier = new FrmNewSupplier();
+            //ativa o botao adicionar e desativa o botao salvar
             frmNewSupplier.bt_save.Enabled = false;
             frmNewSupplier.bt_add.Enabled = true;
+            //limpa todos os campos do formulario new supplier
+            ClearFieldsNewSupplier();
             frmNewSupplier.ShowDialog();
+        }
+
+
+        // evento de duplo clique em uma celula do DGV
+        private void dgv_suppliers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var varId = dgv_suppliers.Rows[e.RowIndex].Cells[0].Value;
+                int.TryParse(varId.ToString(), out int id);
+                Fornecedor f = dbSupplier.SearchSupplier(id);
+                if (f == null) return;
+
+
+                FrmNewSupplier frmNewSupplier = new FrmNewSupplier();
+                frmNewSupplier.txt_cnpj.Text = f.Cnpj;
+                frmNewSupplier.txt_razaoSocial.Text = f.RazaoSocial;
+                frmNewSupplier.txt_email.Text = f.Email;
+                frmNewSupplier.txt_nomeFantasia.Text = f.Nome;
+                frmNewSupplier.txt_cep.Text = f.Cep;
+                frmNewSupplier.txt_endereco.Text = f.Endereco;
+                frmNewSupplier.txt_num.Text = f.Numero.ToString();
+                frmNewSupplier.txt_complemento.Text = f.Complemento;
+                frmNewSupplier.txt_bairro.Text = f.Bairro;
+                frmNewSupplier.txt_cidade.Text = f.Cidade;
+                frmNewSupplier.txt_uf.Text = f.Uf;
+
+                //ativa o botao adicionar e desativa o botao salvar
+                frmNewSupplier.bt_save.Enabled = true;
+                frmNewSupplier.bt_add.Enabled = false;
+                frmNewSupplier.ShowDialog();
+            }
         }
     }
 }

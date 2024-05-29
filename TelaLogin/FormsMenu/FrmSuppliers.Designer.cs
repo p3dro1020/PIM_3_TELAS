@@ -42,10 +42,9 @@
             cnpj = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
             email = new DataGridViewTextBoxColumn();
-            phone = new DataGridViewTextBoxColumn();
             dt_cadastro = new DataGridViewTextBoxColumn();
-            edit = new DataGridViewImageColumn();
-            remove = new DataGridViewImageColumn();
+            info = new DataGridViewImageColumn();
+            cellphone = new DataGridViewImageColumn();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_suppliers).BeginInit();
             SuspendLayout();
@@ -131,19 +130,19 @@
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.Sienna;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Sienna;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv_suppliers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_suppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv_suppliers.Columns.AddRange(new DataGridViewColumn[] { cod, cnpj, name, email, phone, dt_cadastro, edit, remove });
+            dgv_suppliers.Columns.AddRange(new DataGridViewColumn[] { cod, cnpj, name, email, dt_cadastro, info, cellphone });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = SystemColors.Window;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Window;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.ControlText;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgv_suppliers.DefaultCellStyle = dataGridViewCellStyle2;
             dgv_suppliers.Dock = DockStyle.Fill;
@@ -151,15 +150,21 @@
             dgv_suppliers.Location = new Point(0, 0);
             dgv_suppliers.MultiSelect = false;
             dgv_suppliers.Name = "dgv_suppliers";
+            dgv_suppliers.ReadOnly = true;
+            dgv_suppliers.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgv_suppliers.RowHeadersVisible = false;
+            dgv_suppliers.SelectionMode = DataGridViewSelectionMode.CellSelect;
             dgv_suppliers.Size = new Size(903, 523);
             dgv_suppliers.TabIndex = 1;
             dgv_suppliers.CellContentClick += dgv_suppliers_CellContentClick;
+            dgv_suppliers.CellMouseDoubleClick += dgv_suppliers_CellMouseDoubleClick;
             // 
             // cod
             // 
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             cod.HeaderText = "Cód.";
             cod.Name = "cod";
+            cod.ReadOnly = true;
             cod.Width = 55;
             // 
             // cnpj
@@ -167,6 +172,7 @@
             cnpj.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             cnpj.HeaderText = "CNPJ";
             cnpj.Name = "cnpj";
+            cnpj.ReadOnly = true;
             cnpj.Width = 58;
             // 
             // name
@@ -174,43 +180,41 @@
             name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             name.HeaderText = "Nome fantasia";
             name.Name = "name";
+            name.ReadOnly = true;
             // 
             // email
             // 
             email.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             email.HeaderText = "Email";
             email.Name = "email";
+            email.ReadOnly = true;
             email.Width = 60;
-            // 
-            // phone
-            // 
-            phone.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            phone.HeaderText = "Telefone";
-            phone.Name = "phone";
-            phone.Width = 80;
             // 
             // dt_cadastro
             // 
             dt_cadastro.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dt_cadastro.HeaderText = "Data cadastro";
             dt_cadastro.Name = "dt_cadastro";
+            dt_cadastro.ReadOnly = true;
             dt_cadastro.Width = 107;
             // 
-            // edit
+            // info
             // 
-            edit.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            edit.HeaderText = "";
-            edit.Image = (Image)resources.GetObject("edit.Image");
-            edit.Name = "edit";
-            edit.Width = 5;
+            info.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            info.HeaderText = "";
+            info.Image = (Image)resources.GetObject("info.Image");
+            info.Name = "info";
+            info.ReadOnly = true;
+            info.Width = 5;
             // 
-            // remove
+            // cellphone
             // 
-            remove.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            remove.HeaderText = "";
-            remove.Image = (Image)resources.GetObject("remove.Image");
-            remove.Name = "remove";
-            remove.Width = 5;
+            cellphone.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            cellphone.HeaderText = "";
+            cellphone.Image = (Image)resources.GetObject("cellphone.Image");
+            cellphone.Name = "cellphone";
+            cellphone.ReadOnly = true;
+            cellphone.Width = 5;
             // 
             // FrmSuppliers
             // 
@@ -241,9 +245,8 @@
         private DataGridViewTextBoxColumn cnpj;
         private DataGridViewTextBoxColumn name;
         private DataGridViewTextBoxColumn email;
-        private DataGridViewTextBoxColumn phone;
         private DataGridViewTextBoxColumn dt_cadastro;
-        private DataGridViewImageColumn edit;
-        private DataGridViewImageColumn remove;
+        private DataGridViewImageColumn info;
+        private DataGridViewImageColumn cellphone;
     }
 }

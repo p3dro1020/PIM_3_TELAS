@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 using TelaLogin.Class;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace TelaLogin.Infra
 {
@@ -207,8 +208,113 @@ namespace TelaLogin.Infra
 
     }
 
-    public class DBfornecedor : IDBsupplier
+    public class DBsupplier : IDBsupplier
     {
+        private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
+        private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
 
+        public List<Fornecedor> ListAllSuppliers()
+        {
+            List<Fornecedor> fornecedores = new List<Fornecedor>();
+            Connection.Open();
+
+            string query = "SELECT * FROM fornecedor ORDER BY id_fornecedor;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Fornecedor f = new Fornecedor();
+                f.Id = Convert.ToInt32(dr["id_fornecedor"]);
+                f.Nome = dr["razao_social"].ToString();
+                // transformar em data
+                f.DataCadastro = Convert.ToDateTime(dr["data_cadastro"]);
+                f.Cnpj = dr["cnpj"].ToString();
+                f.Email = dr["email"].ToString();
+                fornecedores.Add(f);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return fornecedores;
+        }
+
+        public bool CreateSuppliers(Fornecedor fornecedor)
+        {
+            try
+            {
+                // pega a data atual do sistema
+                DateTime data = DateTime.Today;
+                
+                Connection.Open();
+                string query = "insert into fornecedor(razao_social, data_cadastro, cnpj, email, nome_fantasia, cep, endereco, complemento, bairro, uf, cidade, numero_casa)values(@nome, @data, @cnpj, @email, @nome_fantasia, @cep, @endereco, @complemento, @bairro, @uf, @cidade, @n);";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@nome", fornecedor.Nome);
+                cmd.Parameters.AddWithValue("@data", data);
+                cmd.Parameters.AddWithValue("@cnpj", fornecedor.Cnpj);
+                cmd.Parameters.AddWithValue("@email", fornecedor.Email);
+                cmd.Parameters.AddWithValue("@nome_fantasia", fornecedor.RazaoSocial);
+                cmd.Parameters.AddWithValue("@cep", fornecedor.Cep);
+                cmd.Parameters.AddWithValue("@endereco", fornecedor.Endereco);
+                cmd.Parameters.AddWithValue("@complemento", fornecedor.Complemento);
+                cmd.Parameters.AddWithValue("@bairro", fornecedor.Bairro);
+                cmd.Parameters.AddWithValue("@uf", fornecedor.Uf);
+                cmd.Parameters.AddWithValue("@cidade", fornecedor.Cidade);
+                cmd.Parameters.AddWithValue("@n", fornecedor.Numero);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao inserir novo fornecedor: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public Fornecedor SearchSupplier(int id)
+        {
+            Fornecedor f = new Fornecedor();
+            Connection.Open();
+            
+            string query = "SELECT * FROM fornecedor WHERE id_fornecedor = @id;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                f.Id = Convert.ToInt32(dr["id_fornecedor"]);
+                f.Nome = dr["razao_social"].ToString();
+                // transformar em data
+                f.DataCadastro = Convert.ToDateTime(dr["data_cadastro"]);
+                f.Cnpj = dr["cnpj"].ToString();
+                f.Email = dr["email"].ToString();
+                f.Bairro = dr["bairro"].ToString();
+                f.Cep = dr["cep"].ToString();
+                f.Cidade = dr["cidade"].ToString();
+                f.Complemento = dr["complemento"].ToString();
+                f.Endereco = dr["endereco"].ToString();
+                f.Numero = Convert.ToInt32(dr["numero_casa"]);
+                f.RazaoSocial = dr["nome_fantasia"].ToString();
+                f.Uf = dr["uf"].ToString();
+            }
+
+            dr.Close();
+            
+            Connection.Close();
+            return f;
+          
+        }
+
+        /*
+        void UpdateSuppliers(Fornecedor fornecedor)
+        void DeleteSuppliers(int id)
+        void SearchSuppliers(int id)
+        */
     }
 }
