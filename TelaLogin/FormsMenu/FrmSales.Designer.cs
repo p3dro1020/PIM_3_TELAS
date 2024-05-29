@@ -28,15 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSales));
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            bt_excluir = new Button();
             bt_confirm = new Button();
-            txt_total_itens = new Label();
-            label4 = new Label();
-            txt_valor_total = new Label();
-            label1 = new Label();
             label5 = new Label();
             txt_num_venda = new TextBox();
             label6 = new Label();
@@ -55,7 +52,6 @@
             label11 = new Label();
             txt_valor_tot = new TextBox();
             label13 = new Label();
-            bt_add = new Button();
             dgv_sales = new DataGridView();
             contador = new DataGridViewTextBoxColumn();
             cod = new DataGridViewTextBoxColumn();
@@ -64,8 +60,12 @@
             unity = new DataGridViewTextBoxColumn();
             preco_total = new DataGridViewTextBoxColumn();
             bt_search = new Button();
-            bt_excluir = new Button();
-            bt_edit = new Button();
+            btnAdd = new Button();
+            btnEdict = new Button();
+            txtTotal = new TextBox();
+            label2 = new Label();
+            textBox1 = new TextBox();
+            label3 = new Label();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_sales).BeginInit();
             SuspendLayout();
@@ -76,16 +76,26 @@
             panel1.BackColor = Color.Sienna;
             panel1.Controls.Add(bt_excluir);
             panel1.Controls.Add(bt_confirm);
-            panel1.Controls.Add(txt_total_itens);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(txt_valor_total);
-            panel1.Controls.Add(label1);
             panel1.Dock = DockStyle.Bottom;
             panel1.ForeColor = SystemColors.ControlText;
             panel1.Location = new Point(0, 523);
             panel1.Name = "panel1";
             panel1.Size = new Size(903, 75);
             panel1.TabIndex = 2;
+            // 
+            // bt_excluir
+            // 
+            bt_excluir.Anchor = AnchorStyles.None;
+            bt_excluir.BackColor = Color.Sienna;
+            bt_excluir.Cursor = Cursors.Hand;
+            bt_excluir.FlatStyle = FlatStyle.Flat;
+            bt_excluir.ForeColor = Color.Sienna;
+            bt_excluir.Image = (Image)resources.GetObject("bt_excluir.Image");
+            bt_excluir.Location = new Point(817, 21);
+            bt_excluir.Name = "bt_excluir";
+            bt_excluir.Size = new Size(34, 31);
+            bt_excluir.TabIndex = 25;
+            bt_excluir.UseVisualStyleBackColor = false;
             // 
             // bt_confirm
             // 
@@ -101,46 +111,10 @@
             bt_confirm.TabIndex = 24;
             bt_confirm.UseVisualStyleBackColor = false;
             // 
-            // txt_total_itens
-            // 
-            txt_total_itens.AutoSize = true;
-            txt_total_itens.Location = new Point(571, 37);
-            txt_total_itens.Name = "txt_total_itens";
-            txt_total_itens.Size = new Size(14, 15);
-            txt_total_itens.TabIndex = 3;
-            txt_total_itens.Text = "0";
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(540, 16);
-            label4.Name = "label4";
-            label4.Size = new Size(79, 15);
-            label4.TabIndex = 2;
-            label4.Text = "TOTAL ITENS";
-            // 
-            // txt_valor_total
-            // 
-            txt_valor_total.AutoSize = true;
-            txt_valor_total.Location = new Point(271, 37);
-            txt_valor_total.Name = "txt_valor_total";
-            txt_valor_total.Size = new Size(49, 15);
-            txt_valor_total.TabIndex = 1;
-            txt_valor_total.Text = "R$ 0,00";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(261, 16);
-            label1.Name = "label1";
-            label1.Size = new Size(84, 15);
-            label1.TabIndex = 0;
-            label1.Text = "VALOR TOTAL";
-            // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(18, 15);
+            label5.Location = new Point(32, 19);
             label5.Name = "label5";
             label5.Size = new Size(61, 15);
             label5.TabIndex = 3;
@@ -150,16 +124,18 @@
             // 
             txt_num_venda.Enabled = false;
             txt_num_venda.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_num_venda.Location = new Point(83, 12);
+            txt_num_venda.Location = new Point(97, 15);
             txt_num_venda.Name = "txt_num_venda";
+            txt_num_venda.ReadOnly = true;
             txt_num_venda.Size = new Size(72, 23);
             txt_num_venda.TabIndex = 4;
+            txt_num_venda.TabStop = false;
             txt_num_venda.Text = "135";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(180, 15);
+            label6.Location = new Point(197, 19);
             label6.Name = "label6";
             label6.Size = new Size(36, 15);
             label6.TabIndex = 5;
@@ -169,26 +145,30 @@
             // 
             txt_data.Enabled = false;
             txt_data.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_data.Location = new Point(220, 12);
+            txt_data.Location = new Point(237, 15);
             txt_data.Name = "txt_data";
+            txt_data.ReadOnly = true;
             txt_data.Size = new Size(90, 23);
             txt_data.TabIndex = 6;
+            txt_data.TabStop = false;
             txt_data.Text = "26/05/2024";
             // 
             // txt_operador
             // 
             txt_operador.Enabled = false;
             txt_operador.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_operador.Location = new Point(417, 12);
+            txt_operador.Location = new Point(422, 15);
             txt_operador.Name = "txt_operador";
+            txt_operador.ReadOnly = true;
             txt_operador.Size = new Size(230, 23);
             txt_operador.TabIndex = 8;
+            txt_operador.TabStop = false;
             txt_operador.Text = "Pedro Teste";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(351, 15);
+            label7.Location = new Point(356, 19);
             label7.Name = "label7";
             label7.Size = new Size(63, 15);
             label7.TabIndex = 7;
@@ -198,16 +178,18 @@
             // 
             txt_cod_operador.Enabled = false;
             txt_cod_operador.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_cod_operador.Location = new Point(758, 12);
+            txt_cod_operador.Location = new Point(776, 15);
             txt_cod_operador.Name = "txt_cod_operador";
+            txt_cod_operador.ReadOnly = true;
             txt_cod_operador.Size = new Size(90, 23);
             txt_cod_operador.TabIndex = 10;
+            txt_cod_operador.TabStop = false;
             txt_cod_operador.Text = "001";
             // 
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(664, 15);
+            label8.Location = new Point(682, 19);
             label8.Name = "label8";
             label8.Size = new Size(90, 15);
             label8.TabIndex = 9;
@@ -216,7 +198,7 @@
             // txt_qtd_produto
             // 
             txt_qtd_produto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_qtd_produto.Location = new Point(448, 128);
+            txt_qtd_produto.Location = new Point(402, 128);
             txt_qtd_produto.Name = "txt_qtd_produto";
             txt_qtd_produto.Size = new Size(90, 23);
             txt_qtd_produto.TabIndex = 18;
@@ -225,7 +207,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(448, 110);
+            label9.Location = new Point(402, 110);
             label9.Name = "label9";
             label9.Size = new Size(74, 15);
             label9.TabIndex = 17;
@@ -234,16 +216,16 @@
             // txt_produto
             // 
             txt_produto.Enabled = false;
-            txt_produto.Location = new Point(171, 128);
+            txt_produto.Location = new Point(196, 128);
             txt_produto.Name = "txt_produto";
-            txt_produto.Size = new Size(230, 23);
+            txt_produto.Size = new Size(191, 23);
             txt_produto.TabIndex = 16;
             txt_produto.Text = "Alface";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(171, 110);
+            label10.Location = new Point(194, 110);
             label10.Name = "label10";
             label10.Size = new Size(55, 15);
             label10.TabIndex = 15;
@@ -252,7 +234,7 @@
             // txt_cod_barras
             // 
             txt_cod_barras.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_cod_barras.Location = new Point(18, 128);
+            txt_cod_barras.Location = new Point(37, 128);
             txt_cod_barras.Name = "txt_cod_barras";
             txt_cod_barras.Size = new Size(111, 23);
             txt_cod_barras.TabIndex = 12;
@@ -261,7 +243,7 @@
             // label12
             // 
             label12.AutoSize = true;
-            label12.Location = new Point(18, 110);
+            label12.Location = new Point(37, 110);
             label12.Name = "label12";
             label12.Size = new Size(72, 15);
             label12.TabIndex = 11;
@@ -271,25 +253,25 @@
             // 
             txt_valor_un.Enabled = false;
             txt_valor_un.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_valor_un.Location = new Point(553, 128);
+            txt_valor_un.Location = new Point(506, 128);
             txt_valor_un.Name = "txt_valor_un";
-            txt_valor_un.Size = new Size(90, 23);
+            txt_valor_un.Size = new Size(94, 23);
             txt_valor_un.TabIndex = 20;
             txt_valor_un.Text = "R$ 5,00";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(553, 110);
+            label11.Location = new Point(506, 110);
             label11.Name = "label11";
-            label11.Size = new Size(56, 15);
+            label11.Size = new Size(42, 15);
             label11.TabIndex = 19;
-            label11.Text = "Unidade:";
+            label11.Text = "Preço:";
             // 
             // txt_valor_tot
             // 
             txt_valor_tot.Enabled = false;
-            txt_valor_tot.Location = new Point(662, 128);
+            txt_valor_tot.Location = new Point(613, 128);
             txt_valor_tot.Name = "txt_valor_tot";
             txt_valor_tot.Size = new Size(90, 23);
             txt_valor_tot.TabIndex = 22;
@@ -298,54 +280,40 @@
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(662, 110);
+            label13.Location = new Point(613, 110);
             label13.Name = "label13";
             label13.Size = new Size(67, 15);
             label13.TabIndex = 21;
             label13.Text = "Valor total:";
             // 
-            // bt_add
-            // 
-            bt_add.Anchor = AnchorStyles.None;
-            bt_add.BackColor = Color.White;
-            bt_add.Cursor = Cursors.Hand;
-            bt_add.FlatStyle = FlatStyle.Flat;
-            bt_add.ForeColor = Color.White;
-            bt_add.Image = (Image)resources.GetObject("bt_add.Image");
-            bt_add.Location = new Point(758, 123);
-            bt_add.Name = "bt_add";
-            bt_add.Size = new Size(34, 31);
-            bt_add.TabIndex = 23;
-            bt_add.UseVisualStyleBackColor = false;
-            // 
             // dgv_sales
             // 
             dgv_sales.BackgroundColor = Color.White;
-            dgv_sales.BorderStyle = BorderStyle.None;
+            dgv_sales.BorderStyle = BorderStyle.Fixed3D;
             dgv_sales.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Sienna;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Sienna;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgv_sales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Sienna;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Sienna;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgv_sales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgv_sales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_sales.Columns.AddRange(new DataGridViewColumn[] { contador, cod, name, qtd, unity, preco_total });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgv_sales.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = SystemColors.Window;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgv_sales.DefaultCellStyle = dataGridViewCellStyle4;
             dgv_sales.EnableHeadersVisualStyles = false;
-            dgv_sales.Location = new Point(18, 175);
+            dgv_sales.Location = new Point(36, 177);
             dgv_sales.Name = "dgv_sales";
             dgv_sales.RowHeadersVisible = false;
-            dgv_sales.Size = new Size(830, 314);
+            dgv_sales.Size = new Size(830, 267);
             dgv_sales.TabIndex = 24;
             // 
             // contador
@@ -391,54 +359,91 @@
             // bt_search
             // 
             bt_search.Anchor = AnchorStyles.None;
-            bt_search.BackColor = Color.White;
+            bt_search.BackColor = SystemColors.Control;
             bt_search.Cursor = Cursors.Hand;
             bt_search.FlatStyle = FlatStyle.Flat;
-            bt_search.ForeColor = Color.White;
-            bt_search.Image = (Image)resources.GetObject("bt_search.Image");
-            bt_search.Location = new Point(135, 125);
+            bt_search.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            bt_search.ForeColor = SystemColors.ControlText;
+            bt_search.Location = new Point(154, 128);
             bt_search.Name = "bt_search";
-            bt_search.Size = new Size(20, 26);
+            bt_search.Size = new Size(27, 23);
             bt_search.TabIndex = 25;
+            bt_search.Text = "...";
             bt_search.UseVisualStyleBackColor = false;
             // 
-            // bt_excluir
+            // btnAdd
             // 
-            bt_excluir.Anchor = AnchorStyles.None;
-            bt_excluir.BackColor = Color.Sienna;
-            bt_excluir.Cursor = Cursors.Hand;
-            bt_excluir.FlatStyle = FlatStyle.Flat;
-            bt_excluir.ForeColor = Color.Sienna;
-            bt_excluir.Image = (Image)resources.GetObject("bt_excluir.Image");
-            bt_excluir.Location = new Point(817, 21);
-            bt_excluir.Name = "bt_excluir";
-            bt_excluir.Size = new Size(34, 31);
-            bt_excluir.TabIndex = 25;
-            bt_excluir.UseVisualStyleBackColor = false;
+            btnAdd.Cursor = Cursors.Hand;
+            btnAdd.Location = new Point(717, 126);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(69, 26);
+            btnAdd.TabIndex = 26;
+            btnAdd.Text = "Adicionar";
+            btnAdd.UseVisualStyleBackColor = true;
             // 
-            // bt_edit
+            // btnEdict
             // 
-            bt_edit.Anchor = AnchorStyles.None;
-            bt_edit.BackColor = Color.White;
-            bt_edit.Cursor = Cursors.Hand;
-            bt_edit.FlatStyle = FlatStyle.Flat;
-            bt_edit.ForeColor = Color.White;
-            bt_edit.Image = (Image)resources.GetObject("bt_edit.Image");
-            bt_edit.Location = new Point(798, 123);
-            bt_edit.Name = "bt_edit";
-            bt_edit.Size = new Size(34, 31);
-            bt_edit.TabIndex = 26;
-            bt_edit.UseVisualStyleBackColor = false;
+            btnEdict.Cursor = Cursors.Hand;
+            btnEdict.Location = new Point(797, 126);
+            btnEdict.Name = "btnEdict";
+            btnEdict.Size = new Size(69, 26);
+            btnEdict.TabIndex = 27;
+            btnEdict.Text = "Editar";
+            btnEdict.UseVisualStyleBackColor = true;
+            // 
+            // txtTotal
+            // 
+            txtTotal.Enabled = false;
+            txtTotal.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTotal.Location = new Point(36, 480);
+            txtTotal.Name = "txtTotal";
+            txtTotal.ReadOnly = true;
+            txtTotal.Size = new Size(111, 23);
+            txtTotal.TabIndex = 29;
+            txtTotal.TabStop = false;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(36, 462);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 15);
+            label2.TabIndex = 28;
+            label2.Text = "Valor total:";
+            // 
+            // textBox1
+            // 
+            textBox1.Enabled = false;
+            textBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox1.Location = new Point(159, 480);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(111, 23);
+            textBox1.TabIndex = 31;
+            textBox1.TabStop = false;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(159, 462);
+            label3.Name = "label3";
+            label3.Size = new Size(67, 15);
+            label3.TabIndex = 30;
+            label3.Text = "Total itens:";
             // 
             // FrmSales
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(903, 598);
-            Controls.Add(bt_edit);
+            Controls.Add(textBox1);
+            Controls.Add(label3);
+            Controls.Add(txtTotal);
+            Controls.Add(label2);
+            Controls.Add(btnEdict);
+            Controls.Add(btnAdd);
             Controls.Add(bt_search);
             Controls.Add(dgv_sales);
-            Controls.Add(bt_add);
             Controls.Add(txt_valor_tot);
             Controls.Add(label13);
             Controls.Add(txt_valor_un);
@@ -464,7 +469,6 @@
             Text = "FrmSales";
             Load += FrmSales_Load;
             panel1.ResumeLayout(false);
-            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgv_sales).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -472,10 +476,6 @@
 
         #endregion
         private Panel panel1;
-        private Label txt_valor_total;
-        private Label label1;
-        private Label txt_total_itens;
-        private Label label4;
         private Label label5;
         private TextBox txt_num_venda;
         private Label label6;
@@ -494,7 +494,6 @@
         private Label label11;
         private TextBox txt_valor_tot;
         private Label label13;
-        private Button bt_add;
         private DataGridView dgv_sales;
         private DataGridViewTextBoxColumn contador;
         private DataGridViewTextBoxColumn cod;
@@ -505,6 +504,11 @@
         private Button bt_confirm;
         private Button bt_search;
         private Button bt_excluir;
-        private Button bt_edit;
+        private Button btnAdd;
+        private Button btnEdict;
+        private TextBox txtTotal;
+        private Label label2;
+        private TextBox textBox1;
+        private Label label3;
     }
 }

@@ -387,7 +387,9 @@
             ClientSize = new Size(1123, 598);
             Controls.Add(panelForm);
             Controls.Add(panelMenu);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "MainMenu";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VisionFarm";
