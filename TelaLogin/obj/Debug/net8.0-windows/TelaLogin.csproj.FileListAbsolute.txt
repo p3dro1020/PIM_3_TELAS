@@ -90,3 +90,4 @@ P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogi
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewSupplier.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewProduct.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewSupplier.resources
+P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmPhoneSupplier.resources

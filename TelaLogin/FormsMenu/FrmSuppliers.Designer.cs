@@ -71,11 +71,12 @@
             bt_listAll.FlatStyle = FlatStyle.Flat;
             bt_listAll.ForeColor = Color.Sienna;
             bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
-            bt_listAll.Location = new Point(3, 26);
+            bt_listAll.Location = new Point(3, 23);
             bt_listAll.Name = "bt_listAll";
             bt_listAll.Size = new Size(37, 31);
             bt_listAll.TabIndex = 9;
             bt_listAll.UseVisualStyleBackColor = true;
+            bt_listAll.Click += bt_listAll_Click;
             // 
             // bt_search
             // 
@@ -85,15 +86,16 @@
             bt_search.FlatStyle = FlatStyle.Flat;
             bt_search.ForeColor = Color.Sienna;
             bt_search.Image = (Image)resources.GetObject("bt_search.Image");
-            bt_search.Location = new Point(598, 26);
+            bt_search.Location = new Point(594, 27);
             bt_search.Name = "bt_search";
-            bt_search.Size = new Size(37, 31);
+            bt_search.Size = new Size(25, 23);
             bt_search.TabIndex = 8;
             bt_search.UseVisualStyleBackColor = true;
+            bt_search.Click += bt_search_Click;
             // 
             // txt_search
             // 
-            txt_search.Location = new Point(385, 28);
+            txt_search.Location = new Point(381, 27);
             txt_search.Name = "txt_search";
             txt_search.Size = new Size(207, 23);
             txt_search.TabIndex = 7;
@@ -101,7 +103,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(322, 31);
+            label1.Location = new Point(318, 30);
             label1.Name = "label1";
             label1.Size = new Size(57, 15);
             label1.TabIndex = 6;
@@ -115,7 +117,7 @@
             bt_addSuppliers.FlatStyle = FlatStyle.Flat;
             bt_addSuppliers.ForeColor = Color.Sienna;
             bt_addSuppliers.Image = (Image)resources.GetObject("bt_addSuppliers.Image");
-            bt_addSuppliers.Location = new Point(857, 20);
+            bt_addSuppliers.Location = new Point(857, 23);
             bt_addSuppliers.Name = "bt_addSuppliers";
             bt_addSuppliers.Size = new Size(34, 31);
             bt_addSuppliers.TabIndex = 2;

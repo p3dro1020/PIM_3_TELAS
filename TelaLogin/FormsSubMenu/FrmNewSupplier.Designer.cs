@@ -71,14 +71,14 @@
             txt_cnpj.Location = new Point(39, 80);
             txt_cnpj.Name = "txt_cnpj";
             txt_cnpj.Size = new Size(175, 23);
-            txt_cnpj.TabIndex = 1;
+            txt_cnpj.TabIndex = 2;
             // 
             // txt_razaoSocial
             // 
             txt_razaoSocial.Location = new Point(39, 33);
             txt_razaoSocial.Name = "txt_razaoSocial";
             txt_razaoSocial.Size = new Size(508, 23);
-            txt_razaoSocial.TabIndex = 2;
+            txt_razaoSocial.TabIndex = 1;
             // 
             // label2
             // 
@@ -122,14 +122,14 @@
             txt_endereco.Location = new Point(135, 130);
             txt_endereco.Name = "txt_endereco";
             txt_endereco.Size = new Size(198, 23);
-            txt_endereco.TabIndex = 6;
+            txt_endereco.TabIndex = 5;
             // 
             // bt_add
             // 
             bt_add.Location = new Point(94, 312);
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(75, 23);
-            bt_add.TabIndex = 8;
+            bt_add.TabIndex = 12;
             bt_add.Text = "Adicionar";
             bt_add.UseVisualStyleBackColor = true;
             bt_add.Click += bt_add_Click;
@@ -139,18 +139,20 @@
             bt_save.Location = new Point(187, 312);
             bt_save.Name = "bt_save";
             bt_save.Size = new Size(75, 23);
-            bt_save.TabIndex = 9;
+            bt_save.TabIndex = 13;
             bt_save.Text = "Salvar";
             bt_save.UseVisualStyleBackColor = true;
+            bt_save.Click += bt_save_Click;
             // 
             // bt_cancel
             // 
             bt_cancel.Location = new Point(277, 312);
             bt_cancel.Name = "bt_cancel";
             bt_cancel.Size = new Size(75, 23);
-            bt_cancel.TabIndex = 10;
+            bt_cancel.TabIndex = 14;
             bt_cancel.Text = "Cancelar";
             bt_cancel.UseVisualStyleBackColor = true;
+            bt_cancel.Click += bt_cancel_Click;
             // 
             // label5
             // 
@@ -167,7 +169,7 @@
             txt_nomeFantasia.Location = new Point(220, 80);
             txt_nomeFantasia.Name = "txt_nomeFantasia";
             txt_nomeFantasia.Size = new Size(327, 23);
-            txt_nomeFantasia.TabIndex = 11;
+            txt_nomeFantasia.TabIndex = 3;
             // 
             // label6
             // 
@@ -184,7 +186,7 @@
             txt_complemento.Location = new Point(339, 130);
             txt_complemento.Name = "txt_complemento";
             txt_complemento.Size = new Size(208, 23);
-            txt_complemento.TabIndex = 13;
+            txt_complemento.TabIndex = 6;
             // 
             // label7
             // 
@@ -201,7 +203,7 @@
             txt_bairro.Location = new Point(39, 181);
             txt_bairro.Name = "txt_bairro";
             txt_bairro.Size = new Size(186, 23);
-            txt_bairro.TabIndex = 15;
+            txt_bairro.TabIndex = 7;
             // 
             // label8
             // 
@@ -219,7 +221,7 @@
             txt_uf.Location = new Point(231, 181);
             txt_uf.Name = "txt_uf";
             txt_uf.Size = new Size(43, 23);
-            txt_uf.TabIndex = 19;
+            txt_uf.TabIndex = 8;
             // 
             // label9
             // 
@@ -236,7 +238,7 @@
             txt_cidade.Location = new Point(280, 181);
             txt_cidade.Name = "txt_cidade";
             txt_cidade.Size = new Size(219, 23);
-            txt_cidade.TabIndex = 20;
+            txt_cidade.TabIndex = 9;
             // 
             // label10
             // 
@@ -253,7 +255,7 @@
             txt_num.Location = new Point(505, 181);
             txt_num.Name = "txt_num";
             txt_num.Size = new Size(42, 23);
-            txt_num.TabIndex = 22;
+            txt_num.TabIndex = 10;
             // 
             // label12
             // 
@@ -270,16 +272,17 @@
             txt_email.Location = new Point(39, 237);
             txt_email.Name = "txt_email";
             txt_email.Size = new Size(508, 23);
-            txt_email.TabIndex = 26;
+            txt_email.TabIndex = 11;
             // 
             // bt_delete
             // 
             bt_delete.Location = new Point(368, 312);
             bt_delete.Name = "bt_delete";
             bt_delete.Size = new Size(75, 23);
-            bt_delete.TabIndex = 29;
+            bt_delete.TabIndex = 15;
             bt_delete.Text = "Deletar";
             bt_delete.UseVisualStyleBackColor = true;
+            bt_delete.Click += bt_delete_Click;
             // 
             // FrmNewSupplier
             // 
@@ -346,6 +349,6 @@
         public TextBox txt_num;
         public TextBox txt_email;
         public TextBox txt_cep;
-        private Button bt_delete;
+        public Button bt_delete;
     }
 }

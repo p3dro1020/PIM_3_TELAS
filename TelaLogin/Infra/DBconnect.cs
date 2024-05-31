@@ -311,10 +311,189 @@ namespace TelaLogin.Infra
           
         }
 
-        /*
-        void UpdateSuppliers(Fornecedor fornecedor)
-        void DeleteSuppliers(int id)
-        void SearchSuppliers(int id)
-        */
+        public List<Fornecedor> SearchSupplierPhone(int id)
+        {
+            List<Fornecedor> num = new List<Fornecedor>();
+            Connection.Open();
+
+            try
+            {
+                string query = "SELECT num FROM telefone_fornecedor WHERE id_fornecedor = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Fornecedor f = new Fornecedor();
+                    f.Telefone = (dr["num"].ToString());
+                    num.Add(f);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar telefones: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return num;
+        }
+
+        public bool AddNumSupplier(Fornecedor fornecedor)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "insert into telefone_fornecedor(id_fornecedor,num)values(@id,@num);";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", fornecedor.Id);
+                cmd.Parameters.AddWithValue("@num", fornecedor.Telefone);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao inserir novo fornecedor: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+        
+        public bool UpdateNumSupplier(Fornecedor fornecedor,string newNum)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "update telefone_fornecedor set num = @numOld where id_fornecedor = @id and num = @numNew;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", fornecedor.Id);
+                cmd.Parameters.AddWithValue("@numOld", fornecedor.Telefone);
+                cmd.Parameters.AddWithValue("@numNew", newNum);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao atualizar telefone: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public bool DeleteNumSupplier(Fornecedor fornecedor)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "DELETE FROM telefone_fornecedor WHERE id_fornecedor = @id and num = @num;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", fornecedor.Id);
+                cmd.Parameters.AddWithValue("@num", fornecedor.Telefone);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao deletar telefone: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public List<Fornecedor> SearchSupplierName(string name)
+        {
+            List<Fornecedor> fornecedores = new List<Fornecedor>();
+            Connection.Open();
+
+            string query = "SELECT * FROM fornecedor WHERE UPPER(razao_social) LIKE UPPER(@name) ORDER BY id_fornecedor;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@name", $"%{name}%");
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Fornecedor f = new Fornecedor();
+                f.Id = Convert.ToInt32(dr["id_fornecedor"]);
+                f.Nome = dr["razao_social"].ToString();
+                // transformar em data
+                f.DataCadastro = Convert.ToDateTime(dr["data_cadastro"]);
+                f.Cnpj = dr["cnpj"].ToString();
+                f.Email = dr["email"].ToString();
+                fornecedores.Add(f);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return fornecedores;
+        }
+
+        public bool UpdateSuppliers(Fornecedor fornecedor)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "update fornecedor set razao_social = @nome, cnpj = @cnpj, email = @email, nome_fantasia = @nome_fantasia, cep = @cep, endereco = @endereco, complemento = @complemento, bairro = @bairro, uf = @uf, cidade = @cidade, numero_casa = @n where id_fornecedor = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@nome", fornecedor.Nome);
+                cmd.Parameters.AddWithValue("@cnpj", fornecedor.Cnpj);
+                cmd.Parameters.AddWithValue("@email", fornecedor.Email);
+                cmd.Parameters.AddWithValue("@nome_fantasia", fornecedor.RazaoSocial);
+                cmd.Parameters.AddWithValue("@cep", fornecedor.Cep);
+                cmd.Parameters.AddWithValue("@endereco", fornecedor.Endereco);
+                cmd.Parameters.AddWithValue("@complemento", fornecedor.Complemento);
+                cmd.Parameters.AddWithValue("@bairro", fornecedor.Bairro);
+                cmd.Parameters.AddWithValue("@uf", fornecedor.Uf);
+                cmd.Parameters.AddWithValue("@cidade", fornecedor.Cidade);
+                cmd.Parameters.AddWithValue("@n", fornecedor.Numero);
+                cmd.Parameters.AddWithValue("@id", fornecedor.Id);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao atualizar fornecedor: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public bool DeleteSuppliers(int id)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "DELETE FROM fornecedor WHERE id_fornecedor = " + id;
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Connection.Close();
+                MessageBox.Show("Erro ao tentar deletar: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+        }
     }
 }

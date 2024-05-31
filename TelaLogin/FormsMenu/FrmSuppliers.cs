@@ -11,6 +11,7 @@ using TelaLogin.Class;
 using TelaLogin.FormsMenu;
 using TelaLogin.FormsSubMenu;
 using TelaLogin.Infra;
+using TelaLogin.ClassGlobal;
 
 namespace TelaPIM
 {
@@ -57,48 +58,33 @@ namespace TelaPIM
 
         private void dgv_suppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /*
+            FrmPhoneSupplier frmPhoneSupplier = new FrmPhoneSupplier();
             string colName = dgv_suppliers.Columns[e.ColumnIndex].Name;
-            if (colName == "Edit")
+            var varId = dgv_suppliers.Rows[e.RowIndex].Cells[0].Value;
+            if (colName == "cellphone")
             {
-                FrmProductManagement frmProductManagement = new FrmProductManagement();
-                frmProductManagement.bt_save.Enabled = true;
-                frmProductManagement.bt_addNewPlantio.Enabled = false;
-                frmProductManagement.cb_hortalica.Text = dgv_suppliers.Rows[e.RowIndex].Cells[1].Value.ToString();
-                frmProductManagement.txt_qtd.Text = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
-                frmProductManagement.dt_plantio.Text = Convert.ToDateTime(dgv_suppliers.Rows[e.RowIndex].Cells[3].Value).ToString();
-                frmProductManagement.id = Convert.ToInt32(dgv_suppliers.Rows[e.RowIndex].Cells["cod"].Value);
-                frmProductManagement.ShowDialog();
-                // recarrega o datagridview
-                LoadProduct();
+                frmPhoneSupplier.txt_fornecedorNome.Text = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
+                VarGlobal.id = Convert.ToInt32(varId);
+                frmPhoneSupplier.ShowDialog();
             }
-            else if (colName == "Delete")
+            else if (colName == "info")
             {
-                // confirma se o usuario deseja excluir
-                DialogResult res = MessageBox.Show("Deseja realmente remover o produto?", "Remover", MessageBoxButtons.YesNo);
+                MessageBox.Show("Lista todos os itens fornecidos");
+            }
 
-                if (res == DialogResult.Yes)
-                {
-                    // pega o id do produto
-                    int id = Convert.ToInt32(dgv_Production.Rows[e.RowIndex].Cells["cod"].Value);
-                    // exclui o produto
-                    db.ExcludeProduct(id);
-                    // recarrega o datagridview
-                    LoadProduct();
-                }
-            }
-            */
         }
 
         private void bt_addSuppliers_Click(object sender, EventArgs e)
         {
             FrmNewSupplier frmNewSupplier = new FrmNewSupplier();
-            //ativa o botao adicionar e desativa o botao salvar
+            //ativa o botao adicionar / desativa o botao salvar / desativa o botao deletar
             frmNewSupplier.bt_save.Enabled = false;
             frmNewSupplier.bt_add.Enabled = true;
+            frmNewSupplier.bt_delete.Enabled = false;
             //limpa todos os campos do formulario new supplier
             ClearFieldsNewSupplier();
             frmNewSupplier.ShowDialog();
+            LoadSupplier();
         }
 
 
@@ -108,8 +94,8 @@ namespace TelaPIM
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 var varId = dgv_suppliers.Rows[e.RowIndex].Cells[0].Value;
-                int.TryParse(varId.ToString(), out int id);
-                Fornecedor f = dbSupplier.SearchSupplier(id);
+                VarGlobal.id = int.Parse(varId.ToString());
+                Fornecedor f = dbSupplier.SearchSupplier(VarGlobal.id);
                 if (f == null) return;
 
 
@@ -126,10 +112,49 @@ namespace TelaPIM
                 frmNewSupplier.txt_cidade.Text = f.Cidade;
                 frmNewSupplier.txt_uf.Text = f.Uf;
 
-                //ativa o botao adicionar e desativa o botao salvar
+                //ativa o botao adicionar / desativa o botao salvar / ativa o botao deletar
                 frmNewSupplier.bt_save.Enabled = true;
                 frmNewSupplier.bt_add.Enabled = false;
+                frmNewSupplier.bt_delete.Enabled = true;
                 frmNewSupplier.ShowDialog();
+                LoadSupplier();
+            }
+        }
+
+        private void bt_listAll_Click(object sender, EventArgs e)
+        {
+            LoadSupplier();
+            txt_search.Clear();
+        }
+
+        private void bt_search_Click(object sender, EventArgs e)
+        {
+            // verifica se o campo de pesquisa esta vazio
+            if (txt_search.Text == "")
+            {
+                MessageBox.Show("Digite algo para pesquisar", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // busca os fornecedores
+            List<Fornecedor> fornecedor = dbSupplier.SearchSupplierName(txt_search.Text);
+
+            // verifica se a lista de fornecedores esta vazia
+            if (fornecedor.Count == 0)
+            {
+                MessageBox.Show("Nenhum fornecedor encontrado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LoadSupplier();
+                txt_search.Focus();
+                return;
+            }
+
+            // limpa o datagridview
+            dgv_suppliers.Rows.Clear();
+
+            // insere os fornecedores no datagridview
+            foreach (Fornecedor f in fornecedor)
+            {
+                dgv_suppliers.Rows.Add(f.Id, f.Cnpj, f.Nome, f.Email, f.DataCadastroFormatada);
             }
         }
     }

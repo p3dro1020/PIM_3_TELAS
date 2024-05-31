@@ -22,7 +22,6 @@ namespace TelaLogin.Class
         public string Bairro { get; set; }
         public string Cidade { get; set; }
         public string Uf { get; set; }
-
-
+        public string Telefone { get; set; }
     }
 }

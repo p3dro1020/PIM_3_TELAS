@@ -24,12 +24,14 @@ namespace TelaLogin.Infra
         List<Fornecedor> ListAllSuppliers();
         bool CreateSuppliers(Fornecedor fornecedor);
         Fornecedor SearchSupplier(int id);
-
-        /*
-        void UpdateSuppliers(Fornecedor fornecedor);
-        void DeleteSuppliers(int id);
-        void SearchSuppliers(int id);
-        */
+        List<Fornecedor> SearchSupplierName(string name);
+        public List<Fornecedor> SearchSupplierPhone(int id);
+        bool AddNumSupplier(Fornecedor fornecedor);
+        bool UpdateNumSupplier(Fornecedor fornecedor,string numOld);
+        bool DeleteNumSupplier(Fornecedor fornecedor);
+        bool UpdateSuppliers(Fornecedor fornecedor);
+        bool DeleteSuppliers(int id);
+  
 
     }
 
