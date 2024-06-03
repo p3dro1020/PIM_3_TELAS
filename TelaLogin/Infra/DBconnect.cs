@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Npgsql;
 using TelaLogin.Class;
+using TelaLogin.ClassGlobal;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace TelaLogin.Infra
@@ -494,6 +495,92 @@ namespace TelaLogin.Infra
                 Connection.Close();
             }
 
+        }
+
+        public List<Item> SearchSupplierItem(int id)
+        {
+            List<Item> itens = new List<Item>();
+            Connection.Open();
+
+            try
+            {
+                string query = "SELECT id_item,nome, un, preco FROM itens_fornecidos WHERE id_fornecedor = @id ORDER BY id_item;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Item i = new Item();
+                    VarGlobal.idItem = Convert.ToInt32(dr["id_item"]);
+                    i.NomeItem = (dr["nome"].ToString());
+                    i.Un = (dr["un"].ToString());
+                    i.Preco = Convert.ToDouble(dr["preco"]);
+                    itens.Add(i);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar itens fornecidos: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return itens;
+        }
+
+        public bool AddNewItem(Item item)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "insert into itens_fornecidos(id_fornecedor,nome,un,preco)values(@id,@nome,@un,@preco);";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", item.Id_fornecedor);
+                cmd.Parameters.AddWithValue("@nome", item.NomeItem);
+                cmd.Parameters.AddWithValue("@un", item.Un);
+                cmd.Parameters.AddWithValue("@preco", item.Preco);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao inserir novo item: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public bool UpdateItem(Item item)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "UPDATE itens_fornecidos SET nome = @nome, un = @un, preco = @preco WHERE id_item = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", VarGlobal.idItem);
+                cmd.Parameters.AddWithValue("@nome", item.NomeItem);
+                cmd.Parameters.AddWithValue("@un", item.Un);
+                cmd.Parameters.AddWithValue("@preco", item.Preco);
+
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao atualizar telefone: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
         }
     }
 }

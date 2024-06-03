@@ -58,18 +58,23 @@ namespace TelaPIM
 
         private void dgv_suppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            FrmPhoneSupplier frmPhoneSupplier = new FrmPhoneSupplier();
+            
             string colName = dgv_suppliers.Columns[e.ColumnIndex].Name;
             var varId = dgv_suppliers.Rows[e.RowIndex].Cells[0].Value;
             if (colName == "cellphone")
             {
+                FrmPhoneSupplier frmPhoneSupplier = new FrmPhoneSupplier();
                 frmPhoneSupplier.txt_fornecedorNome.Text = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
                 VarGlobal.id = Convert.ToInt32(varId);
                 frmPhoneSupplier.ShowDialog();
             }
             else if (colName == "info")
             {
-                MessageBox.Show("Lista todos os itens fornecidos");
+                FrmItemsProvided frmItemsProvided = new FrmItemsProvided();
+                frmItemsProvided.txt_fornecedor_name.Text = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
+                VarGlobal.nome = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
+                VarGlobal.id = Convert.ToInt32(varId);
+                frmItemsProvided.ShowDialog();
             }
 
         }

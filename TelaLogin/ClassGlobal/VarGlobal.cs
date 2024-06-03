@@ -10,5 +10,7 @@ namespace TelaLogin.ClassGlobal
     {
         // armazena o id do fornecedor
         public static int id { get; set; }
+        public static string nome { get; set; }
+        public static int idItem { get; set; }
     }
 }

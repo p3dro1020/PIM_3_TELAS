@@ -31,7 +31,9 @@ namespace TelaLogin.Infra
         bool DeleteNumSupplier(Fornecedor fornecedor);
         bool UpdateSuppliers(Fornecedor fornecedor);
         bool DeleteSuppliers(int id);
-  
+        List<Item> SearchSupplierItem(int id);
+        bool AddNewItem(Item item);
+        bool UpdateItem(Item item);
 
     }
 
