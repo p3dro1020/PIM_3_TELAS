@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             panelMenu = new Panel();
+            pictureBox4 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            pictureBox2 = new PictureBox();
             btnProduction = new Button();
             btnSales = new Button();
             btnSuppliers = new Button();
@@ -37,8 +41,13 @@
             btnEmployees = new Button();
             btnHome = new Button();
             panel1 = new Panel();
+            label5 = new Label();
+            label4 = new Label();
             pictureBox1 = new PictureBox();
             panelForm = new Panel();
+            pictureBox7 = new PictureBox();
+            pictureBox6 = new PictureBox();
+            pictureBox5 = new PictureBox();
             dataGridView3 = new DataGridView();
             cdg = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
@@ -59,9 +68,15 @@
             qtd = new DataGridViewTextBoxColumn();
             label1 = new Label();
             panelMenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_colheitas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_lastSale).BeginInit();
@@ -69,7 +84,10 @@
             // 
             // panelMenu
             // 
-            panelMenu.BackColor = Color.Sienna;
+            panelMenu.BackColor = Color.DarkOliveGreen;
+            panelMenu.Controls.Add(pictureBox4);
+            panelMenu.Controls.Add(pictureBox3);
+            panelMenu.Controls.Add(pictureBox2);
             panelMenu.Controls.Add(btnProduction);
             panelMenu.Controls.Add(btnSales);
             panelMenu.Controls.Add(btnSuppliers);
@@ -82,6 +100,33 @@
             panelMenu.Name = "panelMenu";
             panelMenu.Size = new Size(220, 598);
             panelMenu.TabIndex = 0;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.Image = (Image)resources.GetObject("pictureBox4.Image");
+            pictureBox4.Location = new Point(187, 514);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(131, 95);
+            pictureBox4.TabIndex = 9;
+            pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.Image = (Image)resources.GetObject("pictureBox3.Image");
+            pictureBox3.Location = new Point(87, 513);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(112, 113);
+            pictureBox3.TabIndex = 8;
+            pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(-4, 533);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(95, 83);
+            pictureBox2.TabIndex = 7;
+            pictureBox2.TabStop = false;
             // 
             // btnProduction
             // 
@@ -165,7 +210,7 @@
             // 
             // btnEmployees
             // 
-            btnEmployees.BackColor = Color.Sienna;
+            btnEmployees.BackColor = Color.DarkOliveGreen;
             btnEmployees.Dock = DockStyle.Top;
             btnEmployees.FlatAppearance.BorderSize = 0;
             btnEmployees.FlatStyle = FlatStyle.Flat;
@@ -206,7 +251,9 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.SaddleBrown;
+            panel1.BackColor = Color.OliveDrab;
+            panel1.Controls.Add(label5);
+            panel1.Controls.Add(label4);
             panel1.Controls.Add(pictureBox1);
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
@@ -214,18 +261,43 @@
             panel1.Size = new Size(220, 94);
             panel1.TabIndex = 1;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label5.ForeColor = Color.White;
+            label5.Location = new Point(59, 54);
+            label5.Name = "label5";
+            label5.Size = new Size(78, 15);
+            label5.TabIndex = 3;
+            label5.Text = "Nível acesso:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.White;
+            label4.Location = new Point(59, 26);
+            label4.Name = "label4";
+            label4.Size = new Size(55, 15);
+            label4.TabIndex = 2;
+            label4.Text = "Usuário: ";
+            // 
             // pictureBox1
             // 
             pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(42, 12);
+            pictureBox1.Location = new Point(12, 26);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(115, 65);
+            pictureBox1.Size = new Size(41, 43);
             pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
             pictureBox1.TabIndex = 1;
             pictureBox1.TabStop = false;
             // 
             // panelForm
             // 
+            panelForm.Controls.Add(pictureBox7);
+            panelForm.Controls.Add(pictureBox6);
+            panelForm.Controls.Add(pictureBox5);
             panelForm.Controls.Add(dataGridView3);
             panelForm.Controls.Add(label3);
             panelForm.Controls.Add(dgv_colheitas);
@@ -238,19 +310,52 @@
             panelForm.Size = new Size(903, 598);
             panelForm.TabIndex = 1;
             // 
+            // pictureBox7
+            // 
+            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
+            pictureBox7.Location = new Point(45, 305);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(71, 50);
+            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox7.TabIndex = 8;
+            pictureBox7.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            pictureBox6.Image = (Image)resources.GetObject("pictureBox6.Image");
+            pictureBox6.Location = new Point(481, 44);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(75, 50);
+            pictureBox6.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox6.TabIndex = 7;
+            pictureBox6.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.Image = (Image)resources.GetObject("pictureBox5.Image");
+            pictureBox5.Location = new Point(45, 43);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(66, 53);
+            pictureBox5.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox5.TabIndex = 6;
+            pictureBox5.TabStop = false;
+            // 
             // dataGridView3
             // 
             dataGridView3.BackgroundColor = Color.White;
             dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView3.Columns.AddRange(new DataGridViewColumn[] { cdg, name, qtdPlantacoes, datePlantio, dateColheitaEsperada, status });
-            dataGridView3.Location = new Point(45, 334);
+            dataGridView3.Location = new Point(45, 367);
             dataGridView3.Name = "dataGridView3";
+            dataGridView3.RowHeadersVisible = false;
             dataGridView3.Size = new Size(820, 174);
             dataGridView3.TabIndex = 5;
             // 
             // cdg
             // 
             cdg.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle1.BackColor = Color.Transparent;
+            cdg.DefaultCellStyle = dataGridViewCellStyle1;
             cdg.HeaderText = "Código";
             cdg.Name = "cdg";
             cdg.Width = 71;
@@ -292,9 +397,10 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(45, 304);
+            label3.Font = new Font("Century", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Location = new Point(117, 320);
             label3.Name = "label3";
-            label3.Size = new Size(146, 15);
+            label3.Size = new Size(230, 20);
             label3.TabIndex = 4;
             label3.Text = "Plantações últimos 15 dias";
             // 
@@ -303,8 +409,9 @@
             dgv_colheitas.BackgroundColor = Color.White;
             dgv_colheitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_colheitas.Columns.AddRange(new DataGridViewColumn[] { item_colheita, qtdPes, dateColheita });
-            dgv_colheitas.Location = new Point(481, 58);
+            dgv_colheitas.Location = new Point(481, 108);
             dgv_colheitas.Name = "dgv_colheitas";
+            dgv_colheitas.RowHeadersVisible = false;
             dgv_colheitas.Size = new Size(384, 174);
             dgv_colheitas.TabIndex = 3;
             // 
@@ -331,9 +438,10 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(481, 28);
+            label2.Font = new Font("Century", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.Location = new Point(562, 59);
             label2.Name = "label2";
-            label2.Size = new Size(106, 15);
+            label2.Size = new Size(166, 20);
             label2.TabIndex = 2;
             label2.Text = "Próximas colheitas";
             // 
@@ -342,8 +450,9 @@
             dgv_lastSale.BackgroundColor = Color.White;
             dgv_lastSale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_lastSale.Columns.AddRange(new DataGridViewColumn[] { date, item, valor, qtd });
-            dgv_lastSale.Location = new Point(45, 58);
+            dgv_lastSale.Location = new Point(45, 108);
             dgv_lastSale.Name = "dgv_lastSale";
+            dgv_lastSale.RowHeadersVisible = false;
             dgv_lastSale.Size = new Size(384, 174);
             dgv_lastSale.TabIndex = 1;
             // 
@@ -374,9 +483,10 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(45, 28);
+            label1.Font = new Font("Century", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(117, 59);
             label1.Name = "label1";
-            label1.Size = new Size(87, 15);
+            label1.Size = new Size(138, 20);
             label1.TabIndex = 0;
             label1.Text = "Últimas vendas";
             // 
@@ -395,10 +505,17 @@
             Text = "VisionFarm";
             Closed += MainMenu_Closed;
             panelMenu.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             panel1.ResumeLayout(false);
+            panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelForm.ResumeLayout(false);
             panelForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_colheitas).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_lastSale).EndInit();
@@ -427,6 +544,14 @@
         private DataGridViewTextBoxColumn valor;
         private DataGridViewTextBoxColumn qtd;
         private Label label1;
+        private Label label5;
+        private Label label4;
+        private PictureBox pictureBox2;
+        private PictureBox pictureBox4;
+        private PictureBox pictureBox3;
+        private PictureBox pictureBox5;
+        private PictureBox pictureBox7;
+        private PictureBox pictureBox6;
         private DataGridViewTextBoxColumn item_colheita;
         private DataGridViewTextBoxColumn qtdPes;
         private DataGridViewTextBoxColumn dateColheita;

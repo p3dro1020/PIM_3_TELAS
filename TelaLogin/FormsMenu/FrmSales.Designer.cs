@@ -28,12 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSales));
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            panel1 = new Panel();
-            bt_excluir = new Button();
-            bt_confirm = new Button();
             label5 = new Label();
             txt_num_venda = new TextBox();
             label6 = new Label();
@@ -66,50 +63,10 @@
             label2 = new Label();
             textBox1 = new TextBox();
             label3 = new Label();
-            panel1.SuspendLayout();
+            bt_confirm = new Button();
+            bt_excluir = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_sales).BeginInit();
             SuspendLayout();
-            // 
-            // panel1
-            // 
-            panel1.AutoScroll = true;
-            panel1.BackColor = Color.Sienna;
-            panel1.Controls.Add(bt_excluir);
-            panel1.Controls.Add(bt_confirm);
-            panel1.Dock = DockStyle.Bottom;
-            panel1.ForeColor = SystemColors.ControlText;
-            panel1.Location = new Point(0, 523);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(903, 75);
-            panel1.TabIndex = 2;
-            // 
-            // bt_excluir
-            // 
-            bt_excluir.Anchor = AnchorStyles.None;
-            bt_excluir.BackColor = Color.Sienna;
-            bt_excluir.Cursor = Cursors.Hand;
-            bt_excluir.FlatStyle = FlatStyle.Flat;
-            bt_excluir.ForeColor = Color.Sienna;
-            bt_excluir.Image = (Image)resources.GetObject("bt_excluir.Image");
-            bt_excluir.Location = new Point(817, 21);
-            bt_excluir.Name = "bt_excluir";
-            bt_excluir.Size = new Size(34, 31);
-            bt_excluir.TabIndex = 25;
-            bt_excluir.UseVisualStyleBackColor = false;
-            // 
-            // bt_confirm
-            // 
-            bt_confirm.Anchor = AnchorStyles.None;
-            bt_confirm.BackColor = Color.Sienna;
-            bt_confirm.Cursor = Cursors.Hand;
-            bt_confirm.FlatStyle = FlatStyle.Flat;
-            bt_confirm.ForeColor = Color.Sienna;
-            bt_confirm.Image = (Image)resources.GetObject("bt_confirm.Image");
-            bt_confirm.Location = new Point(857, 21);
-            bt_confirm.Name = "bt_confirm";
-            bt_confirm.Size = new Size(34, 31);
-            bt_confirm.TabIndex = 24;
-            bt_confirm.UseVisualStyleBackColor = false;
             // 
             // label5
             // 
@@ -291,29 +248,29 @@
             dgv_sales.BackgroundColor = Color.White;
             dgv_sales.BorderStyle = BorderStyle.Fixed3D;
             dgv_sales.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.Sienna;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = Color.Sienna;
-            dataGridViewCellStyle3.SelectionForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
-            dgv_sales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_sales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_sales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_sales.Columns.AddRange(new DataGridViewColumn[] { contador, cod, name, qtd, unity, preco_total });
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = SystemColors.Window;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle4.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
-            dgv_sales.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgv_sales.DefaultCellStyle = dataGridViewCellStyle2;
             dgv_sales.EnableHeadersVisualStyles = false;
             dgv_sales.Location = new Point(36, 177);
             dgv_sales.Name = "dgv_sales";
             dgv_sales.RowHeadersVisible = false;
-            dgv_sales.Size = new Size(830, 267);
+            dgv_sales.Size = new Size(830, 326);
             dgv_sales.TabIndex = 24;
             // 
             // contador
@@ -395,7 +352,7 @@
             // 
             txtTotal.Enabled = false;
             txtTotal.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txtTotal.Location = new Point(36, 480);
+            txtTotal.Location = new Point(36, 548);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
             txtTotal.Size = new Size(111, 23);
@@ -405,7 +362,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(36, 462);
+            label2.Location = new Point(36, 530);
             label2.Name = "label2";
             label2.Size = new Size(67, 15);
             label2.TabIndex = 28;
@@ -415,7 +372,7 @@
             // 
             textBox1.Enabled = false;
             textBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(159, 480);
+            textBox1.Location = new Point(159, 548);
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.Size = new Size(111, 23);
@@ -425,17 +382,47 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(159, 462);
+            label3.Location = new Point(159, 530);
             label3.Name = "label3";
             label3.Size = new Size(67, 15);
             label3.TabIndex = 30;
             label3.Text = "Total itens:";
+            // 
+            // bt_confirm
+            // 
+            bt_confirm.Anchor = AnchorStyles.None;
+            bt_confirm.BackColor = Color.Sienna;
+            bt_confirm.Cursor = Cursors.Hand;
+            bt_confirm.FlatStyle = FlatStyle.Flat;
+            bt_confirm.ForeColor = Color.Sienna;
+            bt_confirm.Image = (Image)resources.GetObject("bt_confirm.Image");
+            bt_confirm.Location = new Point(832, 544);
+            bt_confirm.Name = "bt_confirm";
+            bt_confirm.Size = new Size(34, 31);
+            bt_confirm.TabIndex = 24;
+            bt_confirm.UseVisualStyleBackColor = false;
+            // 
+            // bt_excluir
+            // 
+            bt_excluir.Anchor = AnchorStyles.None;
+            bt_excluir.BackColor = Color.Sienna;
+            bt_excluir.Cursor = Cursors.Hand;
+            bt_excluir.FlatStyle = FlatStyle.Flat;
+            bt_excluir.ForeColor = Color.Sienna;
+            bt_excluir.Image = (Image)resources.GetObject("bt_excluir.Image");
+            bt_excluir.Location = new Point(785, 544);
+            bt_excluir.Name = "bt_excluir";
+            bt_excluir.Size = new Size(34, 31);
+            bt_excluir.TabIndex = 25;
+            bt_excluir.UseVisualStyleBackColor = false;
             // 
             // FrmSales
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(903, 598);
+            Controls.Add(bt_confirm);
+            Controls.Add(bt_excluir);
             Controls.Add(textBox1);
             Controls.Add(label3);
             Controls.Add(txtTotal);
@@ -462,20 +449,17 @@
             Controls.Add(label6);
             Controls.Add(txt_num_venda);
             Controls.Add(label5);
-            Controls.Add(panel1);
             Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmSales";
             Text = "FrmSales";
             Load += FrmSales_Load;
-            panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgv_sales).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-        private Panel panel1;
         private Label label5;
         private TextBox txt_num_venda;
         private Label label6;
@@ -501,14 +485,14 @@
         private DataGridViewTextBoxColumn qtd;
         private DataGridViewTextBoxColumn unity;
         private DataGridViewTextBoxColumn preco_total;
-        private Button bt_confirm;
         private Button bt_search;
-        private Button bt_excluir;
         private Button btnAdd;
         private Button btnEdict;
         private TextBox txtTotal;
         private Label label2;
         private TextBox textBox1;
         private Label label3;
+        private Button bt_confirm;
+        private Button bt_excluir;
     }
 }
