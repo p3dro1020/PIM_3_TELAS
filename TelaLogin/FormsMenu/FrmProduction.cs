@@ -26,9 +26,9 @@ namespace TelaPIM
         private void LoadProduct()
         {
             dgv_Production.Rows.Clear();
-            List<Produto> produtos = dbProduct.ListAllProducts();
+            List<Plantio> plantio = dbProduct.ListAllProducts();
             // insere os produtos no datagridview
-            foreach (Produto p in produtos)
+            foreach (Plantio p in plantio)
             {
                 dgv_Production.Rows.Add(p.Id, p.Nome, p.Quantidade, p.DataPlantioFormatada, p.DataColheitaFormatada, p.Status);
             }
@@ -94,10 +94,10 @@ namespace TelaPIM
                 return;
             }
 
-            // busca os produtos
-            List<Produto> produtos = dbProduct.SearchProduct(txt_search.Text);
+            // busca os plantios
+            List<Plantio> produtos = dbProduct.SearchProduct(txt_search.Text);
 
-            // verifica se a lista de produtos esta vazia
+            // verifica se a lista de plantios esta vazia
             if (produtos.Count == 0)
             {
                 MessageBox.Show("Nenhum produto encontrado");
@@ -110,7 +110,7 @@ namespace TelaPIM
             // limpa o datagridview
             dgv_Production.Rows.Clear();
             // insere os produtos buscados no datagridview
-            foreach (Produto p in produtos)
+            foreach (Plantio p in produtos)
             {
                 dgv_Production.Rows.Add(p.Id, p.Nome, p.Quantidade, p.DataPlantioFormatada, p.DataColheitaFormatada, p.Status);
             }

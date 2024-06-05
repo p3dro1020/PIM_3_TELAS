@@ -30,7 +30,7 @@ namespace TelaLogin.FormsSubMenu
             // insere os itens no datagridview
             foreach (Item i in item)
             {
-                dgv_itens_fornecidos.Rows.Add(VarGlobal.id, VarGlobal.nome, i.NomeItem, i.Un, i.Preco);
+                dgv_itens_fornecidos.Rows.Add(i.Categoria, i.IdItem, i.CodigoBarras,i.NomeItem, i.Un,i.PrecoCusto ,i.PrecoVenda,i.Lucro);
             }
 
         }
@@ -44,22 +44,26 @@ namespace TelaLogin.FormsSubMenu
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
-                var varId = dgv_itens_fornecidos.Rows[e.RowIndex].Cells[0].Value;
                 Item i = new Item();
-                i.NomeItem = dgv_itens_fornecidos.Rows[e.RowIndex].Cells[2].Value.ToString();
-                i.Un = dgv_itens_fornecidos.Rows[e.RowIndex].Cells[3].Value.ToString();
-                i.Preco = Convert.ToDouble(dgv_itens_fornecidos.Rows[e.RowIndex].Cells[4].Value);
+                VarGlobal.id_item = Convert.ToInt32(dgv_itens_fornecidos.Rows[e.RowIndex].Cells[1].Value);
+                 i = dbSupplier.SearchItem(VarGlobal.id_item);
 
                 if (i == null) return;
 
                 FrmAlterItem frmAlterItem = new FrmAlterItem();
-                frmAlterItem.txt_nomeItem.Text = i.NomeItem;
-                frmAlterItem.txt_un.Text = i.Un;
-                frmAlterItem.txt_preco.Text = i.Preco.ToString();
-                frmAlterItem.nome = i.NomeItem;
-                frmAlterItem.un = i.Un;
-                frmAlterItem.preco = i.Preco.ToString();
+                frmAlterItem.txt_codigo_barras.Text = i.CodigoBarras;
+                frmAlterItem.txt_nome.Text = i.NomeItem;
+                frmAlterItem.cb_un.Text = i.Un;
+                frmAlterItem.txt_preco_custo.Text = i.PrecoCusto.ToString();
+                frmAlterItem.txt_porcentagem.Text = i.Porcentagem.ToString();
+                frmAlterItem.txt_valor_venda.Text = i.PrecoVenda.ToString();
+                frmAlterItem.txt_lucro.Text = i.Lucro.ToString();
+                frmAlterItem.txt_categoria.Text = i.Categoria;
+                frmAlterItem.txt_estoque_minimo.Text = i.EstoqueMinimo.ToString();
+                frmAlterItem.txt_fornecedor.Text = VarGlobal.nome;
 
+                
+                
 
                 //ativa o botao adicionar / desativa o botao salvar / ativa o botao deletar
                 frmAlterItem.bt_save.Enabled = true;
@@ -73,10 +77,17 @@ namespace TelaLogin.FormsSubMenu
         private void bt_add_Click(object sender, EventArgs e)
         {
             FrmAlterItem frmAlterItem = new FrmAlterItem();
-            frmAlterItem.txt_nomeItem.Text = "";
-            frmAlterItem.txt_un.Text = "";
-            frmAlterItem.txt_preco.Text = "";
-
+            // limpa todos os txt do formulario de alterar item
+            frmAlterItem.txt_codigo_barras.Text = "";
+            frmAlterItem.txt_nome.Text = "";
+            frmAlterItem.cb_un.Text = "";
+            frmAlterItem.txt_preco_custo.Text = "";
+            frmAlterItem.txt_porcentagem.Text = "";
+            frmAlterItem.txt_valor_venda.Text = "";
+            frmAlterItem.txt_lucro.Text = "";
+            frmAlterItem.txt_categoria.Text = "";
+            frmAlterItem.txt_estoque_minimo.Text = "";
+            frmAlterItem.txt_fornecedor.Text = VarGlobal.nome;
 
             //ativa o botao adicionar / desativa o botao salvar / ativa o botao deletar
             frmAlterItem.bt_save.Enabled = false;

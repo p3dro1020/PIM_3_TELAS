@@ -29,17 +29,25 @@ namespace TelaLogin.FormsSubMenu
         private void bt_add_Click(object sender, EventArgs e)
         {
             // verifica se todos os campos foram preenchidos
-            if (txt_nomeItem.Text == "" || txt_preco.Text == "" || txt_un.Text == "")
+            if (txt_nome.Text == "" || txt_codigo_barras.Text == "" || txt_categoria.Text == "" || txt_preco_custo.Text == "" || txt_porcentagem.Text == "" || txt_estoque_minimo.Text == "" || txt_fornecedor.Text == "" || cb_un.Text == "")
             {
                 MessageBox.Show("Preencha todos os campos!");
                 return;
             }
 
             Item item = new Item();
-            item.NomeItem = txt_nomeItem.Text;
-            item.Id_fornecedor = VarGlobal.id;
-            item.Un = txt_un.Text;
-            item.Preco = Convert.ToDouble(txt_preco.Text);
+            item.IdFornecedor = VarGlobal.id;
+            item.CodigoBarras = txt_codigo_barras.Text;
+            item.NomeItem = txt_nome.Text;
+            item.Categoria = txt_categoria.Text;
+            item.Un = cb_un.Text;
+            item.PrecoCusto = Convert.ToDouble(txt_preco_custo.Text);
+            item.Porcentagem = Convert.ToDouble(txt_porcentagem.Text);
+            item.PrecoVenda = item.PrecoCusto + (item.PrecoCusto * item.Porcentagem / 100);
+            item.Lucro = item.PrecoVenda - item.PrecoCusto;
+            item.EstoqueMinimo = Convert.ToInt32(txt_estoque_minimo.Text);
+            item.NomeFornecedor = txt_fornecedor.Text;
+
 
 
             if (dbSupplier.AddNewItem(item))
@@ -53,31 +61,104 @@ namespace TelaLogin.FormsSubMenu
         private void bt_save_Click(object sender, EventArgs e)
         {
             // verifica se todos os campos foram preenchidos
-            if (txt_nomeItem.Text == "" || txt_preco.Text == "" || txt_un.Text == "")
+            if (txt_nome.Text == "" || txt_codigo_barras.Text == "" || txt_categoria.Text == "" || txt_preco_custo.Text == "" || txt_porcentagem.Text == "" || txt_estoque_minimo.Text == "" || txt_fornecedor.Text == "" || cb_un.Text == "")
             {
                 MessageBox.Show("Preencha todos os campos!");
                 return;
             }
-
+            /*
             // verifica se algum dado foi alterado
             if (nome == txt_nomeItem.Text && un == txt_un.Text && preco == txt_preco.Text)
             {
                 MessageBox.Show("Nenhum dado foi alterado!");
                 return;
             }
-
+            */
             Item item = new Item();
-            item.NomeItem = txt_nomeItem.Text;
-            item.Id_fornecedor = VarGlobal.id;
-            item.Un = txt_un.Text;
-            item.Preco = Convert.ToDouble(txt_preco.Text);
+            item.IdFornecedor = VarGlobal.id;
+            item.CodigoBarras = txt_codigo_barras.Text;
+            item.NomeFornecedor = txt_fornecedor.Text;
+            item.NomeItem = txt_nome.Text;
+            item.Categoria = txt_categoria.Text;
+            item.Un = cb_un.Text;
+            item.PrecoCusto = Convert.ToDouble(txt_preco_custo.Text);
+            item.Porcentagem = Convert.ToDouble(txt_porcentagem.Text);
+            item.PrecoVenda = item.PrecoCusto + (item.PrecoCusto * item.Porcentagem / 100);
+            item.Lucro = item.PrecoVenda - item.PrecoCusto;
+            item.EstoqueMinimo = Convert.ToInt32(txt_estoque_minimo.Text);
+            item.IdItem = VarGlobal.id_item;
 
-            if(dbSupplier.UpdateItem(item))
+            if (dbSupplier.UpdateItem(item))
             {
                 MessageBox.Show("Item alterado com sucesso");
                 this.Close();
             }
 
+        }
+
+        private void SomarLucro()
+        {
+            try
+            {
+                double preco = Convert.ToDouble(txt_preco_custo.Text);
+                double porcentagem = Convert.ToDouble(txt_porcentagem.Text);
+                double precoVenda = preco + (preco * porcentagem / 100);
+                txt_valor_venda.Text = precoVenda.ToString();
+
+
+                double lucro = precoVenda - preco;
+
+                // formata lucro com 2 casas decimais
+                lucro = Math.Round(lucro, 2);
+                txt_lucro.Text = lucro.ToString();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Digite apenas números!");
+            }
+
+        }
+
+        private void txt_preco_custo_TextChanged(object sender, EventArgs e)
+        {
+            // so aceita numeros
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txt_preco_custo.Text, "^[0-9.]*$"))
+            {
+                MessageBox.Show("Digite apenas números!");
+                txt_preco_custo.Text = "";
+            }
+
+            // verifica se o campo porcentagem foi preenchido
+            if (txt_porcentagem.Text == "")
+            {
+                txt_porcentagem.Text = "0";
+            }
+
+            SomarLucro();
+        }
+
+        private void txt_porcentagem_TextChanged(object sender, EventArgs e)
+        {
+            if (txt_preco_custo.Text == "")
+            {
+                txt_preco_custo.Text = "0";
+            }
+            SomarLucro();
+        }
+
+        private void bt_delete_Click(object sender, EventArgs e)
+        {
+            // enviar mensagem de confirmação
+            DialogResult result = MessageBox.Show("Deseja excluir este item?", "Excluir", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                if (dbSupplier.DeleteItem(VarGlobal.id_item))
+                {
+                    MessageBox.Show("Item excluído com sucesso!");
+                    this.Close();
+                }
+            }
         }
     }
 }

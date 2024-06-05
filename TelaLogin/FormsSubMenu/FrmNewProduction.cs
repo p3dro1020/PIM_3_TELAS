@@ -105,7 +105,7 @@ namespace TelaLogin.FormsMenu
 
             // declara variaveis pra utilizar
             DBproduct dbProduct = new DBproduct();
-            Produto p = new Produto();
+            Plantio p = new Plantio();
 
             // insere os dados digitados nos textbox's para a classe produto
             p.Nome = cb_hortalica.Text;
@@ -137,7 +137,7 @@ namespace TelaLogin.FormsMenu
             if (res == DialogResult.Yes)
             {
                 DBproduct dbProduct = new DBproduct();
-                Produto p = new Produto();
+                Plantio p = new Plantio();
 
                 p.Id = id;
                 p.Nome = cb_hortalica.Text;

@@ -6,14 +6,14 @@ namespace TelaLogin.Infra
     {
         public bool VerifyUser(string user, string password);
     }
-    internal interface IDBproduct 
+    internal interface IDBproduction 
     {
         public void OpenConnection();
         // metodos Product
-        public bool CreateProduct(Produto produto);
-        public bool UpdateProduct(Produto produto);
-        List<Produto> ListAllProducts();
-        List<Produto> SearchProduct(string text);
+        public bool CreateProduct(Plantio produto);
+        public bool UpdateProduct(Plantio produto);
+        List<Plantio> ListAllProducts();
+        List<Plantio> SearchProduct(string text);
         public void DeleteProduct(int id);
     }
     internal interface IDBsupplier
@@ -34,6 +34,7 @@ namespace TelaLogin.Infra
         List<Item> SearchSupplierItem(int id);
         bool AddNewItem(Item item);
         bool UpdateItem(Item item);
+        bool DeleteItem(int id);
 
     }
 
@@ -45,5 +46,22 @@ namespace TelaLogin.Infra
         void DeleteEmployee(int id);
         void SearchEmployee(int id);
         List<Funcionario> ObterTodos();
+    }
+
+    internal interface IDBstock
+    {
+        // metodos stock
+        bool CreateStock(ItemEstoque estoque);
+        bool UpdateStock(ItemEstoque estoque);
+        //bool DeleteStock(int id);
+        ItemEstoque SearchStock(string cdgBarra);
+        List<ItemEstoque> GetAllStock();
+    }
+
+    internal interface IDBsales
+    {
+        // metodos sales
+        bool AddSale(Venda venda);
+
     }
 }

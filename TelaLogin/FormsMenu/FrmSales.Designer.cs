@@ -65,6 +65,8 @@
             label3 = new Label();
             bt_confirm = new Button();
             bt_excluir = new Button();
+            textBox2 = new TextBox();
+            label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgv_sales).BeginInit();
             SuspendLayout();
             // 
@@ -79,6 +81,7 @@
             // 
             // txt_num_venda
             // 
+            txt_num_venda.BackColor = SystemColors.Control;
             txt_num_venda.Enabled = false;
             txt_num_venda.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_num_venda.Location = new Point(97, 15);
@@ -87,7 +90,6 @@
             txt_num_venda.Size = new Size(72, 23);
             txt_num_venda.TabIndex = 4;
             txt_num_venda.TabStop = false;
-            txt_num_venda.Text = "135";
             // 
             // label6
             // 
@@ -108,7 +110,6 @@
             txt_data.Size = new Size(90, 23);
             txt_data.TabIndex = 6;
             txt_data.TabStop = false;
-            txt_data.Text = "26/05/2024";
             // 
             // txt_operador
             // 
@@ -120,7 +121,6 @@
             txt_operador.Size = new Size(230, 23);
             txt_operador.TabIndex = 8;
             txt_operador.TabStop = false;
-            txt_operador.Text = "Pedro Teste";
             // 
             // label7
             // 
@@ -141,7 +141,6 @@
             txt_cod_operador.Size = new Size(90, 23);
             txt_cod_operador.TabIndex = 10;
             txt_cod_operador.TabStop = false;
-            txt_cod_operador.Text = "001";
             // 
             // label8
             // 
@@ -154,17 +153,17 @@
             // 
             // txt_qtd_produto
             // 
+            txt_qtd_produto.BackColor = Color.White;
             txt_qtd_produto.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_qtd_produto.Location = new Point(402, 128);
+            txt_qtd_produto.Location = new Point(197, 128);
             txt_qtd_produto.Name = "txt_qtd_produto";
             txt_qtd_produto.Size = new Size(90, 23);
             txt_qtd_produto.TabIndex = 18;
-            txt_qtd_produto.Text = "3";
             // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(402, 110);
+            label9.Location = new Point(197, 110);
             label9.Name = "label9";
             label9.Size = new Size(74, 15);
             label9.TabIndex = 17;
@@ -172,17 +171,17 @@
             // 
             // txt_produto
             // 
+            txt_produto.BackColor = Color.White;
             txt_produto.Enabled = false;
-            txt_produto.Location = new Point(196, 128);
+            txt_produto.Location = new Point(293, 128);
             txt_produto.Name = "txt_produto";
-            txt_produto.Size = new Size(191, 23);
+            txt_produto.Size = new Size(159, 23);
             txt_produto.TabIndex = 16;
-            txt_produto.Text = "Alface";
             // 
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(194, 110);
+            label10.Location = new Point(293, 110);
             label10.Name = "label10";
             label10.Size = new Size(55, 15);
             label10.TabIndex = 15;
@@ -190,12 +189,13 @@
             // 
             // txt_cod_barras
             // 
+            txt_cod_barras.BackColor = Color.White;
             txt_cod_barras.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_cod_barras.Location = new Point(37, 128);
             txt_cod_barras.Name = "txt_cod_barras";
             txt_cod_barras.Size = new Size(111, 23);
             txt_cod_barras.TabIndex = 12;
-            txt_cod_barras.Text = "001";
+            txt_cod_barras.KeyUp += txt_cod_barras_KeyUp;
             // 
             // label12
             // 
@@ -208,18 +208,18 @@
             // 
             // txt_valor_un
             // 
+            txt_valor_un.BackColor = Color.White;
             txt_valor_un.Enabled = false;
             txt_valor_un.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            txt_valor_un.Location = new Point(506, 128);
+            txt_valor_un.Location = new Point(543, 128);
             txt_valor_un.Name = "txt_valor_un";
-            txt_valor_un.Size = new Size(94, 23);
+            txt_valor_un.Size = new Size(80, 23);
             txt_valor_un.TabIndex = 20;
-            txt_valor_un.Text = "R$ 5,00";
             // 
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(506, 110);
+            label11.Location = new Point(543, 110);
             label11.Name = "label11";
             label11.Size = new Size(42, 15);
             label11.TabIndex = 19;
@@ -227,17 +227,17 @@
             // 
             // txt_valor_tot
             // 
+            txt_valor_tot.BackColor = Color.White;
             txt_valor_tot.Enabled = false;
-            txt_valor_tot.Location = new Point(613, 128);
+            txt_valor_tot.Location = new Point(629, 128);
             txt_valor_tot.Name = "txt_valor_tot";
-            txt_valor_tot.Size = new Size(90, 23);
+            txt_valor_tot.Size = new Size(74, 23);
             txt_valor_tot.TabIndex = 22;
-            txt_valor_tot.Text = "R$ 15,00";
             // 
             // label13
             // 
             label13.AutoSize = true;
-            label13.Location = new Point(613, 110);
+            label13.Location = new Point(629, 110);
             label13.Name = "label13";
             label13.Size = new Size(67, 15);
             label13.TabIndex = 21;
@@ -245,8 +245,9 @@
             // 
             // dgv_sales
             // 
+            dgv_sales.AllowUserToAddRows = false;
             dgv_sales.BackgroundColor = Color.White;
-            dgv_sales.BorderStyle = BorderStyle.Fixed3D;
+            dgv_sales.BorderStyle = BorderStyle.None;
             dgv_sales.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.Gray;
@@ -284,7 +285,7 @@
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             cod.HeaderText = "Cód. Produto";
             cod.Name = "cod";
-            cod.Width = 103;
+            cod.Width = 95;
             // 
             // name
             // 
@@ -350,8 +351,10 @@
             // 
             // txtTotal
             // 
+            txtTotal.BackColor = Color.LimeGreen;
             txtTotal.Enabled = false;
-            txtTotal.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtTotal.ForeColor = Color.Black;
             txtTotal.Location = new Point(36, 548);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
@@ -391,10 +394,10 @@
             // bt_confirm
             // 
             bt_confirm.Anchor = AnchorStyles.None;
-            bt_confirm.BackColor = Color.Sienna;
+            bt_confirm.BackColor = Color.White;
             bt_confirm.Cursor = Cursors.Hand;
             bt_confirm.FlatStyle = FlatStyle.Flat;
-            bt_confirm.ForeColor = Color.Sienna;
+            bt_confirm.ForeColor = Color.White;
             bt_confirm.Image = (Image)resources.GetObject("bt_confirm.Image");
             bt_confirm.Location = new Point(832, 544);
             bt_confirm.Name = "bt_confirm";
@@ -405,10 +408,10 @@
             // bt_excluir
             // 
             bt_excluir.Anchor = AnchorStyles.None;
-            bt_excluir.BackColor = Color.Sienna;
+            bt_excluir.BackColor = Color.White;
             bt_excluir.Cursor = Cursors.Hand;
             bt_excluir.FlatStyle = FlatStyle.Flat;
-            bt_excluir.ForeColor = Color.Sienna;
+            bt_excluir.ForeColor = Color.White;
             bt_excluir.Image = (Image)resources.GetObject("bt_excluir.Image");
             bt_excluir.Location = new Point(785, 544);
             bt_excluir.Name = "bt_excluir";
@@ -416,11 +419,31 @@
             bt_excluir.TabIndex = 25;
             bt_excluir.UseVisualStyleBackColor = false;
             // 
+            // textBox2
+            // 
+            textBox2.BackColor = Color.White;
+            textBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            textBox2.Location = new Point(466, 129);
+            textBox2.Name = "textBox2";
+            textBox2.Size = new Size(64, 23);
+            textBox2.TabIndex = 33;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(466, 110);
+            label1.Name = "label1";
+            label1.Size = new Size(56, 15);
+            label1.TabIndex = 32;
+            label1.Text = "Unidade:";
+            // 
             // FrmSales
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(903, 598);
+            Controls.Add(textBox2);
+            Controls.Add(label1);
             Controls.Add(bt_confirm);
             Controls.Add(bt_excluir);
             Controls.Add(textBox1);
@@ -494,5 +517,7 @@
         private Label label3;
         private Button bt_confirm;
         private Button bt_excluir;
+        private TextBox textBox2;
+        private Label label1;
     }
 }

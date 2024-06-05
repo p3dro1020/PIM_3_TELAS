@@ -32,11 +32,14 @@
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             label1 = new Label();
             dgv_itens_fornecidos = new DataGridView();
-            cod = new DataGridViewTextBoxColumn();
-            name = new DataGridViewTextBoxColumn();
+            category = new DataGridViewTextBoxColumn();
+            id_item = new DataGridViewTextBoxColumn();
+            cod_barras = new DataGridViewTextBoxColumn();
             name_item = new DataGridViewTextBoxColumn();
             unity = new DataGridViewTextBoxColumn();
+            custo = new DataGridViewTextBoxColumn();
             preco = new DataGridViewTextBoxColumn();
+            lucro = new DataGridViewTextBoxColumn();
             txt_fornecedor_name = new Label();
             bt_add = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_itens_fornecidos).BeginInit();
@@ -65,7 +68,7 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv_itens_fornecidos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_itens_fornecidos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_itens_fornecidos.Columns.AddRange(new DataGridViewColumn[] { cod, name, name_item, unity, preco });
+            dgv_itens_fornecidos.Columns.AddRange(new DataGridViewColumn[] { category, id_item, cod_barras, name_item, unity, custo, preco, lucro });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -80,32 +83,40 @@
             dgv_itens_fornecidos.Name = "dgv_itens_fornecidos";
             dgv_itens_fornecidos.ReadOnly = true;
             dgv_itens_fornecidos.RowHeadersVisible = false;
-            dgv_itens_fornecidos.Size = new Size(725, 284);
+            dgv_itens_fornecidos.Size = new Size(845, 284);
             dgv_itens_fornecidos.TabIndex = 1;
             dgv_itens_fornecidos.CellMouseDoubleClick += dgv_itens_fornecidos_CellMouseDoubleClick;
             // 
-            // cod
+            // category
             // 
-            cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            cod.HeaderText = "Cód. Fornecedor";
-            cod.Name = "cod";
-            cod.ReadOnly = true;
-            cod.Width = 113;
+            category.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            category.HeaderText = "Categoria";
+            category.Name = "category";
+            category.ReadOnly = true;
+            category.Width = 85;
             // 
-            // name
+            // id_item
             // 
-            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            name.HeaderText = "Nome fornecedor";
-            name.Name = "name";
-            name.ReadOnly = true;
+            id_item.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            id_item.HeaderText = "Cód. Item";
+            id_item.Name = "id_item";
+            id_item.ReadOnly = true;
+            id_item.Width = 79;
+            // 
+            // cod_barras
+            // 
+            cod_barras.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            cod_barras.HeaderText = "Cód.Barras";
+            cod_barras.Name = "cod_barras";
+            cod_barras.ReadOnly = true;
+            cod_barras.Width = 91;
             // 
             // name_item
             // 
-            name_item.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            name_item.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             name_item.HeaderText = "Nome item";
             name_item.Name = "name_item";
             name_item.ReadOnly = true;
-            name_item.Width = 88;
             // 
             // unity
             // 
@@ -115,13 +126,29 @@
             unity.ReadOnly = true;
             unity.Width = 78;
             // 
+            // custo
+            // 
+            custo.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            custo.HeaderText = "Preço custo";
+            custo.Name = "custo";
+            custo.ReadOnly = true;
+            custo.Width = 89;
+            // 
             // preco
             // 
             preco.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            preco.HeaderText = "Preço";
+            preco.HeaderText = "Preço venda";
             preco.Name = "preco";
             preco.ReadOnly = true;
-            preco.Width = 64;
+            preco.Width = 93;
+            // 
+            // lucro
+            // 
+            lucro.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            lucro.HeaderText = "Lucro";
+            lucro.Name = "lucro";
+            lucro.ReadOnly = true;
+            lucro.Width = 63;
             // 
             // txt_fornecedor_name
             // 
@@ -133,7 +160,7 @@
             // 
             // bt_add
             // 
-            bt_add.Location = new Point(679, 29);
+            bt_add.Location = new Point(799, 25);
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(75, 23);
             bt_add.TabIndex = 3;
@@ -146,7 +173,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(921, 452);
             Controls.Add(bt_add);
             Controls.Add(txt_fornecedor_name);
             Controls.Add(dgv_itens_fornecidos);
@@ -164,12 +191,15 @@
 
         private Label label1;
         private DataGridView dgv_itens_fornecidos;
-        private DataGridViewTextBoxColumn cod;
-        private DataGridViewTextBoxColumn name;
-        private DataGridViewTextBoxColumn name_item;
-        private DataGridViewTextBoxColumn unity;
-        private DataGridViewTextBoxColumn preco;
         public Label txt_fornecedor_name;
         private Button bt_add;
+        private DataGridViewTextBoxColumn category;
+        private DataGridViewTextBoxColumn id_item;
+        private DataGridViewTextBoxColumn cod_barras;
+        private DataGridViewTextBoxColumn name_item;
+        private DataGridViewTextBoxColumn unity;
+        private DataGridViewTextBoxColumn custo;
+        private DataGridViewTextBoxColumn preco;
+        private DataGridViewTextBoxColumn lucro;
     }
 }

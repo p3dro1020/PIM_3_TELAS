@@ -31,24 +31,27 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducts));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             bt_listAll = new Button();
             bt_search = new Button();
             txt_search = new TextBox();
             label1 = new Label();
             bt_add = new Button();
-            dgv_products = new DataGridView();
+            dgv_stock = new DataGridView();
             cod = new DataGridViewTextBoxColumn();
+            cod_barras = new DataGridViewTextBoxColumn();
             name = new DataGridViewTextBoxColumn();
+            category = new DataGridViewTextBoxColumn();
             qtd = new DataGridViewTextBoxColumn();
+            un = new DataGridViewTextBoxColumn();
             preco_unico = new DataGridViewTextBoxColumn();
             preco_total = new DataGridViewTextBoxColumn();
             fornecedor = new DataGridViewTextBoxColumn();
-            dt_vencimento = new DataGridViewTextBoxColumn();
             edit = new DataGridViewImageColumn();
             delete = new DataGridViewImageColumn();
             panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgv_products).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_stock).BeginInit();
             SuspendLayout();
             // 
             // panel1
@@ -122,70 +125,110 @@
             bt_add.Size = new Size(34, 31);
             bt_add.TabIndex = 6;
             bt_add.UseVisualStyleBackColor = true;
+            bt_add.Click += bt_add_Click;
             // 
-            // dgv_products
+            // dgv_stock
             // 
-            dgv_products.AllowUserToAddRows = false;
-            dgv_products.BackgroundColor = Color.White;
-            dgv_products.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dgv_stock.AllowUserToAddRows = false;
+            dgv_stock.BackgroundColor = Color.White;
+            dgv_stock.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = Color.Sienna;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Sienna;
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
-            dgv_products.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            dgv_products.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dgv_products.Columns.AddRange(new DataGridViewColumn[] { cod, name, qtd, preco_unico, preco_total, fornecedor, dt_vencimento, edit, delete });
-            dgv_products.Dock = DockStyle.Fill;
-            dgv_products.EnableHeadersVisualStyles = false;
-            dgv_products.Location = new Point(0, 0);
-            dgv_products.Name = "dgv_products";
+            dgv_stock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgv_stock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgv_stock.Columns.AddRange(new DataGridViewColumn[] { cod, cod_barras, name, category, qtd, un, preco_unico, preco_total, fornecedor, edit, delete });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Control;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgv_products.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            dgv_products.Size = new Size(903, 523);
-            dgv_products.TabIndex = 1;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgv_stock.DefaultCellStyle = dataGridViewCellStyle2;
+            dgv_stock.Dock = DockStyle.Fill;
+            dgv_stock.EnableHeadersVisualStyles = false;
+            dgv_stock.Location = new Point(0, 0);
+            dgv_stock.Name = "dgv_stock";
+            dgv_stock.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgv_stock.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgv_stock.RowHeadersVisible = false;
+            dgv_stock.Size = new Size(903, 523);
+            dgv_stock.TabIndex = 1;
+            dgv_stock.CellContentClick += dgv_stock_CellContentClick;
             // 
             // cod
             // 
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            cod.HeaderText = "Cód.";
+            cod.HeaderText = "Cód. Produto";
             cod.Name = "cod";
-            cod.Width = 55;
+            cod.ReadOnly = true;
+            cod.Width = 103;
+            // 
+            // cod_barras
+            // 
+            cod_barras.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            cod_barras.HeaderText = "Cód. Barras";
+            cod_barras.Name = "cod_barras";
+            cod_barras.ReadOnly = true;
+            cod_barras.Width = 93;
             // 
             // name
             // 
             name.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             name.HeaderText = "Nome";
             name.Name = "name";
+            name.ReadOnly = true;
             name.Width = 65;
+            // 
+            // category
+            // 
+            category.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            category.HeaderText = "Categoria";
+            category.Name = "category";
+            category.ReadOnly = true;
+            category.Width = 84;
             // 
             // qtd
             // 
             qtd.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            qtd.HeaderText = "Quantidade em estoque";
+            qtd.HeaderText = "Qtd.";
             qtd.Name = "qtd";
-            qtd.Width = 164;
+            qtd.ReadOnly = true;
+            qtd.Width = 55;
+            // 
+            // un
+            // 
+            un.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            un.HeaderText = "UN";
+            un.Name = "un";
+            un.ReadOnly = true;
+            un.Width = 49;
             // 
             // preco_unico
             // 
             preco_unico.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            preco_unico.HeaderText = "Preço único";
+            preco_unico.HeaderText = "Preço venda";
             preco_unico.Name = "preco_unico";
-            preco_unico.Width = 96;
+            preco_unico.ReadOnly = true;
             // 
             // preco_total
             // 
             preco_total.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             preco_total.HeaderText = "Preço estoque total";
             preco_total.Name = "preco_total";
+            preco_total.ReadOnly = true;
             preco_total.Width = 140;
             // 
             // fornecedor
@@ -193,13 +236,7 @@
             fornecedor.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             fornecedor.HeaderText = "Fornecedor";
             fornecedor.Name = "fornecedor";
-            // 
-            // dt_vencimento
-            // 
-            dt_vencimento.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dt_vencimento.HeaderText = "Data vencimento";
-            dt_vencimento.Name = "dt_vencimento";
-            dt_vencimento.Width = 127;
+            fornecedor.ReadOnly = true;
             // 
             // edit
             // 
@@ -207,6 +244,7 @@
             edit.HeaderText = "";
             edit.Image = (Image)resources.GetObject("edit.Image");
             edit.Name = "edit";
+            edit.ReadOnly = true;
             edit.Width = 5;
             // 
             // delete
@@ -215,6 +253,7 @@
             delete.HeaderText = "";
             delete.Image = (Image)resources.GetObject("delete.Image");
             delete.Name = "delete";
+            delete.ReadOnly = true;
             delete.Width = 5;
             // 
             // FrmProducts
@@ -222,33 +261,36 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(903, 598);
-            Controls.Add(dgv_products);
+            Controls.Add(dgv_stock);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.None;
             Name = "FrmProducts";
             Text = "FrmProducts";
+            Load += FrmProducts_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)dgv_products).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgv_stock).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel panel1;
-        private DataGridView dgv_products;
+        private DataGridView dgv_stock;
         private Button bt_listAll;
         private Button bt_search;
         private TextBox txt_search;
         private Label label1;
         private Button bt_add;
         private DataGridViewTextBoxColumn cod;
+        private DataGridViewTextBoxColumn cod_barras;
         private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn category;
         private DataGridViewTextBoxColumn qtd;
+        private DataGridViewTextBoxColumn un;
         private DataGridViewTextBoxColumn preco_unico;
         private DataGridViewTextBoxColumn preco_total;
         private DataGridViewTextBoxColumn fornecedor;
-        private DataGridViewTextBoxColumn dt_vencimento;
         private DataGridViewImageColumn edit;
         private DataGridViewImageColumn delete;
     }

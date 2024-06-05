@@ -53,7 +53,7 @@ namespace TelaLogin.Infra
             }
         }
     }
-    public class DBproduct : IDBproduct, IDisposable
+    public class DBproduct : IDBproduction, IDisposable
     {
         private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
         private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
@@ -79,7 +79,7 @@ namespace TelaLogin.Infra
 
         }
 
-        public bool CreateProduct(Produto p)
+        public bool CreateProduct(Plantio p)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace TelaLogin.Infra
             }
         }
 
-        public bool UpdateProduct(Produto p)
+        public bool UpdateProduct(Plantio p)
         {
             try
             {
@@ -130,9 +130,9 @@ namespace TelaLogin.Infra
             }
         }
 
-        public List<Produto> ListAllProducts()
+        public List<Plantio> ListAllProducts()
         {
-            List<Produto> produtos = new List<Produto>();
+            List<Plantio> produtos = new List<Plantio>();
             Connection.Open();
 
             string query = "SELECT * FROM cultivos_view ORDER BY cultivo_id;";
@@ -141,7 +141,7 @@ namespace TelaLogin.Infra
 
             while(dr.Read())
             {
-                Produto p = new Produto();
+                Plantio p = new Plantio();
                 p.Id = Convert.ToInt32(dr["cultivo_id"]);
                 p.Nome = dr["nome"].ToString();
                 p.Quantidade = Convert.ToInt32(dr["quantidade"]);
@@ -157,9 +157,9 @@ namespace TelaLogin.Infra
             return produtos;
         }
 
-        public List<Produto> SearchProduct(string text)
+        public List<Plantio> SearchProduct(string text)
         {
-            List<Produto> produtos = new List<Produto>();
+            List<Plantio> produtos = new List<Plantio>();
             Connection.Open();
 
             string query = "SELECT * FROM cultivos_view WHERE UPPER(nome) LIKE UPPER(@text) ORDER BY cultivo_id;";
@@ -170,7 +170,7 @@ namespace TelaLogin.Infra
 
             while (dr.Read())
             {
-                Produto p = new Produto();
+                Plantio p = new Plantio();
                 p.Id = Convert.ToInt32(dr["cultivo_id"]);
                 p.Nome = dr["nome"].ToString();
                 p.Quantidade = Convert.ToInt32(dr["quantidade"]);
@@ -208,7 +208,6 @@ namespace TelaLogin.Infra
         }
 
     }
-
     public class DBsupplier : IDBsupplier
     {
         private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
@@ -497,6 +496,48 @@ namespace TelaLogin.Infra
 
         }
 
+        public Item SearchItem(int id)
+        {
+            Connection.Open();
+            Item i = new Item();
+            try
+            {
+                string query = "SELECT id_fornecedor,id_item,codigo_barra,nome,categoria,unidade,valor_custo,valor_venda,porcentagem,lucro,qtd_estoque_min,fornecedor FROM itens_fornecidos WHERE id_item = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    
+                    i.IdFornecedor = Convert.ToInt32(dr["id_fornecedor"]);
+                    i.IdItem = Convert.ToInt32(dr["id_item"]);
+                    i.CodigoBarras = dr["codigo_barra"].ToString();
+                    i.NomeItem = dr["nome"].ToString();
+                    i.Categoria = dr["categoria"].ToString();
+                    i.Un = dr["unidade"].ToString();
+                    i.PrecoCusto = Convert.ToDouble(dr["valor_custo"]);
+                    i.PrecoVenda = Convert.ToDouble(dr["valor_venda"]);
+                    i.Porcentagem = Convert.ToDouble(dr["porcentagem"]);
+                    i.Lucro = Convert.ToDouble(dr["lucro"]);
+                    i.EstoqueMinimo = Convert.ToInt32(dr["qtd_estoque_min"]);
+                    i.NomeFornecedor = dr["fornecedor"].ToString();
+                    
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar item: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return i;
+
+        }
+
+
         public List<Item> SearchSupplierItem(int id)
         {
             List<Item> itens = new List<Item>();
@@ -504,7 +545,7 @@ namespace TelaLogin.Infra
 
             try
             {
-                string query = "SELECT id_item,nome, un, preco FROM itens_fornecidos WHERE id_fornecedor = @id ORDER BY id_item;";
+                string query = "SELECT id_fornecedor,id_item,codigo_barra,nome,categoria,unidade,valor_custo,valor_venda,porcentagem,lucro,qtd_estoque_min,fornecedor FROM itens_fornecidos WHERE id_fornecedor = @id ORDER BY id_item;";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@id", id);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -512,10 +553,18 @@ namespace TelaLogin.Infra
                 while (dr.Read())
                 {
                     Item i = new Item();
-                    VarGlobal.idItem = Convert.ToInt32(dr["id_item"]);
-                    i.NomeItem = (dr["nome"].ToString());
-                    i.Un = (dr["un"].ToString());
-                    i.Preco = Convert.ToDouble(dr["preco"]);
+                    i.IdFornecedor = Convert.ToInt32(dr["id_fornecedor"]);
+                    i.IdItem = Convert.ToInt32(dr["id_item"]);
+                    i.CodigoBarras =dr["codigo_barra"].ToString();
+                    i.NomeItem = dr["nome"].ToString();
+                    i.Categoria = dr["categoria"].ToString();
+                    i.Un = dr["unidade"].ToString();
+                    i.PrecoCusto = Convert.ToDouble(dr["valor_custo"]);
+                    i.PrecoVenda = Convert.ToDouble(dr["valor_venda"]);
+                    i.Porcentagem = Convert.ToDouble(dr["porcentagem"]);
+                    i.Lucro = Convert.ToDouble(dr["lucro"]);
+                    i.EstoqueMinimo = Convert.ToInt32(dr["qtd_estoque_min"]);
+                    i.NomeFornecedor = dr["fornecedor"].ToString();
                     itens.Add(i);
                 }
             }
@@ -536,13 +585,19 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string query = "insert into itens_fornecidos(id_fornecedor,nome,un,preco)values(@id,@nome,@un,@preco);";
+                string query = "insert into itens_fornecidos(id_fornecedor,codigo_barra,nome,categoria,unidade,valor_custo,valor_venda,porcentagem,lucro,qtd_estoque_min,fornecedor)values(@id,@codigo_barra,@nome,@categoria,@unidade,@valor_custo,@valor_venda,@porcentagem,@lucro,@qtd_estoque_min,@fornecedor);";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
-                cmd.Parameters.AddWithValue("@id", item.Id_fornecedor);
+                cmd.Parameters.AddWithValue("@id", item.IdFornecedor);
+                cmd.Parameters.AddWithValue("@codigo_barra", item.CodigoBarras);
                 cmd.Parameters.AddWithValue("@nome", item.NomeItem);
-                cmd.Parameters.AddWithValue("@un", item.Un);
-                cmd.Parameters.AddWithValue("@preco", item.Preco);
-
+                cmd.Parameters.AddWithValue("@categoria", item.Categoria);
+                cmd.Parameters.AddWithValue("@unidade", item.Un);
+                cmd.Parameters.AddWithValue("@valor_custo", item.PrecoCusto);
+                cmd.Parameters.AddWithValue("@valor_venda", item.PrecoVenda);
+                cmd.Parameters.AddWithValue("@porcentagem", item.Porcentagem);
+                cmd.Parameters.AddWithValue("@lucro", item.Lucro);
+                cmd.Parameters.AddWithValue("@qtd_estoque_min", item.EstoqueMinimo);
+                cmd.Parameters.AddWithValue("@fornecedor", item.NomeFornecedor);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -562,19 +617,25 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string query = "UPDATE itens_fornecidos SET nome = @nome, un = @un, preco = @preco WHERE id_item = @id;";
+                string query = "UPDATE itens_fornecidos SET codigo_barra = @codigo_barra, nome = @nome, categoria = @categoria, unidade = @unidade, valor_custo = @valor_custo, valor_venda = @valor_venda, porcentagem = @porcentagem, lucro = @lucro, qtd_estoque_min = @qtd_estoque_min, fornecedor = @fornecedor WHERE id_item = @id;";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
-                cmd.Parameters.AddWithValue("@id", VarGlobal.idItem);
+                cmd.Parameters.AddWithValue("@id", item.IdItem);
+                cmd.Parameters.AddWithValue("@codigo_barra", item.CodigoBarras);
                 cmd.Parameters.AddWithValue("@nome", item.NomeItem);
-                cmd.Parameters.AddWithValue("@un", item.Un);
-                cmd.Parameters.AddWithValue("@preco", item.Preco);
-
+                cmd.Parameters.AddWithValue("@categoria", item.Categoria);
+                cmd.Parameters.AddWithValue("@unidade", item.Un);
+                cmd.Parameters.AddWithValue("@valor_custo", item.PrecoCusto);
+                cmd.Parameters.AddWithValue("@valor_venda", item.PrecoVenda);
+                cmd.Parameters.AddWithValue("@porcentagem", item.Porcentagem);
+                cmd.Parameters.AddWithValue("@lucro", item.Lucro);
+                cmd.Parameters.AddWithValue("@qtd_estoque_min", item.EstoqueMinimo);
+                cmd.Parameters.AddWithValue("@fornecedor", item.NomeFornecedor);
                 cmd.ExecuteNonQuery();
                 return true;
             }
             catch (Exception e)
             {
-                MessageBox.Show("Erro ao atualizar telefone: " + e.Message);
+                MessageBox.Show("Erro ao atualizar item: " + e.Message);
                 return false;
             }
             finally
@@ -582,5 +643,165 @@ namespace TelaLogin.Infra
                 Connection.Close();
             }
         }
+
+        public bool DeleteItem(int id)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "UPDATE itens_fornecidos SET fornecedor = null,id_fornecedor = null WHERE id_item = " + id;
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+                return true;
+            }
+            catch (Exception e)
+            {
+                Connection.Close();
+                MessageBox.Show("Erro ao tentar deletar item: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
     }
+    public class DBstock : IDBstock
+    {
+        private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
+        private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
+
+        public bool CreateStock(ItemEstoque estoque)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "insert into estoque(id_item,qtd)values(@id,@qtd);";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", estoque.IdItem);
+                cmd.Parameters.AddWithValue("@qtd", estoque.Quantidade);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao inserir novo estoque: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+
+        public bool UpdateStock(ItemEstoque estoque)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "UPDATE estoque SET qtd = @qtd WHERE id_item = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", estoque.IdItem);
+                cmd.Parameters.AddWithValue("@qtd", estoque.Quantidade);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao atualizar estoque: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+        
+        public void DeleteStock(int id)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "DELETE FROM estoque WHERE id_item = " + id;
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+            }
+            catch (Exception e)
+            {
+                Connection.Close();
+                MessageBox.Show("Erro ao tentar deletar no estoque: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public ItemEstoque SearchStock(string cdgBarra)
+        {
+            Connection.Open();
+            ItemEstoque ie = new ItemEstoque();
+            try
+            {
+                string query = "SELECT * FROM itens_fornecidos WHERE codigo_barra = @cdg;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@cdg", cdgBarra);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    ie.Nome = dr["nome"].ToString();
+                    ie.Categoria = dr["categoria"].ToString();
+                    ie.Unidade = dr["unidade"].ToString();
+                    ie.Preco = Convert.ToDouble(dr["valor_venda"]);
+                    ie.Fornecedor = dr["fornecedor"].ToString();
+                    ie.IdItem = Convert.ToInt32(dr["id_item"]);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar item: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return ie;
+        }
+
+        
+        public List<ItemEstoque> GetAllStock()
+        {
+            List<ItemEstoque> estoques = new List<ItemEstoque>();
+            Connection.Open();
+
+            string query = "select * from estoque_itens;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ItemEstoque e = new ItemEstoque();
+                e.IdItem = Convert.ToInt32(dr["id_item"]);
+                e.Quantidade = Convert.ToInt32(dr["qtd"]);
+                e.CodigoBarras = dr["codigo_barra"].ToString();
+                e.Nome = dr["nome"].ToString();
+                e.Categoria = dr["categoria"].ToString();
+                e.Unidade = dr["unidade"].ToString();
+                e.Preco = Convert.ToDouble(dr["valor_venda"]);
+                e.Fornecedor = dr["fornecedor"].ToString();
+                estoques.Add(e);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return estoques;
+        }
+            
+    }
+
 }

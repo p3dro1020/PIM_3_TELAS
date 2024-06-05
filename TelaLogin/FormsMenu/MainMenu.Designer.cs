@@ -122,7 +122,7 @@
             // pictureBox2
             // 
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(-4, 533);
+            pictureBox2.Location = new Point(3, 526);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(95, 83);
             pictureBox2.TabIndex = 7;
@@ -202,7 +202,7 @@
             btnProducts.Padding = new Padding(10, 0, 0, 0);
             btnProducts.Size = new Size(220, 69);
             btnProducts.TabIndex = 3;
-            btnProducts.Text = "Produtos";
+            btnProducts.Text = "Estoque";
             btnProducts.TextAlign = ContentAlignment.MiddleLeft;
             btnProducts.TextImageRelation = TextImageRelation.ImageBeforeText;
             btnProducts.UseVisualStyleBackColor = true;
@@ -231,6 +231,7 @@
             // 
             // btnHome
             // 
+            btnHome.BackColor = Color.DarkOliveGreen;
             btnHome.Dock = DockStyle.Top;
             btnHome.FlatAppearance.BorderSize = 0;
             btnHome.FlatStyle = FlatStyle.Flat;
@@ -246,7 +247,7 @@
             btnHome.Text = "Home";
             btnHome.TextAlign = ContentAlignment.MiddleLeft;
             btnHome.TextImageRelation = TextImageRelation.ImageBeforeText;
-            btnHome.UseVisualStyleBackColor = true;
+            btnHome.UseVisualStyleBackColor = false;
             btnHome.Click += btnHome_Click_1;
             // 
             // panel1
