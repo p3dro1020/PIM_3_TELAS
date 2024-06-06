@@ -285,7 +285,7 @@
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             cod.HeaderText = "Cód. Produto";
             cod.Name = "cod";
-            cod.Width = 95;
+            cod.Width = 103;
             // 
             // name
             // 
@@ -394,7 +394,7 @@
             // bt_confirm
             // 
             bt_confirm.Anchor = AnchorStyles.None;
-            bt_confirm.BackColor = Color.White;
+            bt_confirm.BackColor = Color.Transparent;
             bt_confirm.Cursor = Cursors.Hand;
             bt_confirm.FlatStyle = FlatStyle.Flat;
             bt_confirm.ForeColor = Color.White;
@@ -408,7 +408,7 @@
             // bt_excluir
             // 
             bt_excluir.Anchor = AnchorStyles.None;
-            bt_excluir.BackColor = Color.White;
+            bt_excluir.BackColor = Color.Transparent;
             bt_excluir.Cursor = Cursors.Hand;
             bt_excluir.FlatStyle = FlatStyle.Flat;
             bt_excluir.ForeColor = Color.White;
