@@ -52,20 +52,21 @@
             dgv_sales = new DataGridView();
             contador = new DataGridViewTextBoxColumn();
             cod = new DataGridViewTextBoxColumn();
-            name = new DataGridViewTextBoxColumn();
-            qtd = new DataGridViewTextBoxColumn();
             unity = new DataGridViewTextBoxColumn();
+            name = new DataGridViewTextBoxColumn();
+            valor = new DataGridViewTextBoxColumn();
+            qtd = new DataGridViewTextBoxColumn();
             preco_total = new DataGridViewTextBoxColumn();
             bt_search = new Button();
             btnAdd = new Button();
             btnEdict = new Button();
             txtTotal = new TextBox();
             label2 = new Label();
-            textBox1 = new TextBox();
+            txtItem = new TextBox();
             label3 = new Label();
             bt_confirm = new Button();
             bt_excluir = new Button();
-            textBox2 = new TextBox();
+            txt_unidade = new TextBox();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgv_sales).BeginInit();
             SuspendLayout();
@@ -158,7 +159,9 @@
             txt_qtd_produto.Location = new Point(197, 128);
             txt_qtd_produto.Name = "txt_qtd_produto";
             txt_qtd_produto.Size = new Size(90, 23);
-            txt_qtd_produto.TabIndex = 18;
+            txt_qtd_produto.TabIndex = 2;
+            txt_qtd_produto.TextChanged += txt_qtd_produto_TextChanged;
+            txt_qtd_produto.KeyPress += txt_qtd_produto_KeyPress;
             // 
             // label9
             // 
@@ -194,7 +197,7 @@
             txt_cod_barras.Location = new Point(37, 128);
             txt_cod_barras.Name = "txt_cod_barras";
             txt_cod_barras.Size = new Size(111, 23);
-            txt_cod_barras.TabIndex = 12;
+            txt_cod_barras.TabIndex = 1;
             txt_cod_barras.KeyUp += txt_cod_barras_KeyUp;
             // 
             // label12
@@ -215,6 +218,7 @@
             txt_valor_un.Name = "txt_valor_un";
             txt_valor_un.Size = new Size(80, 23);
             txt_valor_un.TabIndex = 20;
+            txt_valor_un.TextChanged += txt_valor_un_TextChanged;
             // 
             // label11
             // 
@@ -258,18 +262,19 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv_sales.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_sales.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_sales.Columns.AddRange(new DataGridViewColumn[] { contador, cod, name, qtd, unity, preco_total });
+            dgv_sales.Columns.AddRange(new DataGridViewColumn[] { contador, cod, unity, name, valor, qtd, preco_total });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgv_sales.DefaultCellStyle = dataGridViewCellStyle2;
             dgv_sales.EnableHeadersVisualStyles = false;
             dgv_sales.Location = new Point(36, 177);
             dgv_sales.Name = "dgv_sales";
+            dgv_sales.ReadOnly = true;
             dgv_sales.RowHeadersVisible = false;
             dgv_sales.Size = new Size(830, 326);
             dgv_sales.TabIndex = 24;
@@ -278,6 +283,7 @@
             // 
             contador.HeaderText = "Qtd. Itens";
             contador.Name = "contador";
+            contador.ReadOnly = true;
             contador.Width = 75;
             // 
             // cod
@@ -285,34 +291,47 @@
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             cod.HeaderText = "Cód. Produto";
             cod.Name = "cod";
+            cod.ReadOnly = true;
             cod.Width = 103;
-            // 
-            // name
-            // 
-            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            name.HeaderText = "Nome";
-            name.Name = "name";
-            // 
-            // qtd
-            // 
-            qtd.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            qtd.HeaderText = "Quantidade";
-            qtd.Name = "qtd";
-            qtd.Width = 95;
             // 
             // unity
             // 
             unity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             unity.HeaderText = "Unidade";
             unity.Name = "unity";
+            unity.ReadOnly = true;
             unity.Width = 77;
+            // 
+            // name
+            // 
+            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            name.HeaderText = "Nome";
+            name.Name = "name";
+            name.ReadOnly = true;
+            // 
+            // valor
+            // 
+            valor.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            valor.HeaderText = "Valor R$";
+            valor.Name = "valor";
+            valor.ReadOnly = true;
+            valor.Width = 71;
+            // 
+            // qtd
+            // 
+            qtd.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            qtd.HeaderText = "Quantidade";
+            qtd.Name = "qtd";
+            qtd.ReadOnly = true;
+            qtd.Width = 95;
             // 
             // preco_total
             // 
             preco_total.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            preco_total.HeaderText = "Total";
+            preco_total.HeaderText = "Total R$";
             preco_total.Name = "preco_total";
-            preco_total.Width = 58;
+            preco_total.ReadOnly = true;
+            preco_total.Width = 70;
             // 
             // bt_search
             // 
@@ -335,9 +354,10 @@
             btnAdd.Location = new Point(717, 126);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(69, 26);
-            btnAdd.TabIndex = 26;
+            btnAdd.TabIndex = 3;
             btnAdd.Text = "Adicionar";
             btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnEdict
             // 
@@ -345,20 +365,21 @@
             btnEdict.Location = new Point(797, 126);
             btnEdict.Name = "btnEdict";
             btnEdict.Size = new Size(69, 26);
-            btnEdict.TabIndex = 27;
+            btnEdict.TabIndex = 4;
             btnEdict.Text = "Editar";
             btnEdict.UseVisualStyleBackColor = true;
             // 
             // txtTotal
             // 
             txtTotal.BackColor = Color.LimeGreen;
+            txtTotal.BorderStyle = BorderStyle.None;
             txtTotal.Enabled = false;
-            txtTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtTotal.Font = new Font("Arial Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             txtTotal.ForeColor = Color.Black;
             txtTotal.Location = new Point(36, 548);
             txtTotal.Name = "txtTotal";
             txtTotal.ReadOnly = true;
-            txtTotal.Size = new Size(111, 23);
+            txtTotal.Size = new Size(111, 22);
             txtTotal.TabIndex = 29;
             txtTotal.TabStop = false;
             // 
@@ -371,16 +392,19 @@
             label2.TabIndex = 28;
             label2.Text = "Valor total:";
             // 
-            // textBox1
+            // txtItem
             // 
-            textBox1.Enabled = false;
-            textBox1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox1.Location = new Point(159, 548);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(111, 23);
-            textBox1.TabIndex = 31;
-            textBox1.TabStop = false;
+            txtItem.BackColor = Color.White;
+            txtItem.BorderStyle = BorderStyle.None;
+            txtItem.Enabled = false;
+            txtItem.Font = new Font("Arial Black", 11.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtItem.ForeColor = Color.Black;
+            txtItem.Location = new Point(172, 548);
+            txtItem.Name = "txtItem";
+            txtItem.ReadOnly = true;
+            txtItem.Size = new Size(37, 22);
+            txtItem.TabIndex = 31;
+            txtItem.TabStop = false;
             // 
             // label3
             // 
@@ -402,8 +426,9 @@
             bt_confirm.Location = new Point(832, 544);
             bt_confirm.Name = "bt_confirm";
             bt_confirm.Size = new Size(34, 31);
-            bt_confirm.TabIndex = 24;
+            bt_confirm.TabIndex = 6;
             bt_confirm.UseVisualStyleBackColor = false;
+            bt_confirm.Click += bt_confirm_Click;
             // 
             // bt_excluir
             // 
@@ -416,17 +441,18 @@
             bt_excluir.Location = new Point(785, 544);
             bt_excluir.Name = "bt_excluir";
             bt_excluir.Size = new Size(34, 31);
-            bt_excluir.TabIndex = 25;
+            bt_excluir.TabIndex = 5;
             bt_excluir.UseVisualStyleBackColor = false;
             // 
-            // textBox2
+            // txt_unidade
             // 
-            textBox2.BackColor = Color.White;
-            textBox2.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            textBox2.Location = new Point(466, 129);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(64, 23);
-            textBox2.TabIndex = 33;
+            txt_unidade.BackColor = Color.White;
+            txt_unidade.Enabled = false;
+            txt_unidade.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txt_unidade.Location = new Point(466, 129);
+            txt_unidade.Name = "txt_unidade";
+            txt_unidade.Size = new Size(64, 23);
+            txt_unidade.TabIndex = 33;
             // 
             // label1
             // 
@@ -442,11 +468,11 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             ClientSize = new Size(903, 598);
-            Controls.Add(textBox2);
+            Controls.Add(txt_unidade);
             Controls.Add(label1);
             Controls.Add(bt_confirm);
             Controls.Add(bt_excluir);
-            Controls.Add(textBox1);
+            Controls.Add(txtItem);
             Controls.Add(label3);
             Controls.Add(txtTotal);
             Controls.Add(label2);
@@ -502,22 +528,23 @@
         private TextBox txt_valor_tot;
         private Label label13;
         private DataGridView dgv_sales;
-        private DataGridViewTextBoxColumn contador;
-        private DataGridViewTextBoxColumn cod;
-        private DataGridViewTextBoxColumn name;
-        private DataGridViewTextBoxColumn qtd;
-        private DataGridViewTextBoxColumn unity;
-        private DataGridViewTextBoxColumn preco_total;
         private Button bt_search;
         private Button btnAdd;
         private Button btnEdict;
         private TextBox txtTotal;
         private Label label2;
-        private TextBox textBox1;
+        private TextBox txtItem;
         private Label label3;
         private Button bt_confirm;
         private Button bt_excluir;
-        private TextBox textBox2;
+        private TextBox txt_unidade;
         private Label label1;
+        private DataGridViewTextBoxColumn contador;
+        private DataGridViewTextBoxColumn cod;
+        private DataGridViewTextBoxColumn unity;
+        private DataGridViewTextBoxColumn name;
+        private DataGridViewTextBoxColumn valor;
+        private DataGridViewTextBoxColumn qtd;
+        private DataGridViewTextBoxColumn preco_total;
     }
 }

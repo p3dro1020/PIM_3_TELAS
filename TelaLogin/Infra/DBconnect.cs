@@ -59,15 +59,15 @@ namespace TelaLogin.Infra
         private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
         //public NpgsqlConnection Connection { get; set; }
 
-       /* public DBconnect()
-        {
-            Connection.Open();
-        }*/
+        /* public DBconnect()
+         {
+             Connection.Open();
+         }*/
         public void Dispose()
         {
             Connection.Close();
         }
-            
+
         public void OpenConnection()
         {
             Connection = new NpgsqlConnection(
@@ -139,7 +139,7 @@ namespace TelaLogin.Infra
             NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
             NpgsqlDataReader dr = cmd.ExecuteReader();
 
-            while(dr.Read())
+            while (dr.Read())
             {
                 Plantio p = new Plantio();
                 p.Id = Convert.ToInt32(dr["cultivo_id"]);
@@ -245,7 +245,7 @@ namespace TelaLogin.Infra
             {
                 // pega a data atual do sistema
                 DateTime data = DateTime.Today;
-                
+
                 Connection.Open();
                 string query = "insert into fornecedor(razao_social, data_cadastro, cnpj, email, nome_fantasia, cep, endereco, complemento, bairro, uf, cidade, numero_casa)values(@nome, @data, @cnpj, @email, @nome_fantasia, @cep, @endereco, @complemento, @bairro, @uf, @cidade, @n);";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
@@ -279,7 +279,7 @@ namespace TelaLogin.Infra
         {
             Fornecedor f = new Fornecedor();
             Connection.Open();
-            
+
             string query = "SELECT * FROM fornecedor WHERE id_fornecedor = @id;";
             NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
             cmd.Parameters.AddWithValue("@id", id);
@@ -305,10 +305,10 @@ namespace TelaLogin.Infra
             }
 
             dr.Close();
-            
+
             Connection.Close();
             return f;
-          
+
         }
 
         public List<Fornecedor> SearchSupplierPhone(int id)
@@ -363,8 +363,8 @@ namespace TelaLogin.Infra
                 Connection.Close();
             }
         }
-        
-        public bool UpdateNumSupplier(Fornecedor fornecedor,string newNum)
+
+        public bool UpdateNumSupplier(Fornecedor fornecedor, string newNum)
         {
             try
             {
@@ -509,7 +509,7 @@ namespace TelaLogin.Infra
 
                 while (dr.Read())
                 {
-                    
+
                     i.IdFornecedor = Convert.ToInt32(dr["id_fornecedor"]);
                     i.IdItem = Convert.ToInt32(dr["id_item"]);
                     i.CodigoBarras = dr["codigo_barra"].ToString();
@@ -522,7 +522,7 @@ namespace TelaLogin.Infra
                     i.Lucro = Convert.ToDouble(dr["lucro"]);
                     i.EstoqueMinimo = Convert.ToInt32(dr["qtd_estoque_min"]);
                     i.NomeFornecedor = dr["fornecedor"].ToString();
-                    
+
                 }
             }
             catch (Exception e)
@@ -555,7 +555,7 @@ namespace TelaLogin.Infra
                     Item i = new Item();
                     i.IdFornecedor = Convert.ToInt32(dr["id_fornecedor"]);
                     i.IdItem = Convert.ToInt32(dr["id_item"]);
-                    i.CodigoBarras =dr["codigo_barra"].ToString();
+                    i.CodigoBarras = dr["codigo_barra"].ToString();
                     i.NomeItem = dr["nome"].ToString();
                     i.Categoria = dr["categoria"].ToString();
                     i.Un = dr["unidade"].ToString();
@@ -719,7 +719,7 @@ namespace TelaLogin.Infra
                 Connection.Close();
             }
         }
-        
+
         public void DeleteStock(int id)
         {
             try
@@ -773,7 +773,7 @@ namespace TelaLogin.Infra
             return ie;
         }
 
-        
+
         public List<ItemEstoque> GetAllStock()
         {
             List<ItemEstoque> estoques = new List<ItemEstoque>();
@@ -801,7 +801,82 @@ namespace TelaLogin.Infra
             Connection.Close();
             return estoques;
         }
-            
-    }
 
+    }
+    public class DBsale : IDBsales
+    {
+        private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
+        private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
+        public Venda SearchProductByBarCode(string cod)
+        {
+            Connection.Open();
+            Venda v = new Venda();
+            try
+            {
+                string query = "select nome,unidade,valor_venda,id_item from itens_fornecidos where codigo_barra = @cdg;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@cdg", cod);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                // verifica se o codigo de barras existe no banco de dados
+                while (dr.Read())
+                {
+                    v.Produto = dr["nome"].ToString();
+                    v.Unidade = dr["unidade"].ToString();
+                    v.ValorUnitario = Convert.ToDouble(dr["valor_venda"]);
+                    v.CodigoProduto = Convert.ToInt32(dr["id_item"]);
+
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar código de barras: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            // verifica se encontrou o produto, se nao encontrou retorna null
+            if (v.Produto == null)
+            {
+                return null;
+            }else
+            {
+                return v;
+            }
+
+
+        }
+    }
+    public class DBpedido : IDBpedido
+    {
+        private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
+        private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
+
+        public Pedido GetProxPedido()
+        {
+            Connection.Open();
+            Pedido pedido = new Pedido();
+            try
+            {
+                string query = "SELECT id_pedido FROM pedido ORDER BY id_pedido DESC LIMIT 1;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                // verifica se o codigo de barras existe no banco de dados
+                while (dr.Read())
+                {
+                    pedido.IdPedido = Convert.ToInt32(dr["id_pedido"]);
+
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar pedido: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return pedido;
+        }
+    }
 }

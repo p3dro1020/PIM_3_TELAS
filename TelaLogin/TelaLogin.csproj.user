@@ -7,9 +7,6 @@
     <Compile Update="FormsSubMenu\FrmItemsProvided.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FormsSubMenu\FrmNewProduct.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="FormsSubMenu\FrmNewProduction.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -17,6 +14,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormsSubMenu\FrmNewSupplier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="FormsSubMenu\FrmPayment.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormsSubMenu\FrmPhoneSupplier.cs">

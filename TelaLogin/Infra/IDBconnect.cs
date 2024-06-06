@@ -61,7 +61,21 @@ namespace TelaLogin.Infra
     internal interface IDBsales
     {
         // metodos sales
-        bool AddSale(Venda venda);
+        Venda SearchProductByBarCode(string cod);
+        //bool AddSale(Venda venda);
 
+    }
+    internal interface IDBpedido
+    {
+        // metodos pedido
+        Pedido GetProxPedido();
+
+        /*
+        bool CreatePedido(Pedido pedido);
+        bool UpdatePedido(Pedido pedido);
+        bool DeletePedido(int id);
+        List<Pedido> SearchPedido(string text);
+        List<Pedido> ListAllPedidos();
+        */
     }
 }

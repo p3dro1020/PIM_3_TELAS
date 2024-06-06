@@ -43,7 +43,7 @@ namespace TelaLogin.FormsSubMenu
             itemEstoque.Categoria = txt_categoria.Text;
             itemEstoque.Unidade = txt_unidade.Text;
             itemEstoque.Quantidade = Convert.ToInt32(txt_qtd.Text);
-            itemEstoque.Preco = Convert.ToDouble(txt_preco_venda.Text);
+            itemEstoque.Preco = Convert.ToDouble(txt_preco_venda.Text.Replace("R$ ", ""));
             itemEstoque.Fornecedor = txt_fornecedor.Text;
             if (dbStock.CreateStock(itemEstoque))
             {
@@ -65,12 +65,13 @@ namespace TelaLogin.FormsSubMenu
                     txt_nome.Text = itemEstoque.Nome;
                     txt_categoria.Text = itemEstoque.Categoria;
                     txt_unidade.Text = itemEstoque.Unidade;
-                    txt_preco_venda.Text = itemEstoque.Preco.ToString();
+                    txt_preco_venda.Text = "R$ " + itemEstoque.Preco.ToString();
                     txt_fornecedor.Text = itemEstoque.Fornecedor;
                     bt_save.Enabled = true;
                 }
                 else
                 {
+                    MessageBox.Show("Produto não encontrado!");
                     txt_produto.Clear();
                     txt_nome.Clear();
                     txt_categoria.Clear();

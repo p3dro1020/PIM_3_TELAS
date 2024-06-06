@@ -29,7 +29,7 @@ namespace TelaPIM
             // insere os produtos no datagridview
             foreach (ItemEstoque ie in itemEstoque)
             {
-                dgv_stock.Rows.Add(ie.IdItem, ie.CodigoBarras, ie.Nome, ie.Categoria, ie.Quantidade, ie.Unidade, ie.Preco, ie.Quantidade * ie.Preco, ie.Fornecedor);
+                dgv_stock.Rows.Add(ie.IdItem, ie.CodigoBarras, ie.Nome, ie.Categoria, ie.Quantidade, ie.Unidade,"R$ " + ie.Preco, "R$ " + ie.Quantidade * ie.Preco, ie.Fornecedor);
             }
         }
 
@@ -74,7 +74,7 @@ namespace TelaPIM
                 frmNewStock.txt_categoria.Text = dgv_stock.Rows[e.RowIndex].Cells["category"].Value.ToString();
                 frmNewStock.txt_unidade.Text = dgv_stock.Rows[e.RowIndex].Cells["un"].Value.ToString();
                 frmNewStock.txt_qtd.Text = dgv_stock.Rows[e.RowIndex].Cells["qtd"].Value.ToString();
-                frmNewStock.txt_preco_venda.Text = dgv_stock.Rows[e.RowIndex].Cells["preco_unico"].Value.ToString();
+                frmNewStock.txt_preco_venda.Text = "R$ " + dgv_stock.Rows[e.RowIndex].Cells["preco_unico"].Value.ToString();
                 frmNewStock.txt_fornecedor.Text = dgv_stock.Rows[e.RowIndex].Cells["fornecedor"].Value.ToString();
                 frmNewStock.txt_produto.Text = dgv_stock.Rows[e.RowIndex].Cells["cod"].Value.ToString();
 
