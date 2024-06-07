@@ -99,3 +99,4 @@ P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogi
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewStock.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.waitingFrm.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmPayment.resources
+P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmEditItem.resources

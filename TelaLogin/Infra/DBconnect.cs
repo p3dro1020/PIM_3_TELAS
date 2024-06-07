@@ -878,5 +878,52 @@ namespace TelaLogin.Infra
             }
             return pedido;
         }
+
+        public bool AddNewPedido(Pedido p)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "insert into pedido(qtd_itens,valor_total,desconto) values (@qtd,@valor,@desconto);";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@qtd", p.Quantidade);
+                cmd.Parameters.AddWithValue("@valor", p.Total);
+                cmd.Parameters.AddWithValue("@desconto", p.Desconto);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao inserir pedido: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public void AddItemPedido(Item i)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "insert into item_pedido(id_pedido,id_item,qtd,valor_un) values (@id_pedido,@id_item,@qtd,@valor_un);";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id_pedido", i.IdPedido);
+                cmd.Parameters.AddWithValue("@id_item", i.IdItem);
+                cmd.Parameters.AddWithValue("@qtd", i.Quantidade);
+                cmd.Parameters.AddWithValue("@valor_un", i.PrecoVenda);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao inserir itens: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
     }
 }

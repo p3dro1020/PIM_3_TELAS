@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TelaLogin.Class;
+using TelaLogin.ClassGlobal;
 using TelaLogin.FormsSubMenu;
 using TelaLogin.Infra;
 
@@ -17,6 +18,7 @@ namespace TelaPIM
 {
     public partial class FrmSales : Form
     {
+
         public int CodigoProduto = 0;
         public FrmSales()
         {
@@ -24,6 +26,17 @@ namespace TelaPIM
             dgv_sales.RowsAdded += dgv_sales_RowsAdded;
             dgv_sales.RowsRemoved += dgv_sales_RowsRemoved;
             dgv_sales.UserDeletedRow += dgv_sales_UserDeletedRow;
+        }
+
+        private void SomaValorDgv()
+        {
+            // percorre as linhas do dgv somando e adiciona no txtTotal
+            double total = 0;
+            for (int i = 0; i < dgv_sales.Rows.Count; i++)
+            {
+                total += Convert.ToDouble(dgv_sales.Rows[i].Cells["preco_total"].Value.ToString().Replace("R$ ", ""));
+            }
+            txtTotal.Text = "R$ " + total.ToString("0.00");
         }
 
         private void SomarValor()
@@ -46,12 +59,13 @@ namespace TelaPIM
 
         }
 
+        // metodo para pegar o ultimo pedido
         private void GetLastSale()
         {
             DBpedido dbPedido = new DBpedido();
             Pedido p = new Pedido();
             p = dbPedido.GetProxPedido();
-            txt_num_venda.Text = p.IdPedido.ToString();
+            txt_num_venda.Text = (p.IdPedido + 1).ToString();
 
         }
 
@@ -180,16 +194,21 @@ namespace TelaPIM
         private void dgv_sales_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             UpdateRowIndices(sender as DataGridView);
+            SomaValorDgv();
+
         }
 
         private void dgv_sales_RowsRemoved(object sender, DataGridViewRowsRemovedEventArgs e)
         {
             UpdateRowIndices(sender as DataGridView);
+            SomaValorDgv();
+
         }
 
         private void dgv_sales_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             UpdateRowIndices(sender as DataGridView);
+            SomaValorDgv();
         }
 
         // atualiza o indice da linha
@@ -206,9 +225,79 @@ namespace TelaPIM
 
         private void bt_confirm_Click(object sender, EventArgs e)
         {
+            // verifica se existe itens no datagridview
+            if (dgv_sales.Rows.Count == 0)
+            {
+                MessageBox.Show("Adicione itens a lista de vendas", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            VarGlobal.Qtd = Convert.ToInt32(txtItem.Text);
+
+
+            List<Item> it = new List<Item>();
+            // envia os dados do datagridview para o form de pagamento
+            for (int i = 0; i < dgv_sales.Rows.Count; i++)
+            {
+                // Ignora a linha de nova entrada
+                if (dgv_sales.Rows[i].IsNewRow)
+                    continue;
+
+                Item item = new Item();
+
+                // Verifica se as células não são nulas antes de acessar os valores
+                if (dgv_sales.Rows[i].Cells["cod"].Value != null)
+                {
+                    item.IdItem = Convert.ToInt32(dgv_sales.Rows[i].Cells["cod"].Value);
+                }
+
+                if (dgv_sales.Rows[i].Cells["qtd"].Value != null)
+                {
+                    item.Quantidade = Convert.ToInt32(dgv_sales.Rows[i].Cells["qtd"].Value);
+                }
+
+                if (dgv_sales.Rows[i].Cells["valor"].Value != null)
+                {
+                    item.PrecoVenda = Convert.ToDouble(dgv_sales.Rows[i].Cells["valor"].Value.ToString().Replace("R$ ", ""));
+                }
+                item.IdPedido = Convert.ToInt32(txt_num_venda.Text);
+                it.Add(item);
+            }
+            // verifica se it é null
+            if (it == null)
+            {
+                MessageBox.Show("Erro ao enviar os dados para o form de pagamento", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             FrmPayment frmPayment = new FrmPayment();
+            frmPayment.Items = it;
             frmPayment.txt_valor_total.Text = txtTotal.Text;
             frmPayment.ShowDialog();
+        }
+
+        private void dgv_sales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex == -1 || e.ColumnIndex == -1) return;
+            FrmEditItem frmEditItem = new FrmEditItem();
+            frmEditItem.txt_produto.Text = dgv_sales.Rows[e.RowIndex].Cells["name"].Value.ToString();
+            frmEditItem.txt_qtd.Text = dgv_sales.Rows[e.RowIndex].Cells["qtd"].Value.ToString();
+            frmEditItem.txt_preco_unico.Text = dgv_sales.Rows[e.RowIndex].Cells["valor"].Value.ToString();
+            frmEditItem.txt_valor_total.Text = dgv_sales.Rows[e.RowIndex].Cells["preco_total"].Value.ToString();
+            frmEditItem.ShowDialog();
+
+            if(frmEditItem.deletar != 1)
+            {
+                // altera os valores do datagridview
+                dgv_sales.Rows[e.RowIndex].Cells["qtd"].Value = frmEditItem.txt_qtd.Text;
+                dgv_sales.Rows[e.RowIndex].Cells["preco_total"].Value = frmEditItem.txt_valor_total.Text;
+                SomaValorDgv();
+            }
+            else
+            {
+                // apaga o item do datagridview
+                dgv_sales.Rows.RemoveAt(e.RowIndex);
+            }
         }
     }
 }

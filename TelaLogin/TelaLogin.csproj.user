@@ -4,6 +4,9 @@
     <Compile Update="FormsSubMenu\FrmAlterItem.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="FormsSubMenu\FrmEditItem.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="FormsSubMenu\FrmItemsProvided.cs">
       <SubType>Form</SubType>
     </Compile>

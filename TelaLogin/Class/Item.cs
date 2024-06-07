@@ -9,8 +9,11 @@ namespace TelaLogin.Class
 {
     public class Item
     {
+        public int IdPedido { get; set; }
         public int IdFornecedor { get; set; }
         public int IdItem { get; set; }
+        public int Quantidade { get; set; }
+        public string Status { get; set; }
         public string CodigoBarras { get; set; }
         public string Categoria { get; set; }
         public string NomeFornecedor { get; set; }

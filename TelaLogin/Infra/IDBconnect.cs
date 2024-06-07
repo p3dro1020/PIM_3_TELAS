@@ -69,7 +69,8 @@ namespace TelaLogin.Infra
     {
         // metodos pedido
         Pedido GetProxPedido();
-
+        bool AddNewPedido(Pedido pedido);
+        void AddItemPedido(Item item);
         /*
         bool CreatePedido(Pedido pedido);
         bool UpdatePedido(Pedido pedido);

@@ -55,13 +55,14 @@
             txt_simulacao_credito_avista = new Label();
             txt_simulacao_debito = new Label();
             txt_simulacao_pix = new Label();
+            cb_desconto = new CheckBox();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(290, 19);
+            label1.Location = new Point(346, 19);
             label1.Name = "label1";
             label1.Size = new Size(60, 15);
             label1.TabIndex = 0;
@@ -72,7 +73,7 @@
             txt_valor_total.Enabled = false;
             txt_valor_total.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             txt_valor_total.ForeColor = Color.Black;
-            txt_valor_total.Location = new Point(290, 37);
+            txt_valor_total.Location = new Point(346, 37);
             txt_valor_total.Name = "txt_valor_total";
             txt_valor_total.Size = new Size(100, 23);
             txt_valor_total.TabIndex = 1;
@@ -80,7 +81,7 @@
             // txt_valor_pago
             // 
             txt_valor_pago.ForeColor = Color.Black;
-            txt_valor_pago.Location = new Point(290, 147);
+            txt_valor_pago.Location = new Point(346, 147);
             txt_valor_pago.Name = "txt_valor_pago";
             txt_valor_pago.Size = new Size(100, 23);
             txt_valor_pago.TabIndex = 3;
@@ -89,7 +90,7 @@
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(290, 129);
+            label2.Location = new Point(346, 129);
             label2.Name = "label2";
             label2.Size = new Size(63, 15);
             label2.TabIndex = 2;
@@ -99,7 +100,7 @@
             // 
             txt_resto.Enabled = false;
             txt_resto.ForeColor = Color.Black;
-            txt_resto.Location = new Point(290, 205);
+            txt_resto.Location = new Point(346, 205);
             txt_resto.Name = "txt_resto";
             txt_resto.Size = new Size(100, 23);
             txt_resto.TabIndex = 5;
@@ -108,7 +109,7 @@
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(290, 187);
+            label3.Location = new Point(346, 187);
             label3.Name = "label3";
             label3.Size = new Size(52, 15);
             label3.TabIndex = 4;
@@ -116,8 +117,9 @@
             // 
             // txt_desconto
             // 
+            txt_desconto.Enabled = false;
             txt_desconto.ForeColor = Color.Black;
-            txt_desconto.Location = new Point(290, 92);
+            txt_desconto.Location = new Point(346, 92);
             txt_desconto.Name = "txt_desconto";
             txt_desconto.Size = new Size(100, 23);
             txt_desconto.TabIndex = 7;
@@ -126,7 +128,7 @@
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(290, 74);
+            label4.Location = new Point(346, 74);
             label4.Name = "label4";
             label4.Size = new Size(57, 15);
             label4.TabIndex = 6;
@@ -151,6 +153,7 @@
             cb_pagamento.Name = "cb_pagamento";
             cb_pagamento.Size = new Size(129, 23);
             cb_pagamento.TabIndex = 9;
+            cb_pagamento.KeyPress += cb_pagamento_KeyPress;
             // 
             // label6
             // 
@@ -305,12 +308,23 @@
             txt_simulacao_pix.Size = new Size(0, 15);
             txt_simulacao_pix.TabIndex = 38;
             // 
+            // cb_desconto
+            // 
+            cb_desconto.AutoSize = true;
+            cb_desconto.Location = new Point(325, 96);
+            cb_desconto.Name = "cb_desconto";
+            cb_desconto.Size = new Size(15, 14);
+            cb_desconto.TabIndex = 39;
+            cb_desconto.UseVisualStyleBackColor = true;
+            cb_desconto.CheckedChanged += cb_desconto_CheckedChanged;
+            // 
             // FrmPayment
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(419, 334);
+            ClientSize = new Size(473, 335);
+            Controls.Add(cb_desconto);
             Controls.Add(txt_simulacao_pix);
             Controls.Add(txt_simulacao_debito);
             Controls.Add(txt_simulacao_credito_avista);
@@ -381,5 +395,6 @@
         public Label label3;
         public TextBox txt_desconto;
         public Label label4;
+        private CheckBox cb_desconto;
     }
 }

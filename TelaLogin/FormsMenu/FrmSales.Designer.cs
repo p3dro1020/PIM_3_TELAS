@@ -59,13 +59,11 @@
             preco_total = new DataGridViewTextBoxColumn();
             bt_search = new Button();
             btnAdd = new Button();
-            btnEdict = new Button();
             txtTotal = new TextBox();
             label2 = new Label();
             txtItem = new TextBox();
             label3 = new Label();
             bt_confirm = new Button();
-            bt_excluir = new Button();
             txt_unidade = new TextBox();
             label1 = new Label();
             ((System.ComponentModel.ISupportInitialize)dgv_sales).BeginInit();
@@ -82,7 +80,7 @@
             // 
             // txt_num_venda
             // 
-            txt_num_venda.BackColor = SystemColors.Control;
+            txt_num_venda.BackColor = Color.White;
             txt_num_venda.Enabled = false;
             txt_num_venda.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_num_venda.Location = new Point(97, 15);
@@ -103,6 +101,7 @@
             // 
             // txt_data
             // 
+            txt_data.BackColor = Color.White;
             txt_data.Enabled = false;
             txt_data.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_data.Location = new Point(237, 15);
@@ -114,6 +113,7 @@
             // 
             // txt_operador
             // 
+            txt_operador.BackColor = Color.White;
             txt_operador.Enabled = false;
             txt_operador.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_operador.Location = new Point(422, 15);
@@ -134,6 +134,7 @@
             // 
             // txt_cod_operador
             // 
+            txt_cod_operador.BackColor = Color.White;
             txt_cod_operador.Enabled = false;
             txt_cod_operador.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             txt_cod_operador.Location = new Point(776, 15);
@@ -272,12 +273,13 @@
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgv_sales.DefaultCellStyle = dataGridViewCellStyle2;
             dgv_sales.EnableHeadersVisualStyles = false;
-            dgv_sales.Location = new Point(36, 177);
+            dgv_sales.Location = new Point(37, 171);
             dgv_sales.Name = "dgv_sales";
             dgv_sales.ReadOnly = true;
             dgv_sales.RowHeadersVisible = false;
             dgv_sales.Size = new Size(830, 326);
             dgv_sales.TabIndex = 24;
+            dgv_sales.CellDoubleClick += dgv_sales_CellDoubleClick;
             // 
             // contador
             // 
@@ -359,16 +361,6 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // btnEdict
-            // 
-            btnEdict.Cursor = Cursors.Hand;
-            btnEdict.Location = new Point(797, 126);
-            btnEdict.Name = "btnEdict";
-            btnEdict.Size = new Size(69, 26);
-            btnEdict.TabIndex = 4;
-            btnEdict.Text = "Editar";
-            btnEdict.UseVisualStyleBackColor = true;
-            // 
             // txtTotal
             // 
             txtTotal.BackColor = Color.LimeGreen;
@@ -430,20 +422,6 @@
             bt_confirm.UseVisualStyleBackColor = false;
             bt_confirm.Click += bt_confirm_Click;
             // 
-            // bt_excluir
-            // 
-            bt_excluir.Anchor = AnchorStyles.None;
-            bt_excluir.BackColor = Color.Transparent;
-            bt_excluir.Cursor = Cursors.Hand;
-            bt_excluir.FlatStyle = FlatStyle.Flat;
-            bt_excluir.ForeColor = Color.White;
-            bt_excluir.Image = (Image)resources.GetObject("bt_excluir.Image");
-            bt_excluir.Location = new Point(785, 544);
-            bt_excluir.Name = "bt_excluir";
-            bt_excluir.Size = new Size(34, 31);
-            bt_excluir.TabIndex = 5;
-            bt_excluir.UseVisualStyleBackColor = false;
-            // 
             // txt_unidade
             // 
             txt_unidade.BackColor = Color.White;
@@ -467,16 +445,15 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.White;
             ClientSize = new Size(903, 598);
             Controls.Add(txt_unidade);
             Controls.Add(label1);
             Controls.Add(bt_confirm);
-            Controls.Add(bt_excluir);
             Controls.Add(txtItem);
             Controls.Add(label3);
             Controls.Add(txtTotal);
             Controls.Add(label2);
-            Controls.Add(btnEdict);
             Controls.Add(btnAdd);
             Controls.Add(bt_search);
             Controls.Add(dgv_sales);
@@ -527,16 +504,12 @@
         private Label label11;
         private TextBox txt_valor_tot;
         private Label label13;
-        private DataGridView dgv_sales;
         private Button bt_search;
         private Button btnAdd;
-        private Button btnEdict;
         private TextBox txtTotal;
         private Label label2;
-        private TextBox txtItem;
         private Label label3;
         private Button bt_confirm;
-        private Button bt_excluir;
         private TextBox txt_unidade;
         private Label label1;
         private DataGridViewTextBoxColumn contador;
@@ -546,5 +519,7 @@
         private DataGridViewTextBoxColumn valor;
         private DataGridViewTextBoxColumn qtd;
         private DataGridViewTextBoxColumn preco_total;
+        public TextBox txtItem;
+        public DataGridView dgv_sales;
     }
 }

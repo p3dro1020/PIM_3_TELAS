@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TelaLogin.Class;
 
 namespace TelaLogin.ClassGlobal
 {
@@ -12,5 +13,7 @@ namespace TelaLogin.ClassGlobal
         public static int id { get; set; }
         public static string nome { get; set; }
         public static int id_item { get; set; }
+        public static int Qtd { get; set; }
+        public static List<Item> Itens { get; set; }
     }
 }
