@@ -286,7 +286,7 @@ namespace TelaPIM
             frmEditItem.txt_valor_total.Text = dgv_sales.Rows[e.RowIndex].Cells["preco_total"].Value.ToString();
             frmEditItem.ShowDialog();
 
-            if(frmEditItem.deletar != 1)
+            if (frmEditItem.deletar != 1)
             {
                 // altera os valores do datagridview
                 dgv_sales.Rows[e.RowIndex].Cells["qtd"].Value = frmEditItem.txt_qtd.Text;
@@ -298,6 +298,12 @@ namespace TelaPIM
                 // apaga o item do datagridview
                 dgv_sales.Rows.RemoveAt(e.RowIndex);
             }
+        }
+
+        private void bt_history_Click(object sender, EventArgs e)
+        {
+            FrmHistorySale frmHistorySale = new FrmHistorySale();
+            frmHistorySale.ShowDialog();
         }
     }
 }

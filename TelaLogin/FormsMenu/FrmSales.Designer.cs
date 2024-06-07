@@ -66,6 +66,7 @@
             bt_confirm = new Button();
             txt_unidade = new TextBox();
             label1 = new Label();
+            bt_history = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_sales).BeginInit();
             SuspendLayout();
             // 
@@ -441,12 +442,28 @@
             label1.TabIndex = 32;
             label1.Text = "Unidade:";
             // 
+            // bt_history
+            // 
+            bt_history.Anchor = AnchorStyles.None;
+            bt_history.BackColor = Color.Transparent;
+            bt_history.Cursor = Cursors.Hand;
+            bt_history.FlatStyle = FlatStyle.Flat;
+            bt_history.ForeColor = Color.White;
+            bt_history.Image = (Image)resources.GetObject("bt_history.Image");
+            bt_history.Location = new Point(792, 544);
+            bt_history.Name = "bt_history";
+            bt_history.Size = new Size(34, 31);
+            bt_history.TabIndex = 34;
+            bt_history.UseVisualStyleBackColor = false;
+            bt_history.Click += bt_history_Click;
+            // 
             // FrmSales
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             ClientSize = new Size(903, 598);
+            Controls.Add(bt_history);
             Controls.Add(txt_unidade);
             Controls.Add(label1);
             Controls.Add(bt_confirm);
@@ -521,5 +538,6 @@
         private DataGridViewTextBoxColumn preco_total;
         public TextBox txtItem;
         public DataGridView dgv_sales;
+        private Button bt_history;
     }
 }

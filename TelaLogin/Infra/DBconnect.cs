@@ -846,6 +846,94 @@ namespace TelaLogin.Infra
 
 
         }
+
+        public List<Pedido> SearchSales()
+        {
+            Connection.Open();
+            
+            List<Pedido> lp = new List<Pedido>();
+            try
+            {
+                string query = "SELECT id_pedido,qtd_itens,valor_total,desconto,data_pedido FROM pedido;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+                // busca todos os pedidos
+                while (dr.Read())
+                {
+                    Pedido p = new Pedido();
+                    p.IdPedido = Convert.ToInt32(dr["id_pedido"]);
+                    p.Quantidade = Convert.ToInt32(dr["qtd_itens"]);
+                    p.Total = Convert.ToDouble(dr["valor_total"]);
+                    p.Desconto = Convert.ToDouble(dr["desconto"]);
+                    p.DataVenda = Convert.ToDateTime(dr["data_pedido"]);
+                    lp.Add(p);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar pedidos: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            
+            return lp;
+
+        }
+        
+        public List<Venda> SearchItensSale(int id)
+        {
+            Connection.Open();
+            List<Venda> lv = new List<Venda>();
+            try
+            {
+                string query = @"
+                                SELECT 
+                                    p.id_pedido,
+                                    itf.id_item,
+                                    itf.unidade,
+                                    itf.nome,
+                                    itf.lucro * ip.qtd AS lucro,
+                                    ip.qtd,
+                                    ip.valor_un
+                                FROM 
+                                    item_pedido ip
+                                INNER JOIN 
+                                    itens_fornecidos itf ON ip.id_item = itf.id_item
+                                INNER JOIN 
+                                    pedido p ON p.id_pedido = ip.id_pedido
+                                WHERE 
+                                    p.id_pedido = @id;";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                // busca todos os itens do pedido
+                while (dr.Read())
+                {
+                    Venda v = new Venda();
+                    v.CodigoProduto = Convert.ToInt32(dr["id_item"]);
+                    v.Unidade = dr["unidade"].ToString();
+                    v.Produto = dr["nome"].ToString();
+                    v.Ganhos = Convert.ToDouble(dr["lucro"]);
+                    v.Quantidade = Convert.ToInt32(dr["qtd"]);
+                    v.ValorUnitario = Convert.ToDouble(dr["valor_un"]);
+                    lv.Add(v);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar itens do pedido: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return lv;
+        }
+
     }
     public class DBpedido : IDBpedido
     {

@@ -62,6 +62,8 @@ namespace TelaLogin.Infra
     {
         // metodos sales
         Venda SearchProductByBarCode(string cod);
+        List<Pedido> SearchSales();
+        List<Venda> SearchItensSale(int id);
         //bool AddSale(Venda venda);
 
     }
@@ -71,12 +73,6 @@ namespace TelaLogin.Infra
         Pedido GetProxPedido();
         bool AddNewPedido(Pedido pedido);
         void AddItemPedido(Item item);
-        /*
-        bool CreatePedido(Pedido pedido);
-        bool UpdatePedido(Pedido pedido);
-        bool DeletePedido(int id);
-        List<Pedido> SearchPedido(string text);
-        List<Pedido> ListAllPedidos();
-        */
+
     }
 }
