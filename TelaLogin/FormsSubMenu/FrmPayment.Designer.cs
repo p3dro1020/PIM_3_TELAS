@@ -56,15 +56,20 @@
             txt_simulacao_debito = new Label();
             txt_simulacao_pix = new Label();
             cb_desconto = new CheckBox();
+            txt_acrescimo = new TextBox();
+            label18 = new Label();
+            txt_troco = new TextBox();
+            lb_troco = new Label();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(346, 19);
+            label1.Location = new Point(221, 19);
             label1.Name = "label1";
-            label1.Size = new Size(60, 15);
+            label1.Size = new Size(64, 15);
             label1.TabIndex = 0;
             label1.Text = "Valor total";
             // 
@@ -73,7 +78,7 @@
             txt_valor_total.Enabled = false;
             txt_valor_total.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             txt_valor_total.ForeColor = Color.Black;
-            txt_valor_total.Location = new Point(346, 37);
+            txt_valor_total.Location = new Point(221, 37);
             txt_valor_total.Name = "txt_valor_total";
             txt_valor_total.Size = new Size(100, 23);
             txt_valor_total.TabIndex = 1;
@@ -81,7 +86,7 @@
             // txt_valor_pago
             // 
             txt_valor_pago.ForeColor = Color.Black;
-            txt_valor_pago.Location = new Point(346, 147);
+            txt_valor_pago.Location = new Point(361, 37);
             txt_valor_pago.Name = "txt_valor_pago";
             txt_valor_pago.Size = new Size(100, 23);
             txt_valor_pago.TabIndex = 3;
@@ -89,10 +94,11 @@
             // label2
             // 
             label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label2.ForeColor = Color.Black;
-            label2.Location = new Point(346, 129);
+            label2.Location = new Point(361, 19);
             label2.Name = "label2";
-            label2.Size = new Size(63, 15);
+            label2.Size = new Size(65, 15);
             label2.TabIndex = 2;
             label2.Text = "Valor pago";
             // 
@@ -100,7 +106,7 @@
             // 
             txt_resto.Enabled = false;
             txt_resto.ForeColor = Color.Black;
-            txt_resto.Location = new Point(346, 205);
+            txt_resto.Location = new Point(361, 84);
             txt_resto.Name = "txt_resto";
             txt_resto.Size = new Size(100, 23);
             txt_resto.TabIndex = 5;
@@ -108,10 +114,11 @@
             // label3
             // 
             label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label3.ForeColor = Color.Black;
-            label3.Location = new Point(346, 187);
+            label3.Location = new Point(361, 66);
             label3.Name = "label3";
-            label3.Size = new Size(52, 15);
+            label3.Size = new Size(57, 15);
             label3.TabIndex = 4;
             label3.Text = "Restante";
             // 
@@ -119,7 +126,7 @@
             // 
             txt_desconto.Enabled = false;
             txt_desconto.ForeColor = Color.Black;
-            txt_desconto.Location = new Point(346, 92);
+            txt_desconto.Location = new Point(221, 128);
             txt_desconto.Name = "txt_desconto";
             txt_desconto.Size = new Size(100, 23);
             txt_desconto.TabIndex = 7;
@@ -127,20 +134,22 @@
             // label4
             // 
             label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(346, 74);
+            label4.Location = new Point(221, 110);
             label4.Name = "label4";
-            label4.Size = new Size(57, 15);
+            label4.Size = new Size(60, 15);
             label4.TabIndex = 6;
             label4.Text = "Desconto";
             // 
             // label5
             // 
             label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label5.ForeColor = Color.Black;
             label5.Location = new Point(23, 19);
             label5.Name = "label5";
-            label5.Size = new Size(129, 15);
+            label5.Size = new Size(134, 15);
             label5.TabIndex = 8;
             label5.Text = "Método de pagamento";
             // 
@@ -153,6 +162,7 @@
             cb_pagamento.Name = "cb_pagamento";
             cb_pagamento.Size = new Size(129, 23);
             cb_pagamento.TabIndex = 9;
+            cb_pagamento.SelectedIndexChanged += cb_pagamento_SelectedIndexChanged;
             cb_pagamento.KeyPress += cb_pagamento_KeyPress;
             // 
             // label6
@@ -311,12 +321,53 @@
             // cb_desconto
             // 
             cb_desconto.AutoSize = true;
-            cb_desconto.Location = new Point(325, 96);
+            cb_desconto.Location = new Point(200, 132);
             cb_desconto.Name = "cb_desconto";
             cb_desconto.Size = new Size(15, 14);
             cb_desconto.TabIndex = 39;
             cb_desconto.UseVisualStyleBackColor = true;
             cb_desconto.CheckedChanged += cb_desconto_CheckedChanged;
+            // 
+            // txt_acrescimo
+            // 
+            txt_acrescimo.Enabled = false;
+            txt_acrescimo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            txt_acrescimo.ForeColor = Color.Black;
+            txt_acrescimo.Location = new Point(221, 84);
+            txt_acrescimo.Name = "txt_acrescimo";
+            txt_acrescimo.Size = new Size(100, 23);
+            txt_acrescimo.TabIndex = 41;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label18.ForeColor = Color.Black;
+            label18.Location = new Point(221, 66);
+            label18.Name = "label18";
+            label18.Size = new Size(65, 15);
+            label18.TabIndex = 40;
+            label18.Text = "Acréscimo";
+            // 
+            // txt_troco
+            // 
+            txt_troco.Enabled = false;
+            txt_troco.ForeColor = Color.Black;
+            txt_troco.Location = new Point(361, 128);
+            txt_troco.Name = "txt_troco";
+            txt_troco.Size = new Size(100, 23);
+            txt_troco.TabIndex = 43;
+            // 
+            // lb_troco
+            // 
+            lb_troco.AutoSize = true;
+            lb_troco.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lb_troco.ForeColor = Color.Black;
+            lb_troco.Location = new Point(361, 110);
+            lb_troco.Name = "lb_troco";
+            lb_troco.Size = new Size(38, 15);
+            lb_troco.TabIndex = 42;
+            lb_troco.Text = "Troco";
             // 
             // FrmPayment
             // 
@@ -324,6 +375,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(473, 335);
+            Controls.Add(txt_troco);
+            Controls.Add(lb_troco);
+            Controls.Add(txt_acrescimo);
+            Controls.Add(label18);
             Controls.Add(cb_desconto);
             Controls.Add(txt_simulacao_pix);
             Controls.Add(txt_simulacao_debito);
@@ -396,5 +451,9 @@
         public TextBox txt_desconto;
         public Label label4;
         private CheckBox cb_desconto;
+        public TextBox txt_acrescimo;
+        public Label label18;
+        public TextBox txt_troco;
+        public Label lb_troco;
     }
 }

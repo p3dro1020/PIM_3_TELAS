@@ -18,6 +18,7 @@ namespace TelaPIM
 {
     public partial class FrmSales : Form
     {
+        public int Qtd;
 
         public int CodigoProduto = 0;
         public FrmSales()
@@ -103,6 +104,23 @@ namespace TelaPIM
                     return;
                 }
 
+                Qtd = v.QtdEstoque;
+
+                if(Qtd == 0)
+                {
+                    // verifica se a resposta foi sim
+                    if (DialogResult.Yes == MessageBox.Show("Produto sem estoque, deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                    {
+                        txt_qtd_produto.Focus();
+                    }
+                    else
+                    {
+                        LimpaTextBox();
+                        txt_cod_barras.Focus();
+                        return;
+                    }
+                }
+
                 // verifica se o codigo do produto ja esta inserido no dgv
                 for (int i = 0; i < dgv_sales.Rows.Count; i++)
                 {
@@ -137,9 +155,34 @@ namespace TelaPIM
 
         }
 
+        
+
         private void txt_qtd_produto_TextChanged(object sender, EventArgs e)
-        {
+        { 
             SomarValor();
+
+            // verifica se o campo de quantidade de produto está vazio
+            if (txt_qtd_produto.Text == "")
+            {
+                return;
+            }
+
+            // verifica se a quantidade de produto é maior que a quantidade em estoque
+            if (Convert.ToInt32(txt_qtd_produto.Text) > Qtd)
+            {
+                // exibe uma mensagem se deseja continuar mesmo assim
+                if (DialogResult.Yes == MessageBox.Show($"Quantidade maior que a quantidade em estoque ({Qtd}), deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    return;
+                }
+                else
+                {
+                    LimpaTextBox();
+                    txt_cod_barras.Focus();
+                    return;
+                }
+
+            }
         }
 
         private void txt_valor_un_TextChanged(object sender, EventArgs e)

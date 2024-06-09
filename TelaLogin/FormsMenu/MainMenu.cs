@@ -55,7 +55,7 @@ namespace TelaPIM
         private void btnProducts_Click(object sender, EventArgs e)
         {
             ActivateButton(btnProducts);
-            FormShow(new FrmProducts());
+            FormShow(new FrmStock());
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)

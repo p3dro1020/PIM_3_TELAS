@@ -22,6 +22,9 @@ namespace TelaLogin.FormsSubMenu
         private void FrmPayment_Load(object sender, EventArgs e)
         {
             txt_desconto.Text = "R$ 00,00";
+            txt_acrescimo.Text = "R$ 00,00";
+            txt_troco.Visible = false;
+            lb_troco.Visible = false;
             // soma o valor total da venda + juros de 2% dividido por 2
             double valor2x = Convert.ToDouble(txt_valor_total.Text.Replace("R$ ", "")) * 1.02 / 2;
             double valor3x = Convert.ToDouble(txt_valor_total.Text.Replace("R$ ", "")) * 1.03 / 3;
@@ -88,6 +91,40 @@ namespace TelaLogin.FormsSubMenu
             e.Handled = true;
 
 
+        }
+
+        private void cb_pagamento_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // verifica se a opção selecionada foi a de dinheiro
+            if (cb_pagamento.Text == "Dinheiro")
+            {
+                txt_troco.Visible = true;
+                lb_troco.Visible = true;
+                txt_valor_pago.Focus();
+                txt_troco.Text = "R$ 00,00";
+            }
+            else
+            {
+                txt_troco.Visible = false;
+                lb_troco.Visible = false;
+                txt_troco.Text = "R$ 00,00";
+            }
+
+
+            // verifica se a opção selecionada foi a de cartao 2x
+            if (cb_pagamento.Text == "Cartão crédito 2x.")
+            {
+                double valor = Convert.ToDouble(txt_valor_total.Text.Replace("R$ ", "")) * 1.02 - Convert.ToDouble(txt_valor_total.Text.Replace("R$ ", ""));
+                txt_acrescimo.Text = $"R$ {valor.ToString("0.00")}";
+            }else if (cb_pagamento.Text == "Cartão crédito 3x.")
+            {
+                double valor = Convert.ToDouble(txt_valor_total.Text.Replace("R$ ", "")) * 1.03 - Convert.ToDouble(txt_valor_total.Text.Replace("R$ ", ""));
+                txt_acrescimo.Text = $"R$ {valor.ToString("0.00")}";
+            }
+            else
+            {
+                txt_acrescimo.Text = "R$ 00,00";
+            }
         }
     }
 }

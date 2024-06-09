@@ -109,19 +109,20 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string sql = "update cultivos set nome = @nome, quantidade = @quantidade, data_plantio = @plantio, data_colheita = @colheita where cultivo_id = @id;";
+                string sql = "update cultivos set nome = @nome, quantidade = @quantidade, data_plantio = @plantio, data_colheita = @colheita, status = @status where cultivo_id = @id;";
                 NpgsqlCommand cmd = new NpgsqlCommand(sql, Connection);
                 cmd.Parameters.AddWithValue("@nome", p.Nome);
                 cmd.Parameters.AddWithValue("@quantidade", p.Quantidade);
                 cmd.Parameters.AddWithValue("@plantio", p.Data_plantio);
                 cmd.Parameters.AddWithValue("@colheita", p.Data_colheita);
+                cmd.Parameters.AddWithValue("@status", p.Status);
                 cmd.Parameters.AddWithValue("@id", p.Id);
                 cmd.ExecuteNonQuery();
                 return true;
             }
             catch (Exception e)
             {
-                MessageBox.Show("Erro ao atualizar produto: " + e.Message);
+                MessageBox.Show("Erro ao atualizar plantio: " + e.Message);
                 return false;
             }
             finally
@@ -186,6 +187,35 @@ namespace TelaLogin.Infra
             return produtos;
         }
 
+        public List<Plantio> SearchProductStatus(string text)
+        {
+            List<Plantio> produtos = new List<Plantio>();
+            Connection.Open();
+
+            string query = "SELECT * FROM cultivos_view WHERE UPPER(status) LIKE UPPER(@text) ORDER BY cultivo_id;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@text", $"%{text}%");
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Plantio p = new Plantio();
+                p.Id = Convert.ToInt32(dr["cultivo_id"]);
+                p.Nome = dr["nome"].ToString();
+                p.Quantidade = Convert.ToInt32(dr["quantidade"]);
+                // transformar em data
+                p.Data_plantio = Convert.ToDateTime(dr["data_plantio"]).Date;
+                p.Data_colheita = Convert.ToDateTime(dr["data_colheita"]).Date;
+                p.Status = dr["status"].ToString();
+                produtos.Add(p);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return produtos;
+        }
+
         public void DeleteProduct(int id)
         {
             try
@@ -199,7 +229,7 @@ namespace TelaLogin.Infra
             catch (Exception e)
             {
                 Connection.Close();
-                MessageBox.Show("Erro ao tentar deletar: " + e.Message);
+                MessageBox.Show("Erro ao tentar deletar plantio: " + e.Message);
             }
             finally
             {
@@ -770,7 +800,10 @@ namespace TelaLogin.Infra
             {
                 Connection.Close();
             }
-            return ie;
+
+            if(ie.Nome == null) return null;
+            else return ie;
+
         }
 
 
@@ -841,10 +874,39 @@ namespace TelaLogin.Infra
                 return null;
             }else
             {
+                v.QtdEstoque = SearchQtd(cod);
                 return v;
             }
 
 
+        }
+
+        public int SearchQtd(string codBarra)
+        {
+            Connection.Open();
+            int qtd = 0;
+            try
+            {
+                string query = "SELECT e.qtd FROM estoque e INNER JOIN itens_fornecidos i ON e.id_item = i.id_item WHERE codigo_barra = @cod";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@cod", codBarra);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    qtd = Convert.ToInt32(dr["qtd"]);
+
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar quantidade de estoque: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return qtd;
         }
 
         public List<Pedido> SearchSales()

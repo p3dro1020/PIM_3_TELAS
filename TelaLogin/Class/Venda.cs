@@ -9,6 +9,7 @@ namespace TelaLogin.Class
     public class Venda
     {
         public string CodigoBarra { get; set; }
+        public int QtdEstoque { get; set;}
         public int Quantidade { get; set; }
         public string Produto { get; set; }
         public string Unidade { get; set; }

@@ -37,7 +37,6 @@ P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\bin\Debug\net8.0-windows\Npgsql.d
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.csproj.AssemblyReference.cache
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmEmployees.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmProduction.resources
-P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmProducts.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmSales.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmSuppliers.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.MainMenu.resources
@@ -102,3 +101,4 @@ P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogi
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmEditItem.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmHistorySale.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmSaleDetails.resources
+P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmStock.resources

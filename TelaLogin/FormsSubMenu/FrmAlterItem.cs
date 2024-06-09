@@ -35,6 +35,7 @@ namespace TelaLogin.FormsSubMenu
                 return;
             }
 
+
             Item item = new Item();
             item.IdFornecedor = VarGlobal.id;
             item.CodigoBarras = txt_codigo_barras.Text;

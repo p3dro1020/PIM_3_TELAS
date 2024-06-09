@@ -40,7 +40,7 @@
     <Compile Update="FormsMenu\FrmProduction.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="FormsMenu\FrmProducts.cs">
+    <Compile Update="FormsMenu\FrmStock.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="FormsMenu\FrmSales.cs">

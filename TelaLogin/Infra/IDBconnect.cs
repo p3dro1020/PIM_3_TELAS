@@ -14,6 +14,7 @@ namespace TelaLogin.Infra
         public bool UpdateProduct(Plantio produto);
         List<Plantio> ListAllProducts();
         List<Plantio> SearchProduct(string text);
+        List<Plantio> SearchProductStatus(string text);
         public void DeleteProduct(int id);
     }
     internal interface IDBsupplier
@@ -64,6 +65,7 @@ namespace TelaLogin.Infra
         Venda SearchProductByBarCode(string cod);
         List<Pedido> SearchSales();
         List<Venda> SearchItensSale(int id);
+        int SearchQtd(string codBarra);
         //bool AddSale(Venda venda);
 
     }

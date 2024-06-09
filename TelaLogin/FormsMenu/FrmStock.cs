@@ -13,10 +13,10 @@ using TelaLogin.FormsSubMenu;
 
 namespace TelaPIM
 {
-    public partial class FrmProducts : Form
+    public partial class FrmStock : Form
     {
         private DBstock dbStock = new DBstock();
-        public FrmProducts()
+        public FrmStock()
         {
             InitializeComponent();
         }
@@ -25,6 +25,7 @@ namespace TelaPIM
         {
             dgv_stock.Rows.Clear();
             List<ItemEstoque> itemEstoque = dbStock.GetAllStock();
+
 
             // insere os produtos no datagridview
             foreach (ItemEstoque ie in itemEstoque)
@@ -38,7 +39,9 @@ namespace TelaPIM
             FrmNewStock frmNewStock = new FrmNewStock();
             // desativa o botao de deletar e de salvar
             frmNewStock.bt_save.Enabled = false;
-
+            // passa as linhas do dgv_stock para o dgvRow do FrmNewStock
+            frmNewStock.dgvRow = dgv_stock;
+            
             // limpa os campos
             frmNewStock.txt_cdg_barra.Clear();
             frmNewStock.txt_nome.Clear();
