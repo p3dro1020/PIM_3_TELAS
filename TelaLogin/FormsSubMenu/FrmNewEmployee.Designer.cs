@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNewEmployee));
             label7 = new Label();
             txt_senha = new TextBox();
             label6 = new Label();
@@ -56,7 +57,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(384, 120);
+            label7.Location = new Point(382, 120);
             label7.Name = "label7";
             label7.Size = new Size(41, 15);
             label7.TabIndex = 49;
@@ -64,7 +65,7 @@
             // 
             // txt_senha
             // 
-            txt_senha.Location = new Point(384, 138);
+            txt_senha.Location = new Point(382, 138);
             txt_senha.Name = "txt_senha";
             txt_senha.Size = new Size(165, 23);
             txt_senha.TabIndex = 6;
@@ -73,7 +74,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(214, 120);
+            label6.Location = new Point(212, 120);
             label6.Name = "label6";
             label6.Size = new Size(49, 15);
             label6.TabIndex = 47;
@@ -81,7 +82,7 @@
             // 
             // txt_usuario
             // 
-            txt_usuario.Location = new Point(214, 138);
+            txt_usuario.Location = new Point(212, 138);
             txt_usuario.Name = "txt_usuario";
             txt_usuario.Size = new Size(164, 23);
             txt_usuario.TabIndex = 5;
@@ -90,7 +91,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(282, 70);
+            label5.Location = new Point(277, 70);
             label5.Name = "label5";
             label5.Size = new Size(36, 15);
             label5.TabIndex = 44;
@@ -98,14 +99,14 @@
             // 
             // txt_email
             // 
-            txt_email.Location = new Point(279, 88);
+            txt_email.Location = new Point(277, 88);
             txt_email.Name = "txt_email";
             txt_email.Size = new Size(270, 23);
             txt_email.TabIndex = 3;
             // 
             // bt_cancel
             // 
-            bt_cancel.Location = new Point(329, 255);
+            bt_cancel.Location = new Point(203, 273);
             bt_cancel.Name = "bt_cancel";
             bt_cancel.Size = new Size(75, 23);
             bt_cancel.TabIndex = 46;
@@ -115,7 +116,7 @@
             // 
             // bt_save
             // 
-            bt_save.Location = new Point(239, 255);
+            bt_save.Location = new Point(121, 273);
             bt_save.Name = "bt_save";
             bt_save.Size = new Size(75, 23);
             bt_save.TabIndex = 45;
@@ -125,7 +126,7 @@
             // 
             // bt_add
             // 
-            bt_add.Location = new Point(146, 255);
+            bt_add.Location = new Point(39, 273);
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(75, 23);
             bt_add.TabIndex = 43;
@@ -135,7 +136,7 @@
             // 
             // txt_cpf
             // 
-            txt_cpf.Location = new Point(41, 138);
+            txt_cpf.Location = new Point(39, 138);
             txt_cpf.Name = "txt_cpf";
             txt_cpf.Size = new Size(167, 23);
             txt_cpf.TabIndex = 4;
@@ -144,7 +145,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(41, 120);
+            label3.Location = new Point(39, 120);
             label3.Name = "label3";
             label3.Size = new Size(27, 15);
             label3.TabIndex = 34;
@@ -154,7 +155,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(41, 23);
+            label2.Location = new Point(39, 23);
             label2.Name = "label2";
             label2.Size = new Size(41, 15);
             label2.TabIndex = 32;
@@ -162,7 +163,7 @@
             // 
             // txt_nome
             // 
-            txt_nome.Location = new Point(41, 41);
+            txt_nome.Location = new Point(39, 41);
             txt_nome.Name = "txt_nome";
             txt_nome.Size = new Size(508, 23);
             txt_nome.TabIndex = 1;
@@ -171,7 +172,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(41, 70);
+            label1.Location = new Point(39, 70);
             label1.Name = "label1";
             label1.Size = new Size(39, 15);
             label1.TabIndex = 30;
@@ -179,7 +180,7 @@
             // 
             // txt_cargo
             // 
-            txt_cargo.Location = new Point(41, 88);
+            txt_cargo.Location = new Point(39, 88);
             txt_cargo.Name = "txt_cargo";
             txt_cargo.Size = new Size(232, 23);
             txt_cargo.TabIndex = 2;
@@ -188,7 +189,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(214, 168);
+            label4.Location = new Point(212, 168);
             label4.Name = "label4";
             label4.Size = new Size(75, 15);
             label4.TabIndex = 56;
@@ -196,7 +197,7 @@
             // 
             // txt_acesso
             // 
-            txt_acesso.Location = new Point(218, 186);
+            txt_acesso.Location = new Point(212, 186);
             txt_acesso.Name = "txt_acesso";
             txt_acesso.Size = new Size(45, 23);
             txt_acesso.TabIndex = 7;
@@ -204,7 +205,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(269, 189);
+            label8.Location = new Point(267, 190);
             label8.Name = "label8";
             label8.Size = new Size(230, 15);
             label8.TabIndex = 57;
@@ -213,7 +214,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(269, 204);
+            label9.Location = new Point(267, 205);
             label9.Name = "label9";
             label9.Size = new Size(140, 15);
             label9.TabIndex = 58;
@@ -222,7 +223,7 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(269, 219);
+            label10.Location = new Point(267, 220);
             label10.Name = "label10";
             label10.Size = new Size(121, 15);
             label10.TabIndex = 59;
@@ -230,7 +231,7 @@
             // 
             // txt_salario
             // 
-            txt_salario.Location = new Point(41, 186);
+            txt_salario.Location = new Point(39, 186);
             txt_salario.Name = "txt_salario";
             txt_salario.Size = new Size(167, 23);
             txt_salario.TabIndex = 60;
@@ -239,7 +240,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(41, 168);
+            label11.Location = new Point(39, 168);
             label11.Name = "label11";
             label11.Size = new Size(44, 15);
             label11.TabIndex = 61;
@@ -272,6 +273,8 @@
             Controls.Add(label2);
             Controls.Add(txt_nome);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmNewEmployee";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerenciamento funcionário";

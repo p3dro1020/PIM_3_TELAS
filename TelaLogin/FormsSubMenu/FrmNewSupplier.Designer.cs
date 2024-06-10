@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNewSupplier));
             label1 = new Label();
             txt_razaoSocial = new TextBox();
             label2 = new Label();
@@ -318,6 +319,8 @@
             Controls.Add(label2);
             Controls.Add(txt_razaoSocial);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmNewSupplier";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerenciar fornecedor";

@@ -432,11 +432,13 @@
             // 
             // dgv_colheitas
             // 
+            dgv_colheitas.AllowUserToDeleteRows = false;
             dgv_colheitas.BackgroundColor = Color.White;
             dgv_colheitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_colheitas.Columns.AddRange(new DataGridViewColumn[] { item_colheita, qtdPes, dateColheita });
             dgv_colheitas.Location = new Point(481, 108);
             dgv_colheitas.Name = "dgv_colheitas";
+            dgv_colheitas.ReadOnly = true;
             dgv_colheitas.RowHeadersVisible = false;
             dgv_colheitas.Size = new Size(384, 174);
             dgv_colheitas.TabIndex = 3;
@@ -446,12 +448,14 @@
             item_colheita.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             item_colheita.HeaderText = "Item";
             item_colheita.Name = "item_colheita";
+            item_colheita.ReadOnly = true;
             // 
             // qtdPes
             // 
             qtdPes.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             qtdPes.HeaderText = "Quantidade Pés";
             qtdPes.Name = "qtdPes";
+            qtdPes.ReadOnly = true;
             qtdPes.Width = 106;
             // 
             // dateColheita
@@ -459,6 +463,7 @@
             dateColheita.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             dateColheita.HeaderText = "Data colheita";
             dateColheita.Name = "dateColheita";
+            dateColheita.ReadOnly = true;
             dateColheita.Width = 93;
             // 
             // label2
@@ -473,7 +478,6 @@
             // 
             // dgv_lastSale
             // 
-            dgv_lastSale.AllowUserToAddRows = false;
             dgv_lastSale.BackgroundColor = Color.White;
             dgv_lastSale.BorderStyle = BorderStyle.None;
             dgv_lastSale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;

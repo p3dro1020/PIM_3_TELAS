@@ -32,9 +32,9 @@
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panel1 = new Panel();
+            button1 = new Button();
             bt_adicionar = new Button();
             bt_listAll = new Button();
-            bt_search = new Button();
             txt_search = new TextBox();
             label1 = new Label();
             bt_add = new Button();
@@ -55,10 +55,10 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Sienna;
+            panel1.BackColor = Color.FromArgb(192, 255, 192);
+            panel1.Controls.Add(button1);
             panel1.Controls.Add(bt_adicionar);
             panel1.Controls.Add(bt_listAll);
-            panel1.Controls.Add(bt_search);
             panel1.Controls.Add(txt_search);
             panel1.Controls.Add(label1);
             panel1.Controls.Add(bt_add);
@@ -68,54 +68,53 @@
             panel1.Size = new Size(903, 75);
             panel1.TabIndex = 1;
             // 
+            // button1
+            // 
+            button1.Anchor = AnchorStyles.None;
+            button1.BackColor = Color.Transparent;
+            button1.Cursor = Cursors.Hand;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.ForeColor = Color.Transparent;
+            button1.Image = (Image)resources.GetObject("button1.Image");
+            button1.Location = new Point(264, 25);
+            button1.Name = "button1";
+            button1.Size = new Size(37, 31);
+            button1.TabIndex = 14;
+            button1.UseVisualStyleBackColor = false;
+            // 
             // bt_adicionar
             // 
             bt_adicionar.Anchor = AnchorStyles.None;
-            bt_adicionar.BackColor = Color.Sienna;
+            bt_adicionar.BackColor = Color.Transparent;
             bt_adicionar.Cursor = Cursors.Hand;
             bt_adicionar.FlatStyle = FlatStyle.Flat;
-            bt_adicionar.ForeColor = Color.Sienna;
+            bt_adicionar.ForeColor = Color.Transparent;
             bt_adicionar.Image = (Image)resources.GetObject("bt_adicionar.Image");
-            bt_adicionar.Location = new Point(857, 19);
+            bt_adicionar.Location = new Point(857, 25);
             bt_adicionar.Name = "bt_adicionar";
             bt_adicionar.Size = new Size(34, 31);
             bt_adicionar.TabIndex = 13;
-            bt_adicionar.UseVisualStyleBackColor = true;
+            bt_adicionar.UseVisualStyleBackColor = false;
             bt_adicionar.Click += bt_adicionar_Click;
             // 
             // bt_listAll
             // 
             bt_listAll.Anchor = AnchorStyles.None;
-            bt_listAll.BackColor = Color.Sienna;
+            bt_listAll.BackColor = Color.Transparent;
             bt_listAll.Cursor = Cursors.Hand;
             bt_listAll.FlatStyle = FlatStyle.Flat;
-            bt_listAll.ForeColor = Color.Sienna;
+            bt_listAll.ForeColor = Color.Transparent;
             bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
-            bt_listAll.Location = new Point(12, 27);
+            bt_listAll.Location = new Point(12, 25);
             bt_listAll.Name = "bt_listAll";
             bt_listAll.Size = new Size(37, 31);
             bt_listAll.TabIndex = 10;
-            bt_listAll.UseVisualStyleBackColor = true;
+            bt_listAll.UseVisualStyleBackColor = false;
             bt_listAll.Click += bt_listAll_Click;
-            // 
-            // bt_search
-            // 
-            bt_search.Anchor = AnchorStyles.None;
-            bt_search.BackColor = Color.Sienna;
-            bt_search.Cursor = Cursors.Hand;
-            bt_search.FlatStyle = FlatStyle.Flat;
-            bt_search.ForeColor = Color.Sienna;
-            bt_search.Image = (Image)resources.GetObject("bt_search.Image");
-            bt_search.Location = new Point(501, 28);
-            bt_search.Name = "bt_search";
-            bt_search.Size = new Size(28, 23);
-            bt_search.TabIndex = 9;
-            bt_search.UseVisualStyleBackColor = true;
-            bt_search.Click += bt_search_Click;
             // 
             // txt_search
             // 
-            txt_search.Location = new Point(358, 29);
+            txt_search.Location = new Point(120, 29);
             txt_search.Name = "txt_search";
             txt_search.Size = new Size(137, 23);
             txt_search.TabIndex = 8;
@@ -124,7 +123,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(295, 32);
+            label1.Location = new Point(56, 33);
             label1.Name = "label1";
             label1.Size = new Size(59, 15);
             label1.TabIndex = 7;
@@ -277,7 +276,6 @@
 
         private Panel panel1;
         private Button bt_listAll;
-        private Button bt_search;
         private TextBox txt_search;
         private Label label1;
         private Button bt_add;
@@ -293,5 +291,6 @@
         private DataGridViewTextBoxColumn acesso;
         private DataGridViewImageColumn edit;
         private DataGridViewImageColumn delete;
+        private Button button1;
     }
 }

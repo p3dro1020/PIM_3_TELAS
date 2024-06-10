@@ -66,7 +66,6 @@ C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\bin\Debug\net8.0-windows\N
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.csproj.AssemblyReference.cache
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmEmployees.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmProduction.resources
-C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmProducts.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmSales.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmSuppliers.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.MainMenu.resources
@@ -86,7 +85,6 @@ C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\T
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.genruntimeconfig.cache
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\ref\TelaLogin.dll
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewSupplier.resources
-C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewProduct.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewSupplier.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmPhoneSupplier.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmItemsProvided.resources
@@ -103,3 +101,10 @@ P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogi
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmSaleDetails.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmStock.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewEmployee.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmStock.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.waitingFrm.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmEditItem.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmHistorySale.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewEmployee.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmPayment.resources
+C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmSaleDetails.resources

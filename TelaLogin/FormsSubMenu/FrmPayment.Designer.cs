@@ -407,6 +407,7 @@
             Controls.Add(txt_valor_total);
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmPayment";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pagamento";

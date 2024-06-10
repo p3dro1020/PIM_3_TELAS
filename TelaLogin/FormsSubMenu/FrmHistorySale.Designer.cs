@@ -156,6 +156,8 @@
             Controls.Add(dateTimePicker2);
             Controls.Add(dateTimePicker1);
             Controls.Add(dgv_history_sale);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmHistorySale";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Histórico vendas";

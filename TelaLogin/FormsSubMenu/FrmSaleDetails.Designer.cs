@@ -30,6 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSaleDetails));
             label1 = new Label();
             txt_id_pedido = new TextBox();
             label2 = new Label();
@@ -163,7 +164,7 @@
             id_produto.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             id_produto.HeaderText = "Cód. Produto";
             id_produto.Name = "id_produto";
-            id_produto.Width = 103;
+            id_produto.Width = 95;
             // 
             // un
             // 
@@ -183,7 +184,7 @@
             valor.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             valor.HeaderText = "Valor UN R$";
             valor.Name = "valor";
-            valor.Width = 94;
+            valor.Width = 75;
             // 
             // qtd_item
             // 
@@ -197,7 +198,7 @@
             total.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             total.HeaderText = "Total pago R$";
             total.Name = "total";
-            total.Width = 103;
+            total.Width = 83;
             // 
             // lucro
             // 
@@ -219,6 +220,8 @@
             Controls.Add(label2);
             Controls.Add(txt_id_pedido);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmSaleDetails";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Detalhes venda";

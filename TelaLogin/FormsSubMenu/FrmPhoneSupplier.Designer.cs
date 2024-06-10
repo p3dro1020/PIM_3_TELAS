@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPhoneSupplier));
             label1 = new Label();
             txt_fornecedorNome = new Label();
             lb_phone = new ListBox();
@@ -114,6 +115,8 @@
             Controls.Add(lb_phone);
             Controls.Add(txt_fornecedorNome);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmPhoneSupplier";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Lista de telefones";

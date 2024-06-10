@@ -30,6 +30,7 @@
         {
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmItemsProvided));
             label1 = new Label();
             dgv_itens_fornecidos = new DataGridView();
             category = new DataGridViewTextBoxColumn();
@@ -178,6 +179,8 @@
             Controls.Add(txt_fornecedor_name);
             Controls.Add(dgv_itens_fornecidos);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmItemsProvided";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Itens fornecidos";

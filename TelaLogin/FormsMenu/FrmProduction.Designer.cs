@@ -55,7 +55,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.Sienna;
+            panel1.BackColor = Color.FromArgb(192, 255, 192);
             panel1.Controls.Add(rb_status);
             panel1.Controls.Add(rb_nome);
             panel1.Controls.Add(bt_listAll);
@@ -73,7 +73,7 @@
             // 
             rb_status.AutoSize = true;
             rb_status.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            rb_status.Location = new Point(202, 42);
+            rb_status.Location = new Point(71, 42);
             rb_status.Name = "rb_status";
             rb_status.Size = new Size(60, 19);
             rb_status.TabIndex = 7;
@@ -85,7 +85,7 @@
             // 
             rb_nome.AutoSize = true;
             rb_nome.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            rb_nome.Location = new Point(202, 17);
+            rb_nome.Location = new Point(71, 17);
             rb_nome.Name = "rb_nome";
             rb_nome.Size = new Size(59, 19);
             rb_nome.TabIndex = 6;
@@ -96,36 +96,36 @@
             // bt_listAll
             // 
             bt_listAll.Anchor = AnchorStyles.None;
-            bt_listAll.BackColor = Color.Sienna;
+            bt_listAll.BackColor = Color.Transparent;
             bt_listAll.Cursor = Cursors.Hand;
             bt_listAll.FlatStyle = FlatStyle.Flat;
-            bt_listAll.ForeColor = Color.Sienna;
+            bt_listAll.ForeColor = Color.Transparent;
             bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
             bt_listAll.Location = new Point(12, 23);
             bt_listAll.Name = "bt_listAll";
             bt_listAll.Size = new Size(37, 31);
             bt_listAll.TabIndex = 5;
-            bt_listAll.UseVisualStyleBackColor = true;
+            bt_listAll.UseVisualStyleBackColor = false;
             bt_listAll.Click += bt_listAll_Click;
             // 
             // bt_search
             // 
             bt_search.Anchor = AnchorStyles.None;
-            bt_search.BackColor = Color.Sienna;
+            bt_search.BackColor = Color.Transparent;
             bt_search.Cursor = Cursors.Hand;
             bt_search.FlatStyle = FlatStyle.Flat;
-            bt_search.ForeColor = Color.Sienna;
+            bt_search.ForeColor = Color.Transparent;
             bt_search.Image = (Image)resources.GetObject("bt_search.Image");
-            bt_search.Location = new Point(555, 26);
+            bt_search.Location = new Point(351, 23);
             bt_search.Name = "bt_search";
             bt_search.Size = new Size(37, 31);
             bt_search.TabIndex = 4;
-            bt_search.UseVisualStyleBackColor = true;
+            bt_search.UseVisualStyleBackColor = false;
             bt_search.Click += bt_search_Click;
             // 
             // txt_search
             // 
-            txt_search.Location = new Point(412, 28);
+            txt_search.Location = new Point(208, 27);
             txt_search.Name = "txt_search";
             txt_search.Size = new Size(137, 23);
             txt_search.TabIndex = 3;
@@ -135,7 +135,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(349, 31);
+            label1.Location = new Point(145, 31);
             label1.Name = "label1";
             label1.Size = new Size(59, 15);
             label1.TabIndex = 2;
@@ -144,16 +144,16 @@
             // bt_add
             // 
             bt_add.Anchor = AnchorStyles.None;
-            bt_add.BackColor = Color.Sienna;
+            bt_add.BackColor = Color.Transparent;
             bt_add.Cursor = Cursors.Hand;
             bt_add.FlatStyle = FlatStyle.Flat;
-            bt_add.ForeColor = Color.Sienna;
+            bt_add.ForeColor = Color.Transparent;
             bt_add.Image = (Image)resources.GetObject("bt_add.Image");
-            bt_add.Location = new Point(857, 23);
+            bt_add.Location = new Point(857, 25);
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(34, 31);
             bt_add.TabIndex = 1;
-            bt_add.UseVisualStyleBackColor = true;
+            bt_add.UseVisualStyleBackColor = false;
             bt_add.Click += bt_add_Click;
             // 
             // dgv_Production

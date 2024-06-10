@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEditItem));
             label1 = new Label();
             txt_produto = new TextBox();
             txt_preco_unico = new TextBox();
@@ -44,7 +45,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label1.Location = new Point(25, 32);
+            label1.Location = new Point(28, 32);
             label1.Name = "label1";
             label1.Size = new Size(52, 15);
             label1.TabIndex = 0;
@@ -55,7 +56,7 @@
             txt_produto.BackColor = Color.White;
             txt_produto.Enabled = false;
             txt_produto.ForeColor = Color.Black;
-            txt_produto.Location = new Point(25, 50);
+            txt_produto.Location = new Point(28, 50);
             txt_produto.Name = "txt_produto";
             txt_produto.Size = new Size(100, 23);
             txt_produto.TabIndex = 1;
@@ -65,7 +66,7 @@
             txt_preco_unico.BackColor = Color.White;
             txt_preco_unico.Enabled = false;
             txt_preco_unico.ForeColor = Color.Black;
-            txt_preco_unico.Location = new Point(142, 50);
+            txt_preco_unico.Location = new Point(145, 50);
             txt_preco_unico.Name = "txt_preco_unico";
             txt_preco_unico.Size = new Size(100, 23);
             txt_preco_unico.TabIndex = 3;
@@ -74,7 +75,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.Location = new Point(142, 32);
+            label2.Location = new Point(145, 32);
             label2.Name = "label2";
             label2.Size = new Size(74, 15);
             label2.TabIndex = 2;
@@ -83,7 +84,7 @@
             // txt_qtd
             // 
             txt_qtd.BackColor = Color.White;
-            txt_qtd.Location = new Point(25, 104);
+            txt_qtd.Location = new Point(28, 104);
             txt_qtd.Name = "txt_qtd";
             txt_qtd.Size = new Size(100, 23);
             txt_qtd.TabIndex = 5;
@@ -94,7 +95,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.Location = new Point(25, 86);
+            label3.Location = new Point(28, 86);
             label3.Name = "label3";
             label3.Size = new Size(71, 15);
             label3.TabIndex = 4;
@@ -104,7 +105,7 @@
             // 
             txt_valor_total.BackColor = Color.White;
             txt_valor_total.Enabled = false;
-            txt_valor_total.Location = new Point(142, 104);
+            txt_valor_total.Location = new Point(145, 104);
             txt_valor_total.Name = "txt_valor_total";
             txt_valor_total.Size = new Size(100, 23);
             txt_valor_total.TabIndex = 7;
@@ -113,7 +114,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label4.Location = new Point(142, 86);
+            label4.Location = new Point(145, 86);
             label4.Name = "label4";
             label4.Size = new Size(64, 15);
             label4.TabIndex = 6;
@@ -121,7 +122,7 @@
             // 
             // bt_excluir
             // 
-            bt_excluir.Location = new Point(142, 189);
+            bt_excluir.Location = new Point(147, 189);
             bt_excluir.Name = "bt_excluir";
             bt_excluir.Size = new Size(75, 23);
             bt_excluir.TabIndex = 9;
@@ -131,7 +132,7 @@
             // 
             // bt_edit
             // 
-            bt_edit.Location = new Point(50, 189);
+            bt_edit.Location = new Point(55, 189);
             bt_edit.Name = "bt_edit";
             bt_edit.Size = new Size(75, 23);
             bt_edit.TabIndex = 10;
@@ -154,6 +155,8 @@
             Controls.Add(label2);
             Controls.Add(txt_produto);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmEditItem";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerenciar item";

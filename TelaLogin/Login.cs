@@ -2,6 +2,7 @@ using TelaLogin.Infra;
 using System.Windows;
 using System.Windows.Forms;
 using TelaPIM;
+using TelaLogin.FormsMenu;
 
 namespace TelaLogin
 {
@@ -13,7 +14,7 @@ namespace TelaLogin
             txtUser.Select();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private async void btnLogin_Click(object sender, EventArgs e)
         {
 
 
@@ -31,8 +32,13 @@ namespace TelaLogin
 
             if (dbUser.VerifyUser(userTxtLogin, userTxtPassword))
             {
+                this.Hide();
+                waitingFrm waitingFrm = new waitingFrm();
+                waitingFrm.Show();
                 MainMenu Menu = new MainMenu();
+                await Task.Delay(3000);
                 Menu.Show();
+                waitingFrm.Close();
                 this.Hide();
             }
             else

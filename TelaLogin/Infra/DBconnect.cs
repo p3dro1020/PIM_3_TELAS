@@ -28,7 +28,7 @@ namespace TelaLogin.Infra
                 // se a consulta dr.Read nao retornar nada, significa que nao existe usuario ou senha que foi digitado
                 if (dr.Read())
                 {
-                    MessageBox.Show("Logado com sucesso!");
+                    //MessageBox.Show("Logado com sucesso!");
                     VarGlobal.NomeUsuario = dr["nome"].ToString();
                     //VarGlobal.NivelAcesso = dr["nivel_acesso"].ToString();
                     VarGlobal.IdUsuario = Convert.ToInt32(dr["id"]);

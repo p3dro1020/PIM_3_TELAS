@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAlterItem));
             bt_add = new Button();
             bt_save = new Button();
             bt_delete = new Button();
@@ -55,7 +56,7 @@
             // 
             // bt_add
             // 
-            bt_add.Location = new Point(142, 205);
+            bt_add.Location = new Point(27, 224);
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(75, 23);
             bt_add.TabIndex = 11;
@@ -65,7 +66,7 @@
             // 
             // bt_save
             // 
-            bt_save.Location = new Point(223, 205);
+            bt_save.Location = new Point(108, 224);
             bt_save.Name = "bt_save";
             bt_save.Size = new Size(75, 23);
             bt_save.TabIndex = 12;
@@ -75,7 +76,7 @@
             // 
             // bt_delete
             // 
-            bt_delete.Location = new Point(304, 205);
+            bt_delete.Location = new Point(189, 224);
             bt_delete.Name = "bt_delete";
             bt_delete.Size = new Size(75, 23);
             bt_delete.TabIndex = 13;
@@ -124,7 +125,7 @@
             // 
             txt_valor_venda.Enabled = false;
             txt_valor_venda.Font = new Font("Segoe UI", 8.25F);
-            txt_valor_venda.Location = new Point(306, 99);
+            txt_valor_venda.Location = new Point(310, 99);
             txt_valor_venda.Name = "txt_valor_venda";
             txt_valor_venda.Size = new Size(94, 22);
             txt_valor_venda.TabIndex = 7;
@@ -133,7 +134,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
-            label8.Location = new Point(306, 81);
+            label8.Location = new Point(310, 81);
             label8.Name = "label8";
             label8.Size = new Size(73, 13);
             label8.TabIndex = 39;
@@ -142,9 +143,9 @@
             // txt_porcentagem
             // 
             txt_porcentagem.Font = new Font("Segoe UI", 8.25F);
-            txt_porcentagem.Location = new Point(208, 99);
+            txt_porcentagem.Location = new Point(203, 99);
             txt_porcentagem.Name = "txt_porcentagem";
-            txt_porcentagem.Size = new Size(88, 22);
+            txt_porcentagem.Size = new Size(94, 22);
             txt_porcentagem.TabIndex = 6;
             txt_porcentagem.TextChanged += txt_porcentagem_TextChanged;
             txt_porcentagem.KeyPress += txt_porcentagem_KeyPress;
@@ -153,7 +154,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
-            label7.Location = new Point(208, 81);
+            label7.Location = new Point(203, 81);
             label7.Name = "label7";
             label7.Size = new Size(81, 13);
             label7.TabIndex = 36;
@@ -163,7 +164,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
-            label6.Location = new Point(178, 134);
+            label6.Location = new Point(166, 134);
             label6.Name = "label6";
             label6.Size = new Size(71, 13);
             label6.TabIndex = 34;
@@ -192,9 +193,9 @@
             // txt_preco_custo
             // 
             txt_preco_custo.Font = new Font("Segoe UI", 8.25F);
-            txt_preco_custo.Location = new Point(93, 99);
+            txt_preco_custo.Location = new Point(97, 99);
             txt_preco_custo.Name = "txt_preco_custo";
-            txt_preco_custo.Size = new Size(100, 22);
+            txt_preco_custo.Size = new Size(94, 22);
             txt_preco_custo.TabIndex = 5;
             txt_preco_custo.TextChanged += txt_preco_custo_TextChanged;
             txt_preco_custo.KeyPress += txt_preco_custo_KeyPress;
@@ -203,7 +204,7 @@
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
-            label11.Location = new Point(93, 81);
+            label11.Location = new Point(97, 81);
             label11.Name = "label11";
             label11.Size = new Size(72, 13);
             label11.TabIndex = 25;
@@ -257,9 +258,9 @@
             // 
             txt_fornecedor.Enabled = false;
             txt_fornecedor.Font = new Font("Segoe UI", 8.25F);
-            txt_fornecedor.Location = new Point(178, 152);
+            txt_fornecedor.Location = new Point(166, 152);
             txt_fornecedor.Name = "txt_fornecedor";
-            txt_fornecedor.Size = new Size(331, 22);
+            txt_fornecedor.Size = new Size(343, 22);
             txt_fornecedor.TabIndex = 10;
             // 
             // cb_un
@@ -297,6 +298,8 @@
             Controls.Add(bt_delete);
             Controls.Add(bt_save);
             Controls.Add(bt_add);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmAlterItem";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerenciar item";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNewStock));
             label1 = new Label();
             txt_produto = new TextBox();
             txt_nome = new TextBox();
@@ -243,6 +244,8 @@
             Controls.Add(label2);
             Controls.Add(txt_produto);
             Controls.Add(label1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "FrmNewStock";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Gerenciar estoque";
