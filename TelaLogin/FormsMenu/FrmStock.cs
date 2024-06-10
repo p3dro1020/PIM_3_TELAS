@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TelaLogin.Class;
 using TelaLogin.Infra;
 using TelaLogin.FormsSubMenu;
+using TelaLogin.ClassGlobal;
 
 namespace TelaPIM
 {
@@ -36,6 +37,13 @@ namespace TelaPIM
 
         private void bt_add_Click(object sender, EventArgs e)
         {
+            if (VarGlobal.NivelAcesso != 3)
+            {
+                //exibe erro 
+                MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             FrmNewStock frmNewStock = new FrmNewStock();
             // desativa o botao de deletar e de salvar
             frmNewStock.bt_save.Enabled = false;
@@ -65,6 +73,12 @@ namespace TelaPIM
             // verifica se a coluna clicada foi a de editar
             if (e.ColumnIndex == dgv_stock.Columns["edit"].Index)
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 FrmNewStock frmNewStock = new FrmNewStock();
                 // ativa o botao de deletar e de salvar
                 frmNewStock.bt_save.Enabled = true;
@@ -86,6 +100,12 @@ namespace TelaPIM
             }
             else if (e.ColumnIndex == dgv_stock.Columns["delete"].Index)
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 if (MessageBox.Show("Deseja realmente deletar este item?", "Deletar item", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     dbStock.DeleteStock(Convert.ToInt32(dgv_stock.Rows[e.RowIndex].Cells["cod"].Value));

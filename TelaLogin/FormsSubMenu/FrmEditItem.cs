@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using TelaLogin.ClassGlobal;
 
 namespace TelaLogin.FormsSubMenu
 {
@@ -66,7 +67,13 @@ namespace TelaLogin.FormsSubMenu
                 txt_qtd.Focus();
                 return;
             }
-
+            // verifica se a quantidade de produto é maior que a quantidade em estoque
+            if (VarGlobal.QtdEstoque < int.Parse(txt_qtd.Text))
+            {
+                //exibe mensagem de erro e apaga o produto
+                MessageBox.Show($"Quantidade de produto maior que a quantidade em estoque ({VarGlobal.QtdEstoque})", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             this.Close();
         }

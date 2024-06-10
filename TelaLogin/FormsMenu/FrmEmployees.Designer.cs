@@ -31,8 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmployees));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
-            button1 = new Button();
+            bt_search = new Button();
             bt_adicionar = new Button();
             bt_listAll = new Button();
             txt_search = new TextBox();
@@ -55,8 +56,8 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(192, 255, 192);
-            panel1.Controls.Add(button1);
+            panel1.BackColor = Color.OliveDrab;
+            panel1.Controls.Add(bt_search);
             panel1.Controls.Add(bt_adicionar);
             panel1.Controls.Add(bt_listAll);
             panel1.Controls.Add(txt_search);
@@ -68,19 +69,20 @@
             panel1.Size = new Size(903, 75);
             panel1.TabIndex = 1;
             // 
-            // button1
+            // bt_search
             // 
-            button1.Anchor = AnchorStyles.None;
-            button1.BackColor = Color.Transparent;
-            button1.Cursor = Cursors.Hand;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.ForeColor = Color.Transparent;
-            button1.Image = (Image)resources.GetObject("button1.Image");
-            button1.Location = new Point(264, 25);
-            button1.Name = "button1";
-            button1.Size = new Size(37, 31);
-            button1.TabIndex = 14;
-            button1.UseVisualStyleBackColor = false;
+            bt_search.Anchor = AnchorStyles.None;
+            bt_search.BackColor = Color.Transparent;
+            bt_search.Cursor = Cursors.Hand;
+            bt_search.FlatStyle = FlatStyle.Flat;
+            bt_search.ForeColor = Color.OliveDrab;
+            bt_search.Image = (Image)resources.GetObject("bt_search.Image");
+            bt_search.Location = new Point(264, 25);
+            bt_search.Name = "bt_search";
+            bt_search.Size = new Size(37, 31);
+            bt_search.TabIndex = 14;
+            bt_search.UseVisualStyleBackColor = false;
+            bt_search.Click += bt_search_Click_1;
             // 
             // bt_adicionar
             // 
@@ -88,7 +90,7 @@
             bt_adicionar.BackColor = Color.Transparent;
             bt_adicionar.Cursor = Cursors.Hand;
             bt_adicionar.FlatStyle = FlatStyle.Flat;
-            bt_adicionar.ForeColor = Color.Transparent;
+            bt_adicionar.ForeColor = Color.OliveDrab;
             bt_adicionar.Image = (Image)resources.GetObject("bt_adicionar.Image");
             bt_adicionar.Location = new Point(857, 25);
             bt_adicionar.Name = "bt_adicionar";
@@ -103,7 +105,7 @@
             bt_listAll.BackColor = Color.Transparent;
             bt_listAll.Cursor = Cursors.Hand;
             bt_listAll.FlatStyle = FlatStyle.Flat;
-            bt_listAll.ForeColor = Color.Transparent;
+            bt_listAll.ForeColor = Color.OliveDrab;
             bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
             bt_listAll.Location = new Point(12, 25);
             bt_listAll.Name = "bt_listAll";
@@ -147,28 +149,38 @@
             // 
             dgv_employe.AllowUserToAddRows = false;
             dgv_employe.BackgroundColor = Color.White;
+            dgv_employe.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_employe.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_employe.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_employe.Columns.AddRange(new DataGridViewColumn[] { id, name, cargo, mail, salario, user, password, acesso, edit, delete });
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgv_employe.DefaultCellStyle = dataGridViewCellStyle1;
-            dgv_employe.Dock = DockStyle.Fill;
-            dgv_employe.Location = new Point(0, 0);
-            dgv_employe.Name = "dgv_employe";
-            dgv_employe.ReadOnly = true;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.Fuchsia;
+            dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
             dataGridViewCellStyle2.ForeColor = Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = Color.White;
             dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            dgv_employe.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgv_employe.DefaultCellStyle = dataGridViewCellStyle2;
+            dgv_employe.Dock = DockStyle.Fill;
+            dgv_employe.EnableHeadersVisualStyles = false;
+            dgv_employe.Location = new Point(0, 0);
+            dgv_employe.Name = "dgv_employe";
+            dgv_employe.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Fuchsia;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.White;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgv_employe.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgv_employe.RowHeadersVisible = false;
             dgv_employe.Size = new Size(903, 523);
             dgv_employe.TabIndex = 2;
@@ -180,7 +192,7 @@
             id.HeaderText = "Cód.";
             id.Name = "id";
             id.ReadOnly = true;
-            id.Width = 57;
+            id.Width = 55;
             // 
             // name
             // 
@@ -195,7 +207,7 @@
             cargo.HeaderText = "Cargo";
             cargo.Name = "cargo";
             cargo.ReadOnly = true;
-            cargo.Width = 64;
+            cargo.Width = 63;
             // 
             // mail
             // 
@@ -203,7 +215,7 @@
             mail.HeaderText = "Email";
             mail.Name = "mail";
             mail.ReadOnly = true;
-            mail.Width = 61;
+            mail.Width = 60;
             // 
             // salario
             // 
@@ -211,7 +223,7 @@
             salario.HeaderText = "Salário";
             salario.Name = "salario";
             salario.ReadOnly = true;
-            salario.Width = 67;
+            salario.Width = 68;
             // 
             // user
             // 
@@ -219,7 +231,7 @@
             user.HeaderText = "Usuário";
             user.Name = "user";
             user.ReadOnly = true;
-            user.Width = 72;
+            user.Width = 73;
             // 
             // password
             // 
@@ -227,7 +239,7 @@
             password.HeaderText = "Senha";
             password.Name = "password";
             password.ReadOnly = true;
-            password.Width = 64;
+            password.Width = 65;
             // 
             // acesso
             // 
@@ -291,6 +303,6 @@
         private DataGridViewTextBoxColumn acesso;
         private DataGridViewImageColumn edit;
         private DataGridViewImageColumn delete;
-        private Button button1;
+        private Button bt_search;
     }
 }

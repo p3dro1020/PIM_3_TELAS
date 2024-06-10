@@ -23,6 +23,28 @@ namespace TelaLogin.FormsSubMenu
 
         private void LoadItens()
         {
+            if(VarGlobal.id == 0)
+            {
+                MessageBox.Show("Selecione um fornecedor!");
+                return;
+            }
+
+            if(VarGlobal.nome == "N/A")
+            {
+                // limpa o dgv
+                dgv_itens_fornecidos.Rows.Clear();
+                List<Item> items = dbSupplier.SearchSupplierItemName(VarGlobal.nome);
+
+                // insere os itens no datagridview
+                foreach (Item i in items)
+                {
+                    dgv_itens_fornecidos.Rows.Add(i.Categoria, i.IdItem, i.CodigoBarras, i.NomeItem, i.Un, i.PrecoCusto, i.PrecoVenda, i.Lucro);
+                }
+
+                return;
+            }
+
+
             // limpa o dgv
             dgv_itens_fornecidos.Rows.Clear();
             List<Item> item = dbSupplier.SearchSupplierItem(VarGlobal.id);

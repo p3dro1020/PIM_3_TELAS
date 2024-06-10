@@ -108,3 +108,6 @@ C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\T
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewEmployee.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmPayment.resources
 C:\Users\User\Documents\UNIP\PIM\VisionFarm\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmSaleDetails.resources
+P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmSaleCupom.resources
+P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\bin\Debug\net8.0-windows\BouncyCastle.Crypto.dll
+P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\bin\Debug\net8.0-windows\itextsharp.dll

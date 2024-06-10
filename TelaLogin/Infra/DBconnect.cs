@@ -32,6 +32,7 @@ namespace TelaLogin.Infra
                     VarGlobal.NomeUsuario = dr["nome"].ToString();
                     //VarGlobal.NivelAcesso = dr["nivel_acesso"].ToString();
                     VarGlobal.IdUsuario = Convert.ToInt32(dr["id"]);
+                    VarGlobal.NivelAcesso = Convert.ToInt32(dr["acesso"]);
                     return true;
                 }
                 else
@@ -148,6 +149,30 @@ namespace TelaLogin.Infra
                 p.Data_plantio = Convert.ToDateTime(dr["data_plantio"]);
                 p.Data_colheita = Convert.ToDateTime(dr["data_colheita"]);
                 p.Status = dr["status"].ToString();
+                produtos.Add(p);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return produtos;
+        }
+
+        public List<Plantio> SearchProxColheita()
+        {
+            List<Plantio> produtos = new List<Plantio>();
+            Connection.Open();
+
+            string query = "SELECT nome,quantidade,data_colheita FROM cultivos ORDER BY ABS(EXTRACT(EPOCH FROM AGE(CURRENT_DATE ,data_colheita))) ASC LIMIT 15;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Plantio p = new Plantio();
+                p.Nome = dr["nome"].ToString();
+                p.Quantidade = Convert.ToInt32(dr["quantidade"]);
+                // transformar em data
+                p.Data_colheita = Convert.ToDateTime(dr["data_colheita"]);
                 produtos.Add(p);
             }
 
@@ -530,7 +555,7 @@ namespace TelaLogin.Infra
             Item i = new Item();
             try
             {
-                string query = "SELECT id_fornecedor,id_item,codigo_barra,nome,categoria,unidade,valor_custo,valor_venda,porcentagem,lucro,qtd_estoque_min,fornecedor FROM itens_fornecidos WHERE id_item = @id;";
+                string query = "SELECT id_item,codigo_barra,nome,categoria,unidade,valor_custo,valor_venda,porcentagem,lucro,qtd_estoque_min,fornecedor FROM itens_fornecidos WHERE id_item = @id;";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@id", id);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -538,7 +563,6 @@ namespace TelaLogin.Infra
                 while (dr.Read())
                 {
 
-                    i.IdFornecedor = Convert.ToInt32(dr["id_fornecedor"]);
                     i.IdItem = Convert.ToInt32(dr["id_item"]);
                     i.CodigoBarras = dr["codigo_barra"].ToString();
                     i.NomeItem = dr["nome"].ToString();
@@ -565,6 +589,46 @@ namespace TelaLogin.Infra
 
         }
 
+        public List<Item> SearchSupplierItemName(string name)
+        {
+            List<Item> itens = new List<Item>();
+            Connection.Open();
+
+            try
+            {
+                string query = "SELECT id_fornecedor,id_item,codigo_barra,nome,categoria,unidade,valor_custo,valor_venda,porcentagem,lucro,qtd_estoque_min,fornecedor FROM itens_fornecidos WHERE fornecedor = @name ORDER BY id_item;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@name", name);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    Item i = new Item();
+                    i.IdItem = Convert.ToInt32(dr["id_item"]);
+                    i.CodigoBarras = dr["codigo_barra"].ToString();
+                    i.NomeItem = dr["nome"].ToString();
+                    i.Categoria = dr["categoria"].ToString();
+                    i.Un = dr["unidade"].ToString();
+                    i.PrecoCusto = Convert.ToDouble(dr["valor_custo"]);
+                    i.PrecoVenda = Convert.ToDouble(dr["valor_venda"]);
+                    i.Porcentagem = Convert.ToDouble(dr["porcentagem"]);
+                    i.Lucro = Convert.ToDouble(dr["lucro"]);
+                    i.EstoqueMinimo = Convert.ToInt32(dr["qtd_estoque_min"]);
+                    i.NomeFornecedor = dr["fornecedor"].ToString();
+                    itens.Add(i);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar itens fornecidos nome: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+
+            return itens;
+        }
 
         public List<Item> SearchSupplierItem(int id)
         {
@@ -677,7 +741,7 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string query = "UPDATE itens_fornecidos SET fornecedor = null,id_fornecedor = null WHERE id_item = " + id;
+                string query = "UPDATE itens_fornecidos SET fornecedor = 'N/A',id_fornecedor = null WHERE id_item = " + id;
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 cmd.ExecuteNonQuery();
                 Connection.Close();
@@ -724,6 +788,28 @@ namespace TelaLogin.Infra
             }
         }
 
+        public bool UpdateStockSale(Item estoque)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "UPDATE estoque SET qtd = qtd - @qtd WHERE id_item = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", estoque.IdItem);
+                cmd.Parameters.AddWithValue("@qtd", estoque.Quantidade);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao atualizar estoque pós venda: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
 
         public bool UpdateStock(ItemEstoque estoque)
         {
@@ -950,6 +1036,43 @@ namespace TelaLogin.Infra
 
         }
 
+        // implementa o metodo que busca as vendas por datas selecionadas
+        public List<Pedido> SearchSalesByDate(DateTime data1, DateTime data2)
+        {
+            Connection.Open();
+            List<Pedido> pd = new List<Pedido>();
+            try
+            {
+                string query = "SELECT id_pedido,qtd_itens,valor_total,desconto,data_pedido,pagamento FROM pedido WHERE data_pedido BETWEEN @data1 AND @data2 ORDER BY id_pedido DESC;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@data1", data1);
+                cmd.Parameters.AddWithValue("@data2", data2);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+       
+                // busca todos os itens do pedido
+                while (dr.Read())
+                {
+                    Pedido p = new Pedido();
+                    p.IdPedido = Convert.ToInt32(dr["id_pedido"]);
+                    p.Quantidade = Convert.ToInt32(dr["qtd_itens"]);
+                    p.Pagamento = dr["pagamento"].ToString();
+                    p.Total = Convert.ToDouble(dr["valor_total"]);
+                    p.DataVenda = Convert.ToDateTime(dr["data_pedido"]);
+                    pd.Add(p);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar filtro de data: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return pd;
+        }
+
         public int SearchQtd(string codBarra)
         {
             Connection.Open();
@@ -985,7 +1108,7 @@ namespace TelaLogin.Infra
             List<Pedido> lp = new List<Pedido>();
             try
             {
-                string query = "SELECT id_pedido,qtd_itens,valor_total,desconto,data_pedido FROM pedido;";
+                string query = "SELECT id_pedido,qtd_itens,valor_total,desconto,data_pedido,pagamento FROM pedido ORDER BY id_pedido DESC;";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
                 // busca todos os pedidos
@@ -994,6 +1117,7 @@ namespace TelaLogin.Infra
                     Pedido p = new Pedido();
                     p.IdPedido = Convert.ToInt32(dr["id_pedido"]);
                     p.Quantidade = Convert.ToInt32(dr["qtd_itens"]);
+                    p.Pagamento = dr["pagamento"].ToString();
                     p.Total = Convert.ToDouble(dr["valor_total"]);
                     p.Desconto = Convert.ToDouble(dr["desconto"]);
                     p.DataVenda = Convert.ToDateTime(dr["data_pedido"]);
@@ -1084,7 +1208,7 @@ namespace TelaLogin.Infra
                                     itens_fornecidos itf ON ip.id_item = itf.id_item
                                 INNER JOIN 
                                     pedido p ON p.id_pedido = ip.id_pedido
-                                 ORDER BY p.id_pedido DESC LIMIT 5;";
+                                 ORDER BY p.id_pedido DESC LIMIT 15;";
 
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
@@ -1128,7 +1252,8 @@ namespace TelaLogin.Infra
                 string query = "SELECT id_pedido FROM pedido ORDER BY id_pedido DESC LIMIT 1;";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 NpgsqlDataReader dr = cmd.ExecuteReader();
-                // verifica se o codigo de barras existe no banco de dados
+
+                // verifica se encontrou algum pedido
                 while (dr.Read())
                 {
                     pedido.IdPedido = Convert.ToInt32(dr["id_pedido"]);
@@ -1151,10 +1276,11 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string query = "insert into pedido(qtd_itens,valor_total,desconto) values (@qtd,@valor,@desconto);";
+                string query = "insert into pedido(qtd_itens,valor_total,desconto,pagamento) values (@qtd,@valor,@desconto,@pagamento);";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@qtd", p.Quantidade);
                 cmd.Parameters.AddWithValue("@valor", p.Total);
+                cmd.Parameters.AddWithValue("@pagamento", p.Pagamento);
                 cmd.Parameters.AddWithValue("@desconto", p.Desconto);
                 cmd.ExecuteNonQuery();
                 return true;
@@ -1203,7 +1329,7 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string query = "insert into funcionario(nome,cargo,email,salario,usuario,senha)values(@nome, @cargo, @email, @salario, @usuario, @senha);";
+                string query = "insert into funcionario(nome,cargo,email,salario,usuario,senha,acesso)values(@nome, @cargo, @email, @salario, @usuario, @senha,@acesso);";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
                 cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
@@ -1211,6 +1337,7 @@ namespace TelaLogin.Infra
                 cmd.Parameters.AddWithValue("@salario", funcionario.Salario);
                 cmd.Parameters.AddWithValue("@usuario", funcionario.Usuario);
                 cmd.Parameters.AddWithValue("@senha", funcionario.Senha);
+                cmd.Parameters.AddWithValue("@acesso", funcionario.Acesso);
                 cmd.ExecuteNonQuery();
                 return true;
             }
@@ -1244,6 +1371,7 @@ namespace TelaLogin.Infra
                 f.Salario = Convert.ToDouble(dr["salario"]);
                 f.Usuario = dr["usuario"].ToString();
                 f.Senha = dr["senha"].ToString();
+                f.Acesso = Convert.ToInt32(dr["acesso"]);
                 funcionarios.Add(f);
             }
 
@@ -1272,7 +1400,7 @@ namespace TelaLogin.Infra
                 f.Salario = Convert.ToDouble(dr["salario"]);
                 f.Usuario = dr["usuario"].ToString();
                 f.Senha = dr["senha"].ToString();
-                // f.Acesso = Convert.ToInt32(dr["acesso"]);
+                f.Acesso = Convert.ToInt32(dr["acesso"]);
 
             }
 
@@ -1303,6 +1431,7 @@ namespace TelaLogin.Infra
                 f.Salario = Convert.ToDouble(dr["salario"]);
                 f.Usuario = dr["usuario"].ToString();
                 f.Senha = dr["senha"].ToString();
+                f.Acesso = Convert.ToInt32(dr["acesso"]);
                 funcionarios.Add(f);
             }
 
@@ -1316,12 +1445,13 @@ namespace TelaLogin.Infra
             try
             {
                 Connection.Open();
-                string query = "update funcionario set nome = @nome, cargo = @cargo, email = @email, salario = @salario, usuario = @usuario, senha = @senha where id = @id;";
+                string query = "update funcionario set nome = @nome, cargo = @cargo, email = @email, acesso = @acesso, salario = @salario, usuario = @usuario, senha = @senha where id = @id;";
                 NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
                 cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
                 cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
                 cmd.Parameters.AddWithValue("@email", funcionario.Email);
                 cmd.Parameters.AddWithValue("@salario", funcionario.Salario);
+                cmd.Parameters.AddWithValue("@acesso", funcionario.Acesso);
                 cmd.Parameters.AddWithValue("@usuario", funcionario.Usuario);
                 cmd.Parameters.AddWithValue("@senha", funcionario.Senha);
                 cmd.Parameters.AddWithValue("@id", funcionario.Id);

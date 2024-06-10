@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmStock));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             rb_categoria = new RadioButton();
             rb_nome = new RadioButton();
@@ -58,7 +58,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(192, 255, 192);
+            panel1.BackColor = Color.OliveDrab;
             panel1.Controls.Add(rb_categoria);
             panel1.Controls.Add(rb_nome);
             panel1.Controls.Add(bt_listAll);
@@ -102,7 +102,7 @@
             bt_listAll.BackColor = Color.Transparent;
             bt_listAll.Cursor = Cursors.Hand;
             bt_listAll.FlatStyle = FlatStyle.Flat;
-            bt_listAll.ForeColor = Color.Transparent;
+            bt_listAll.ForeColor = Color.OliveDrab;
             bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
             bt_listAll.Location = new Point(12, 22);
             bt_listAll.Name = "bt_listAll";
@@ -117,7 +117,7 @@
             bt_search.BackColor = Color.Transparent;
             bt_search.Cursor = Cursors.Hand;
             bt_search.FlatStyle = FlatStyle.Flat;
-            bt_search.ForeColor = Color.Transparent;
+            bt_search.ForeColor = Color.OliveDrab;
             bt_search.Image = (Image)resources.GetObject("bt_search.Image");
             bt_search.Location = new Point(368, 25);
             bt_search.Name = "bt_search";
@@ -150,7 +150,7 @@
             bt_add.BackColor = Color.Transparent;
             bt_add.Cursor = Cursors.Hand;
             bt_add.FlatStyle = FlatStyle.Flat;
-            bt_add.ForeColor = Color.Transparent;
+            bt_add.ForeColor = Color.OliveDrab;
             bt_add.Image = (Image)resources.GetObject("bt_add.Image");
             bt_add.Location = new Point(857, 24);
             bt_add.Name = "bt_add";
@@ -164,37 +164,37 @@
             dgv_stock.AllowUserToAddRows = false;
             dgv_stock.BackgroundColor = Color.White;
             dgv_stock.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.Sienna;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = Color.Sienna;
-            dataGridViewCellStyle4.SelectionForeColor = Color.White;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgv_stock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_stock.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_stock.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgv_stock.Columns.AddRange(new DataGridViewColumn[] { cod, cod_barras, name, category, qtd, un, preco_unico, preco_total, fornecedor, edit, delete });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgv_stock.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgv_stock.DefaultCellStyle = dataGridViewCellStyle2;
             dgv_stock.Dock = DockStyle.Fill;
             dgv_stock.EnableHeadersVisualStyles = false;
             dgv_stock.Location = new Point(0, 0);
             dgv_stock.Name = "dgv_stock";
             dgv_stock.ReadOnly = true;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgv_stock.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgv_stock.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgv_stock.RowHeadersVisible = false;
             dgv_stock.Size = new Size(903, 523);
             dgv_stock.TabIndex = 1;

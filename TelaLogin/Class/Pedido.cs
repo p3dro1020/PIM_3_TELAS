@@ -11,8 +11,8 @@ namespace TelaLogin.Class
         public int IdPedido { get; set; }
         public double Desconto { get; set; }
         public int Quantidade { get; set; }
+        public string Pagamento { get; set; }
         public DateTime DataVenda { get; set; }
         public double Total { get; set; }
-        public string Status { get; set; }
     }
 }

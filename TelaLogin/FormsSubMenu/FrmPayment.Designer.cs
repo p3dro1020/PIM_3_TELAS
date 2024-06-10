@@ -31,10 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPayment));
             label1 = new Label();
             txt_valor_total = new TextBox();
-            txt_valor_pago = new TextBox();
-            label2 = new Label();
-            txt_resto = new TextBox();
-            label3 = new Label();
             txt_desconto = new TextBox();
             label4 = new Label();
             label5 = new Label();
@@ -48,7 +44,6 @@
             label21 = new Label();
             label22 = new Label();
             bt_confirmar = new Button();
-            bt_imprimir = new Button();
             label11 = new Label();
             txt_simulacao_credito3x = new Label();
             txt_simulacao_credito2x = new Label();
@@ -58,8 +53,8 @@
             cb_desconto = new CheckBox();
             txt_acrescimo = new TextBox();
             label18 = new Label();
-            txt_troco = new TextBox();
-            lb_troco = new Label();
+            txt_valorFinal = new TextBox();
+            label23 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -67,66 +62,27 @@
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label1.ForeColor = Color.Black;
-            label1.Location = new Point(221, 19);
+            label1.Location = new Point(301, 19);
             label1.Name = "label1";
-            label1.Size = new Size(64, 15);
+            label1.Size = new Size(69, 15);
             label1.TabIndex = 0;
-            label1.Text = "Valor total";
+            label1.Text = "Valor inicial";
             // 
             // txt_valor_total
             // 
             txt_valor_total.Enabled = false;
             txt_valor_total.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             txt_valor_total.ForeColor = Color.Black;
-            txt_valor_total.Location = new Point(221, 37);
+            txt_valor_total.Location = new Point(301, 37);
             txt_valor_total.Name = "txt_valor_total";
             txt_valor_total.Size = new Size(100, 23);
             txt_valor_total.TabIndex = 1;
-            // 
-            // txt_valor_pago
-            // 
-            txt_valor_pago.ForeColor = Color.Black;
-            txt_valor_pago.Location = new Point(361, 37);
-            txt_valor_pago.Name = "txt_valor_pago";
-            txt_valor_pago.Size = new Size(100, 23);
-            txt_valor_pago.TabIndex = 3;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label2.ForeColor = Color.Black;
-            label2.Location = new Point(361, 19);
-            label2.Name = "label2";
-            label2.Size = new Size(65, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Valor pago";
-            // 
-            // txt_resto
-            // 
-            txt_resto.Enabled = false;
-            txt_resto.ForeColor = Color.Black;
-            txt_resto.Location = new Point(361, 84);
-            txt_resto.Name = "txt_resto";
-            txt_resto.Size = new Size(100, 23);
-            txt_resto.TabIndex = 5;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            label3.ForeColor = Color.Black;
-            label3.Location = new Point(361, 66);
-            label3.Name = "label3";
-            label3.Size = new Size(57, 15);
-            label3.TabIndex = 4;
-            label3.Text = "Restante";
             // 
             // txt_desconto
             // 
             txt_desconto.Enabled = false;
             txt_desconto.ForeColor = Color.Black;
-            txt_desconto.Location = new Point(221, 128);
+            txt_desconto.Location = new Point(301, 128);
             txt_desconto.Name = "txt_desconto";
             txt_desconto.Size = new Size(100, 23);
             txt_desconto.TabIndex = 7;
@@ -136,7 +92,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label4.ForeColor = Color.Black;
-            label4.Location = new Point(221, 110);
+            label4.Location = new Point(301, 110);
             label4.Name = "label4";
             label4.Size = new Size(60, 15);
             label4.TabIndex = 6;
@@ -253,22 +209,13 @@
             // 
             // bt_confirmar
             // 
-            bt_confirmar.Location = new Point(123, 289);
+            bt_confirmar.Location = new Point(160, 282);
             bt_confirmar.Name = "bt_confirmar";
             bt_confirmar.Size = new Size(75, 23);
             bt_confirmar.TabIndex = 31;
             bt_confirmar.Text = "Confirmar";
             bt_confirmar.UseVisualStyleBackColor = true;
             bt_confirmar.Click += bt_confirmar_Click;
-            // 
-            // bt_imprimir
-            // 
-            bt_imprimir.Location = new Point(221, 289);
-            bt_imprimir.Name = "bt_imprimir";
-            bt_imprimir.Size = new Size(75, 23);
-            bt_imprimir.TabIndex = 32;
-            bt_imprimir.Text = "Imprimir";
-            bt_imprimir.UseVisualStyleBackColor = true;
             // 
             // label11
             // 
@@ -321,7 +268,7 @@
             // cb_desconto
             // 
             cb_desconto.AutoSize = true;
-            cb_desconto.Location = new Point(200, 132);
+            cb_desconto.Location = new Point(280, 132);
             cb_desconto.Name = "cb_desconto";
             cb_desconto.Size = new Size(15, 14);
             cb_desconto.TabIndex = 39;
@@ -333,50 +280,52 @@
             txt_acrescimo.Enabled = false;
             txt_acrescimo.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             txt_acrescimo.ForeColor = Color.Black;
-            txt_acrescimo.Location = new Point(221, 84);
+            txt_acrescimo.Location = new Point(301, 84);
             txt_acrescimo.Name = "txt_acrescimo";
             txt_acrescimo.Size = new Size(100, 23);
             txt_acrescimo.TabIndex = 41;
+            txt_acrescimo.TextChanged += txt_acrescimo_TextChanged;
             // 
             // label18
             // 
             label18.AutoSize = true;
             label18.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             label18.ForeColor = Color.Black;
-            label18.Location = new Point(221, 66);
+            label18.Location = new Point(301, 66);
             label18.Name = "label18";
             label18.Size = new Size(65, 15);
             label18.TabIndex = 40;
             label18.Text = "Acréscimo";
             // 
-            // txt_troco
+            // txt_valorFinal
             // 
-            txt_troco.Enabled = false;
-            txt_troco.ForeColor = Color.Black;
-            txt_troco.Location = new Point(361, 128);
-            txt_troco.Name = "txt_troco";
-            txt_troco.Size = new Size(100, 23);
-            txt_troco.TabIndex = 43;
+            txt_valorFinal.Enabled = false;
+            txt_valorFinal.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            txt_valorFinal.ForeColor = Color.Black;
+            txt_valorFinal.Location = new Point(301, 182);
+            txt_valorFinal.Name = "txt_valorFinal";
+            txt_valorFinal.Size = new Size(100, 23);
+            txt_valorFinal.TabIndex = 45;
             // 
-            // lb_troco
+            // label23
             // 
-            lb_troco.AutoSize = true;
-            lb_troco.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            lb_troco.ForeColor = Color.Black;
-            lb_troco.Location = new Point(361, 110);
-            lb_troco.Name = "lb_troco";
-            lb_troco.Size = new Size(38, 15);
-            lb_troco.TabIndex = 42;
-            lb_troco.Text = "Troco";
+            label23.AutoSize = true;
+            label23.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            label23.ForeColor = Color.Black;
+            label23.Location = new Point(301, 164);
+            label23.Name = "label23";
+            label23.Size = new Size(64, 15);
+            label23.TabIndex = 44;
+            label23.Text = "Valor total";
             // 
             // FrmPayment
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(473, 335);
-            Controls.Add(txt_troco);
-            Controls.Add(lb_troco);
+            ClientSize = new Size(430, 340);
+            Controls.Add(txt_valorFinal);
+            Controls.Add(label23);
             Controls.Add(txt_acrescimo);
             Controls.Add(label18);
             Controls.Add(cb_desconto);
@@ -386,7 +335,6 @@
             Controls.Add(txt_simulacao_credito2x);
             Controls.Add(txt_simulacao_credito3x);
             Controls.Add(label11);
-            Controls.Add(bt_imprimir);
             Controls.Add(bt_confirmar);
             Controls.Add(label22);
             Controls.Add(label21);
@@ -400,15 +348,14 @@
             Controls.Add(label5);
             Controls.Add(txt_desconto);
             Controls.Add(label4);
-            Controls.Add(txt_resto);
-            Controls.Add(label3);
-            Controls.Add(txt_valor_pago);
-            Controls.Add(label2);
             Controls.Add(txt_valor_total);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
+            MinimizeBox = false;
             Name = "FrmPayment";
+            ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Pagamento";
             Load += FrmPayment_Load;
@@ -436,7 +383,6 @@
         private Label label21;
         private Label label22;
         private Button bt_confirmar;
-        private Button bt_imprimir;
         private Label label11;
         private Label txt_simulacao_credito3x;
         private Label txt_simulacao_credito2x;
@@ -445,16 +391,12 @@
         private Label txt_simulacao_pix;
         public Label label1;
         public TextBox txt_valor_total;
-        public TextBox txt_valor_pago;
-        public Label label2;
-        public TextBox txt_resto;
-        public Label label3;
         public TextBox txt_desconto;
         public Label label4;
         private CheckBox cb_desconto;
         public TextBox txt_acrescimo;
         public Label label18;
-        public TextBox txt_troco;
-        public Label lb_troco;
+        public TextBox txt_valorFinal;
+        public Label label23;
     }
 }

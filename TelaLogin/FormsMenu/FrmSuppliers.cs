@@ -58,11 +58,17 @@ namespace TelaPIM
 
         private void dgv_suppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             string colName = dgv_suppliers.Columns[e.ColumnIndex].Name;
             var varId = dgv_suppliers.Rows[e.RowIndex].Cells[0].Value;
             if (colName == "cellphone")
             {
+                if(VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 FrmPhoneSupplier frmPhoneSupplier = new FrmPhoneSupplier();
                 frmPhoneSupplier.txt_fornecedorNome.Text = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
                 VarGlobal.id = Convert.ToInt32(varId);
@@ -70,6 +76,12 @@ namespace TelaPIM
             }
             else if (colName == "info")
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 FrmItemsProvided frmItemsProvided = new FrmItemsProvided();
                 frmItemsProvided.txt_fornecedor_name.Text = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
                 VarGlobal.nome = dgv_suppliers.Rows[e.RowIndex].Cells[2].Value.ToString();
@@ -81,6 +93,12 @@ namespace TelaPIM
 
         private void bt_addSuppliers_Click(object sender, EventArgs e)
         {
+            if(VarGlobal.NivelAcesso != 3)
+            {
+                //exibe erro 
+                MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             FrmNewSupplier frmNewSupplier = new FrmNewSupplier();
             //ativa o botao adicionar / desativa o botao salvar / desativa o botao deletar
             frmNewSupplier.bt_save.Enabled = false;
@@ -98,6 +116,12 @@ namespace TelaPIM
         {
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 var varId = dgv_suppliers.Rows[e.RowIndex].Cells[0].Value;
                 VarGlobal.id = int.Parse(varId.ToString());
                 Fornecedor f = dbSupplier.SearchSupplier(VarGlobal.id);
@@ -156,6 +180,34 @@ namespace TelaPIM
             // limpa o datagridview
             dgv_suppliers.Rows.Clear();
 
+            // insere os fornecedores no datagridview
+            foreach (Fornecedor f in fornecedor)
+            {
+                dgv_suppliers.Rows.Add(f.Id, f.Cnpj, f.Nome, f.Email, f.DataCadastroFormatada);
+            }
+        }
+
+        private void bt_search_Click_1(object sender, EventArgs e)
+        {
+            // verifica se o campo pesquisa foi preenchido
+            if (txt_search.Text == "")
+            {
+                MessageBox.Show("Digite algo para pesquisar", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // busca os fornecedores
+            List<Fornecedor> fornecedor = dbSupplier.SearchSupplierName(txt_search.Text);
+            // verifica se a lista de fornecedores esta vazia
+            if (fornecedor.Count == 0)
+            {
+                MessageBox.Show("Nenhum fornecedor encontrado", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                LoadSupplier();
+                txt_search.Focus();
+                return;
+            }
+            // limpa o datagridview
+            dgv_suppliers.Rows.Clear();
             // insere os fornecedores no datagridview
             foreach (Fornecedor f in fornecedor)
             {

@@ -34,13 +34,18 @@
             dgv_history_sale = new DataGridView();
             id_pedido = new DataGridViewTextBoxColumn();
             date = new DataGridViewTextBoxColumn();
+            pagamento = new DataGridViewTextBoxColumn();
             qtd = new DataGridViewTextBoxColumn();
             total = new DataGridViewTextBoxColumn();
             info = new DataGridViewImageColumn();
-            dateTimePicker1 = new DateTimePicker();
-            dateTimePicker2 = new DateTimePicker();
+            data_inicio = new DateTimePicker();
+            data_fim = new DateTimePicker();
             label1 = new Label();
             label2 = new Label();
+            label3 = new Label();
+            txt_faturamento = new TextBox();
+            bt_listAll = new Button();
+            bt_relatorio = new Button();
             ((System.ComponentModel.ISupportInitialize)dgv_history_sale).BeginInit();
             SuspendLayout();
             // 
@@ -49,16 +54,17 @@
             dgv_history_sale.AllowUserToAddRows = false;
             dgv_history_sale.BackgroundColor = Color.White;
             dgv_history_sale.BorderStyle = BorderStyle.None;
+            dgv_history_sale.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.White;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dataGridViewCellStyle1.ForeColor = Color.Black;
-            dataGridViewCellStyle1.SelectionBackColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
             dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv_history_sale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_history_sale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_history_sale.Columns.AddRange(new DataGridViewColumn[] { id_pedido, date, qtd, total, info });
+            dgv_history_sale.Columns.AddRange(new DataGridViewColumn[] { id_pedido, date, pagamento, qtd, total, info });
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = Color.White;
             dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
@@ -67,9 +73,11 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.Black;
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgv_history_sale.DefaultCellStyle = dataGridViewCellStyle2;
+            dgv_history_sale.EnableHeadersVisualStyles = false;
             dgv_history_sale.GridColor = Color.Black;
             dgv_history_sale.Location = new Point(12, 12);
             dgv_history_sale.Name = "dgv_history_sale";
+            dgv_history_sale.RowHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dgv_history_sale.RowHeadersVisible = false;
             dgv_history_sale.Size = new Size(808, 397);
             dgv_history_sale.TabIndex = 0;
@@ -80,7 +88,7 @@
             id_pedido.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             id_pedido.HeaderText = "Cód. Pedido";
             id_pedido.Name = "id_pedido";
-            id_pedido.Width = 97;
+            id_pedido.Width = 96;
             // 
             // date
             // 
@@ -88,19 +96,26 @@
             date.HeaderText = "Data da venda";
             date.Name = "date";
             // 
+            // pagamento
+            // 
+            pagamento.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            pagamento.HeaderText = "Pagamento";
+            pagamento.Name = "pagamento";
+            pagamento.Width = 94;
+            // 
             // qtd
             // 
             qtd.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             qtd.HeaderText = "Qtd. Itens";
             qtd.Name = "qtd";
-            qtd.Width = 87;
+            qtd.Width = 86;
             // 
             // total
             // 
             total.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             total.HeaderText = "Valor total";
             total.Name = "total";
-            total.Width = 89;
+            total.Width = 88;
             // 
             // info
             // 
@@ -110,22 +125,24 @@
             info.Name = "info";
             info.Width = 5;
             // 
-            // dateTimePicker1
+            // data_inicio
             // 
-            dateTimePicker1.Format = DateTimePickerFormat.Short;
-            dateTimePicker1.Location = new Point(49, 415);
-            dateTimePicker1.Name = "dateTimePicker1";
-            dateTimePicker1.Size = new Size(103, 23);
-            dateTimePicker1.TabIndex = 1;
-            dateTimePicker1.Value = new DateTime(2024, 1, 1, 0, 0, 0, 0);
+            data_inicio.Format = DateTimePickerFormat.Short;
+            data_inicio.Location = new Point(49, 415);
+            data_inicio.Name = "data_inicio";
+            data_inicio.Size = new Size(103, 23);
+            data_inicio.TabIndex = 1;
+            data_inicio.Value = new DateTime(2024, 1, 1, 0, 0, 0, 0);
+            data_inicio.ValueChanged += data_inicio_ValueChanged;
             // 
-            // dateTimePicker2
+            // data_fim
             // 
-            dateTimePicker2.Format = DateTimePickerFormat.Short;
-            dateTimePicker2.Location = new Point(49, 455);
-            dateTimePicker2.Name = "dateTimePicker2";
-            dateTimePicker2.Size = new Size(103, 23);
-            dateTimePicker2.TabIndex = 2;
+            data_fim.Format = DateTimePickerFormat.Short;
+            data_fim.Location = new Point(49, 455);
+            data_fim.Name = "data_fim";
+            data_fim.Size = new Size(103, 23);
+            data_fim.TabIndex = 2;
+            data_fim.ValueChanged += data_fim_ValueChanged;
             // 
             // label1
             // 
@@ -145,16 +162,58 @@
             label2.TabIndex = 4;
             label2.Text = "Até:";
             // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(178, 419);
+            label3.Name = "label3";
+            label3.Size = new Size(102, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Faturamento total";
+            // 
+            // txt_faturamento
+            // 
+            txt_faturamento.Enabled = false;
+            txt_faturamento.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            txt_faturamento.Location = new Point(286, 415);
+            txt_faturamento.Name = "txt_faturamento";
+            txt_faturamento.Size = new Size(100, 23);
+            txt_faturamento.TabIndex = 6;
+            // 
+            // bt_listAll
+            // 
+            bt_listAll.Location = new Point(49, 492);
+            bt_listAll.Name = "bt_listAll";
+            bt_listAll.Size = new Size(75, 23);
+            bt_listAll.TabIndex = 8;
+            bt_listAll.Text = "Listar tudo";
+            bt_listAll.UseVisualStyleBackColor = true;
+            bt_listAll.Click += bt_listAll_Click;
+            // 
+            // bt_relatorio
+            // 
+            bt_relatorio.Location = new Point(651, 455);
+            bt_relatorio.Name = "bt_relatorio";
+            bt_relatorio.Size = new Size(107, 23);
+            bt_relatorio.TabIndex = 9;
+            bt_relatorio.Text = "Gerar relatório";
+            bt_relatorio.UseVisualStyleBackColor = true;
+            bt_relatorio.Click += bt_relatorio_Click;
+            // 
             // FrmHistorySale
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(863, 527);
+            Controls.Add(bt_relatorio);
+            Controls.Add(bt_listAll);
+            Controls.Add(txt_faturamento);
+            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(dateTimePicker2);
-            Controls.Add(dateTimePicker1);
+            Controls.Add(data_fim);
+            Controls.Add(data_inicio);
             Controls.Add(dgv_history_sale);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
@@ -170,14 +229,19 @@
         #endregion
 
         private DataGridView dgv_history_sale;
-        private DateTimePicker dateTimePicker1;
-        private DateTimePicker dateTimePicker2;
+        private DateTimePicker data_inicio;
+        private DateTimePicker data_fim;
         private Label label1;
         private Label label2;
         private DataGridViewTextBoxColumn id_pedido;
         private DataGridViewTextBoxColumn date;
+        private DataGridViewTextBoxColumn pagamento;
         private DataGridViewTextBoxColumn qtd;
         private DataGridViewTextBoxColumn total;
         private DataGridViewImageColumn info;
+        private Label label3;
+        private TextBox txt_faturamento;
+        private Button bt_listAll;
+        private Button bt_relatorio;
     }
 }

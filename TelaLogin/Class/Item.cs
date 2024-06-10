@@ -14,6 +14,7 @@ namespace TelaLogin.Class
         public int IdItem { get; set; }
         public int Quantidade { get; set; }
         public string Status { get; set; }
+        public double ValorTotalItem { get; set; }
         public string CodigoBarras { get; set; }
         public string Categoria { get; set; }
         public string NomeFornecedor { get; set; }

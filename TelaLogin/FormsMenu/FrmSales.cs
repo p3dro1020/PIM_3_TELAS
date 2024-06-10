@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿
 using TelaLogin.Class;
 using TelaLogin.ClassGlobal;
 using TelaLogin.FormsSubMenu;
@@ -73,12 +65,15 @@ namespace TelaPIM
         private void GetSystemDate()
         {
             txt_data.Text = DateTime.Now.ToString("dd/MM/yyyy");
+            
         }
 
         private void FrmSales_Load(object sender, EventArgs e)
         {
             GetLastSale();
             GetSystemDate();
+            txt_operador.Text = VarGlobal.NomeUsuario;
+            txt_cod_operador.Text = VarGlobal.IdUsuario.ToString();
         }
 
         private void txt_cod_barras_KeyUp(object sender, KeyEventArgs e)
@@ -107,20 +102,15 @@ namespace TelaPIM
                 }
 
                 Qtd = v.QtdEstoque;
+                VarGlobal.QtdEstoque = v.QtdEstoque;
 
                 if (Qtd == 0)
                 {
-                    // verifica se a resposta foi sim
-                    if (DialogResult.Yes == MessageBox.Show("Produto sem estoque, deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                    {
-                        txt_qtd_produto.Focus();
-                    }
-                    else
-                    {
-                        LimpaTextBox();
-                        txt_cod_barras.Focus();
-                        return;
-                    }
+                    //exibe msg de erro e apaga o produto
+                    MessageBox.Show("Produto sem estoque", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    LimpaTextBox();
+                    txt_cod_barras.Focus();
+                    return;
                 }
 
                 // verifica se o codigo do produto ja esta inserido no dgv
@@ -201,14 +191,11 @@ namespace TelaPIM
             // verifica se a quantidade de produto é maior que a quantidade em estoque
             if (Convert.ToInt32(txt_qtd_produto.Text) > Qtd)
             {
-                // exibe uma mensagem se deseja continuar mesmo assim
-                if (DialogResult.No == MessageBox.Show($"Quantidade maior que a quantidade em estoque ({Qtd}), deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    LimpaTextBox();
-                    txt_cod_barras.Focus();
-                    return;
-                }
-
+                //exibe mensagem de erro e apaga o produto
+                MessageBox.Show($"Quantidade de produto maior que a quantidade em estoque ({Qtd})", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                LimpaTextBox();
+                txt_cod_barras.Focus();
+                return;
             }
 
 
@@ -306,7 +293,10 @@ namespace TelaPIM
                 {
                     item.PrecoVenda = Convert.ToDouble(dgv_sales.Rows[i].Cells["valor"].Value.ToString().Replace("R$ ", ""));
                 }
-                item.IdPedido = Convert.ToInt32(txt_num_venda.Text);
+
+                item.NomeItem = dgv_sales.Rows[i].Cells["name"].Value.ToString();
+                item.ValorTotalItem = Convert.ToDouble(dgv_sales.Rows[i].Cells["preco_total"].Value.ToString().Replace("R$ ", ""));
+                //item.IdPedido = Convert.ToInt32(txt_num_venda.Text);
                 it.Add(item);
             }
             // verifica se it é null
@@ -320,6 +310,13 @@ namespace TelaPIM
             frmPayment.Items = it;
             frmPayment.txt_valor_total.Text = txtTotal.Text;
             frmPayment.ShowDialog();
+            if(VarGlobal.Sucesso == 1)
+            {
+                // limpa os texto e atualiza o numero da venda
+                LimpaTextBox();
+                dgv_sales.Rows.Clear();
+                GetLastSale();
+            }
         }
 
         private void dgv_sales_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -360,5 +357,8 @@ namespace TelaPIM
                 e.Handled = true;
             }
         }
+
+        
+
     }
 }

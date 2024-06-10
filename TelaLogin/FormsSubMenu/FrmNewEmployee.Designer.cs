@@ -38,8 +38,6 @@
             bt_cancel = new Button();
             bt_save = new Button();
             bt_add = new Button();
-            txt_cpf = new TextBox();
-            label3 = new Label();
             label2 = new Label();
             txt_nome = new TextBox();
             label1 = new Label();
@@ -109,7 +107,7 @@
             bt_cancel.Location = new Point(203, 273);
             bt_cancel.Name = "bt_cancel";
             bt_cancel.Size = new Size(75, 23);
-            bt_cancel.TabIndex = 46;
+            bt_cancel.TabIndex = 10;
             bt_cancel.Text = "Cancelar";
             bt_cancel.UseVisualStyleBackColor = true;
             bt_cancel.Click += bt_cancel_Click;
@@ -119,7 +117,7 @@
             bt_save.Location = new Point(121, 273);
             bt_save.Name = "bt_save";
             bt_save.Size = new Size(75, 23);
-            bt_save.TabIndex = 45;
+            bt_save.TabIndex = 9;
             bt_save.Text = "Salvar";
             bt_save.UseVisualStyleBackColor = true;
             bt_save.Click += bt_save_Click;
@@ -129,27 +127,10 @@
             bt_add.Location = new Point(39, 273);
             bt_add.Name = "bt_add";
             bt_add.Size = new Size(75, 23);
-            bt_add.TabIndex = 43;
+            bt_add.TabIndex = 8;
             bt_add.Text = "Adicionar";
             bt_add.UseVisualStyleBackColor = true;
             bt_add.Click += bt_add_Click;
-            // 
-            // txt_cpf
-            // 
-            txt_cpf.Location = new Point(39, 138);
-            txt_cpf.Name = "txt_cpf";
-            txt_cpf.Size = new Size(167, 23);
-            txt_cpf.TabIndex = 4;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(39, 120);
-            label3.Name = "label3";
-            label3.Size = new Size(27, 15);
-            label3.TabIndex = 34;
-            label3.Text = "CPF";
             // 
             // label2
             // 
@@ -167,6 +148,7 @@
             txt_nome.Name = "txt_nome";
             txt_nome.Size = new Size(508, 23);
             txt_nome.TabIndex = 1;
+            txt_nome.KeyPress += txt_nome_KeyPress;
             // 
             // label1
             // 
@@ -184,6 +166,7 @@
             txt_cargo.Name = "txt_cargo";
             txt_cargo.Size = new Size(232, 23);
             txt_cargo.TabIndex = 2;
+            txt_cargo.KeyPress += txt_cargo_KeyPress;
             // 
             // label4
             // 
@@ -201,6 +184,7 @@
             txt_acesso.Name = "txt_acesso";
             txt_acesso.Size = new Size(45, 23);
             txt_acesso.TabIndex = 7;
+            txt_acesso.KeyPress += txt_acesso_KeyPress;
             // 
             // label8
             // 
@@ -231,16 +215,17 @@
             // 
             // txt_salario
             // 
-            txt_salario.Location = new Point(39, 186);
+            txt_salario.Location = new Point(39, 138);
             txt_salario.Name = "txt_salario";
             txt_salario.Size = new Size(167, 23);
-            txt_salario.TabIndex = 60;
+            txt_salario.TabIndex = 4;
+            txt_salario.KeyPress += txt_salario_KeyPress;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label11.Location = new Point(39, 168);
+            label11.Location = new Point(39, 120);
             label11.Name = "label11";
             label11.Size = new Size(44, 15);
             label11.TabIndex = 61;
@@ -268,8 +253,6 @@
             Controls.Add(bt_cancel);
             Controls.Add(bt_save);
             Controls.Add(bt_add);
-            Controls.Add(txt_cpf);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(txt_nome);
             Controls.Add(label1);
@@ -291,8 +274,6 @@
         public TextBox txt_email;
         public Button bt_save;
         public Button bt_add;
-        public TextBox txt_cpf;
-        public Label label3;
         private Label label2;
         public TextBox txt_nome;
         private Label label1;

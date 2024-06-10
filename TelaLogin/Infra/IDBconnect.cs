@@ -14,6 +14,7 @@ namespace TelaLogin.Infra
         public bool UpdateProduct(Plantio produto);
         List<Plantio> ListAllProducts();
         List<Plantio> SearchProduct(string text);
+        List<Plantio> SearchProxColheita();
         List<Plantio> SearchProductStatus(string text);
         public void DeleteProduct(int id);
     }

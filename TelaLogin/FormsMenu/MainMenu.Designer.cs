@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             panelMenu = new Panel();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -48,17 +51,8 @@
             label4 = new Label();
             pictureBox1 = new PictureBox();
             panelForm = new Panel();
-            pictureBox7 = new PictureBox();
             pictureBox6 = new PictureBox();
             pictureBox5 = new PictureBox();
-            dataGridView3 = new DataGridView();
-            cdg = new DataGridViewTextBoxColumn();
-            name = new DataGridViewTextBoxColumn();
-            qtdPlantacoes = new DataGridViewTextBoxColumn();
-            datePlantio = new DataGridViewTextBoxColumn();
-            dateColheitaEsperada = new DataGridViewTextBoxColumn();
-            status = new DataGridViewTextBoxColumn();
-            label3 = new Label();
             dgv_colheitas = new DataGridView();
             item_colheita = new DataGridViewTextBoxColumn();
             qtdPes = new DataGridViewTextBoxColumn();
@@ -77,10 +71,8 @@
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             panelForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_colheitas).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgv_lastSale).BeginInit();
             SuspendLayout();
@@ -321,11 +313,9 @@
             // 
             // panelForm
             // 
-            panelForm.Controls.Add(pictureBox7);
+            panelForm.BackColor = Color.White;
             panelForm.Controls.Add(pictureBox6);
             panelForm.Controls.Add(pictureBox5);
-            panelForm.Controls.Add(dataGridView3);
-            panelForm.Controls.Add(label3);
             panelForm.Controls.Add(dgv_colheitas);
             panelForm.Controls.Add(label2);
             panelForm.Controls.Add(dgv_lastSale);
@@ -335,16 +325,6 @@
             panelForm.Name = "panelForm";
             panelForm.Size = new Size(903, 598);
             panelForm.TabIndex = 1;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.Image = (Image)resources.GetObject("pictureBox7.Image");
-            pictureBox7.Location = new Point(45, 305);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(71, 50);
-            pictureBox7.SizeMode = PictureBoxSizeMode.Zoom;
-            pictureBox7.TabIndex = 8;
-            pictureBox7.TabStop = false;
             // 
             // pictureBox6
             // 
@@ -366,81 +346,37 @@
             pictureBox5.TabIndex = 6;
             pictureBox5.TabStop = false;
             // 
-            // dataGridView3
-            // 
-            dataGridView3.BackgroundColor = Color.White;
-            dataGridView3.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView3.Columns.AddRange(new DataGridViewColumn[] { cdg, name, qtdPlantacoes, datePlantio, dateColheitaEsperada, status });
-            dataGridView3.Location = new Point(45, 367);
-            dataGridView3.Name = "dataGridView3";
-            dataGridView3.RowHeadersVisible = false;
-            dataGridView3.Size = new Size(820, 174);
-            dataGridView3.TabIndex = 5;
-            // 
-            // cdg
-            // 
-            cdg.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle1.BackColor = Color.Transparent;
-            cdg.DefaultCellStyle = dataGridViewCellStyle1;
-            cdg.HeaderText = "Código";
-            cdg.Name = "cdg";
-            cdg.Width = 71;
-            // 
-            // name
-            // 
-            name.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            name.HeaderText = "Nome";
-            name.Name = "name";
-            // 
-            // qtdPlantacoes
-            // 
-            qtdPlantacoes.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            qtdPlantacoes.HeaderText = "Quantidade";
-            qtdPlantacoes.Name = "qtdPlantacoes";
-            qtdPlantacoes.Width = 94;
-            // 
-            // datePlantio
-            // 
-            datePlantio.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            datePlantio.HeaderText = "Data plantio";
-            datePlantio.Name = "datePlantio";
-            datePlantio.Width = 88;
-            // 
-            // dateColheitaEsperada
-            // 
-            dateColheitaEsperada.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dateColheitaEsperada.HeaderText = "Data colheita esperada";
-            dateColheitaEsperada.Name = "dateColheitaEsperada";
-            dateColheitaEsperada.Width = 138;
-            // 
-            // status
-            // 
-            status.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            status.HeaderText = "Status";
-            status.Name = "status";
-            status.Width = 64;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Century", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(117, 320);
-            label3.Name = "label3";
-            label3.Size = new Size(230, 20);
-            label3.TabIndex = 4;
-            label3.Text = "Plantações últimos 15 dias";
-            // 
             // dgv_colheitas
             // 
+            dgv_colheitas.AllowUserToAddRows = false;
             dgv_colheitas.AllowUserToDeleteRows = false;
             dgv_colheitas.BackgroundColor = Color.White;
+            dgv_colheitas.BorderStyle = BorderStyle.None;
+            dgv_colheitas.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_colheitas.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_colheitas.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_colheitas.Columns.AddRange(new DataGridViewColumn[] { item_colheita, qtdPes, dateColheita });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgv_colheitas.DefaultCellStyle = dataGridViewCellStyle2;
+            dgv_colheitas.EnableHeadersVisualStyles = false;
             dgv_colheitas.Location = new Point(481, 108);
             dgv_colheitas.Name = "dgv_colheitas";
             dgv_colheitas.ReadOnly = true;
             dgv_colheitas.RowHeadersVisible = false;
-            dgv_colheitas.Size = new Size(384, 174);
+            dgv_colheitas.Size = new Size(384, 455);
             dgv_colheitas.TabIndex = 3;
             // 
             // item_colheita
@@ -456,7 +392,7 @@
             qtdPes.HeaderText = "Quantidade Pés";
             qtdPes.Name = "qtdPes";
             qtdPes.ReadOnly = true;
-            qtdPes.Width = 106;
+            qtdPes.Width = 107;
             // 
             // dateColheita
             // 
@@ -464,7 +400,7 @@
             dateColheita.HeaderText = "Data colheita";
             dateColheita.Name = "dateColheita";
             dateColheita.ReadOnly = true;
-            dateColheita.Width = 93;
+            dateColheita.Width = 96;
             // 
             // label2
             // 
@@ -478,23 +414,42 @@
             // 
             // dgv_lastSale
             // 
+            dgv_lastSale.AllowUserToAddRows = false;
             dgv_lastSale.BackgroundColor = Color.White;
             dgv_lastSale.BorderStyle = BorderStyle.None;
+            dgv_lastSale.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.Gray;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.Black;
+            dataGridViewCellStyle3.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle3.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgv_lastSale.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgv_lastSale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgv_lastSale.Columns.AddRange(new DataGridViewColumn[] { date, nome, valor, ganhos });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.White;
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = Color.Black;
-            dataGridViewCellStyle2.SelectionBackColor = Color.White;
-            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dgv_lastSale.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.White;
+            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle4.ForeColor = Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = Color.White;
+            dataGridViewCellStyle4.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dgv_lastSale.DefaultCellStyle = dataGridViewCellStyle4;
+            dgv_lastSale.EnableHeadersVisualStyles = false;
             dgv_lastSale.Location = new Point(45, 108);
             dgv_lastSale.Name = "dgv_lastSale";
             dgv_lastSale.ReadOnly = true;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.Gray;
+            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
+            dgv_lastSale.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             dgv_lastSale.RowHeadersVisible = false;
-            dgv_lastSale.Size = new Size(384, 174);
+            dgv_lastSale.Size = new Size(384, 455);
             dgv_lastSale.TabIndex = 1;
             // 
             // date
@@ -503,7 +458,7 @@
             date.HeaderText = "Data";
             date.Name = "date";
             date.ReadOnly = true;
-            date.Width = 56;
+            date.Width = 57;
             // 
             // nome
             // 
@@ -518,7 +473,7 @@
             valor.HeaderText = "Total";
             valor.Name = "valor";
             valor.ReadOnly = true;
-            valor.Width = 57;
+            valor.Width = 58;
             // 
             // ganhos
             // 
@@ -562,10 +517,8 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             panelForm.ResumeLayout(false);
             panelForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_colheitas).EndInit();
             ((System.ComponentModel.ISupportInitialize)dgv_lastSale).EndInit();
             ResumeLayout(false);
@@ -583,8 +536,6 @@
         private Button btnSuppliers;
         private Button btnProduction;
         private Panel panelForm;
-        private DataGridView dataGridView3;
-        private Label label3;
         private DataGridView dgv_colheitas;
         private Label label2;
         private DataGridView dgv_lastSale;
@@ -595,17 +546,10 @@
         private PictureBox pictureBox4;
         private PictureBox pictureBox3;
         private PictureBox pictureBox5;
-        private PictureBox pictureBox7;
         private PictureBox pictureBox6;
         private DataGridViewTextBoxColumn item_colheita;
         private DataGridViewTextBoxColumn qtdPes;
         private DataGridViewTextBoxColumn dateColheita;
-        private DataGridViewTextBoxColumn cdg;
-        private DataGridViewTextBoxColumn name;
-        private DataGridViewTextBoxColumn qtdPlantacoes;
-        private DataGridViewTextBoxColumn datePlantio;
-        private DataGridViewTextBoxColumn dateColheitaEsperada;
-        private DataGridViewTextBoxColumn status;
         public Label txt_nivelAcesso;
         public Label txt_nomeUsuario;
         private DataGridViewTextBoxColumn date;

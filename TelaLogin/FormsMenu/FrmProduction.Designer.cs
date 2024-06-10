@@ -55,7 +55,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(192, 255, 192);
+            panel1.BackColor = Color.OliveDrab;
             panel1.Controls.Add(rb_status);
             panel1.Controls.Add(rb_nome);
             panel1.Controls.Add(bt_listAll);
@@ -99,7 +99,7 @@
             bt_listAll.BackColor = Color.Transparent;
             bt_listAll.Cursor = Cursors.Hand;
             bt_listAll.FlatStyle = FlatStyle.Flat;
-            bt_listAll.ForeColor = Color.Transparent;
+            bt_listAll.ForeColor = Color.OliveDrab;
             bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
             bt_listAll.Location = new Point(12, 23);
             bt_listAll.Name = "bt_listAll";
@@ -114,7 +114,7 @@
             bt_search.BackColor = Color.Transparent;
             bt_search.Cursor = Cursors.Hand;
             bt_search.FlatStyle = FlatStyle.Flat;
-            bt_search.ForeColor = Color.Transparent;
+            bt_search.ForeColor = Color.OliveDrab;
             bt_search.Image = (Image)resources.GetObject("bt_search.Image");
             bt_search.Location = new Point(351, 23);
             bt_search.Name = "bt_search";
@@ -147,7 +147,7 @@
             bt_add.BackColor = Color.Transparent;
             bt_add.Cursor = Cursors.Hand;
             bt_add.FlatStyle = FlatStyle.Flat;
-            bt_add.ForeColor = Color.Transparent;
+            bt_add.ForeColor = Color.OliveDrab;
             bt_add.Image = (Image)resources.GetObject("bt_add.Image");
             bt_add.Location = new Point(857, 25);
             bt_add.Name = "bt_add";
@@ -162,11 +162,11 @@
             dgv_Production.BackgroundColor = Color.White;
             dgv_Production.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Sienna;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv_Production.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_Production.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;

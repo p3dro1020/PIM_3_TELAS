@@ -51,7 +51,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = Color.FromArgb(192, 255, 192);
+            panel1.BackColor = Color.OliveDrab;
             panel1.Controls.Add(bt_search);
             panel1.Controls.Add(bt_listAll);
             panel1.Controls.Add(txt_search);
@@ -69,13 +69,14 @@
             bt_search.BackColor = Color.Transparent;
             bt_search.Cursor = Cursors.Hand;
             bt_search.FlatStyle = FlatStyle.Flat;
-            bt_search.ForeColor = Color.Transparent;
+            bt_search.ForeColor = Color.OliveDrab;
             bt_search.Image = (Image)resources.GetObject("bt_search.Image");
             bt_search.Location = new Point(264, 26);
             bt_search.Name = "bt_search";
             bt_search.Size = new Size(37, 31);
             bt_search.TabIndex = 10;
             bt_search.UseVisualStyleBackColor = false;
+            bt_search.Click += bt_search_Click_1;
             // 
             // bt_listAll
             // 
@@ -83,7 +84,7 @@
             bt_listAll.BackColor = Color.Transparent;
             bt_listAll.Cursor = Cursors.Hand;
             bt_listAll.FlatStyle = FlatStyle.Flat;
-            bt_listAll.ForeColor = Color.Transparent;
+            bt_listAll.ForeColor = Color.OliveDrab;
             bt_listAll.Image = (Image)resources.GetObject("bt_listAll.Image");
             bt_listAll.Location = new Point(12, 25);
             bt_listAll.Name = "bt_listAll";
@@ -115,7 +116,7 @@
             bt_addSuppliers.BackColor = Color.Transparent;
             bt_addSuppliers.Cursor = Cursors.Hand;
             bt_addSuppliers.FlatStyle = FlatStyle.Flat;
-            bt_addSuppliers.ForeColor = Color.Transparent;
+            bt_addSuppliers.ForeColor = Color.OliveDrab;
             bt_addSuppliers.Image = (Image)resources.GetObject("bt_addSuppliers.Image");
             bt_addSuppliers.Location = new Point(857, 23);
             bt_addSuppliers.Name = "bt_addSuppliers";
@@ -130,11 +131,11 @@
             dgv_suppliers.BackgroundColor = Color.White;
             dgv_suppliers.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = Color.Sienna;
+            dataGridViewCellStyle1.BackColor = Color.Gray;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = Color.White;
-            dataGridViewCellStyle1.SelectionBackColor = Color.Sienna;
-            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.ForeColor = Color.Black;
+            dataGridViewCellStyle1.SelectionBackColor = Color.Gray;
+            dataGridViewCellStyle1.SelectionForeColor = Color.Black;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
             dgv_suppliers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_suppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;

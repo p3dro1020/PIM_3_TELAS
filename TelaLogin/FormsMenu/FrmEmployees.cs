@@ -1,6 +1,7 @@
 ﻿using TelaLogin.FormsSubMenu;
 using TelaLogin.Class;
 using TelaLogin.Infra;
+using TelaLogin.ClassGlobal;
 
 namespace TelaPIM
 {
@@ -32,6 +33,13 @@ namespace TelaPIM
 
         private void bt_adicionar_Click(object sender, EventArgs e)
         {
+            if (VarGlobal.NivelAcesso != 3)
+            {
+                //exibe erro 
+                MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             FrmNewEmployee newEmployee = new FrmNewEmployee();
             newEmployee.bt_add.Enabled = true;
             newEmployee.bt_save.Enabled = false;
@@ -50,6 +58,20 @@ namespace TelaPIM
             // verifica se a coluna clicada foi a de edit
             if (dgv_employe.Columns[e.ColumnIndex].Name == "edit")
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // verifica se o funcionario nao é o chefe
+                if (dgv_employe.Rows[e.RowIndex].Cells["cargo"].Value.ToString() == "Chefe")
+                {
+                    MessageBox.Show("Não é possível editar o funcionário selecionado");
+                    return;
+                }
+
+
                 // pega o id do funcionário
                 int id = Convert.ToInt32(dgv_employe.Rows[e.RowIndex].Cells["id"].Value);
 
@@ -77,10 +99,26 @@ namespace TelaPIM
             }
             else if (dgv_employe.Columns[e.ColumnIndex].Name == "delete")
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                // verifica se o funcionario nao é o chefe
+                if (dgv_employe.Rows[e.RowIndex].Cells["cargo"].Value.ToString() == "Chefe")
+                {
+                    MessageBox.Show("Não é possível excluir o funcionário selecionado");
+                    return;
+                }
+
+
                 // envia uma mensagem de confirmação
                 DialogResult result = MessageBox.Show("Deseja realmente excluir este funcionário?", "Confirmação", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
+
+
                     // pega o id do funcionário
                     int id = Convert.ToInt32(dgv_employe.Rows[e.RowIndex].Cells["id"].Value);
 
@@ -102,6 +140,32 @@ namespace TelaPIM
         }
 
         private void bt_search_Click(object sender, EventArgs e)
+        {
+            //verifica se o campo de pesquisa está vazio
+            if (txt_search.Text == "")
+            {
+                MessageBox.Show("Digite algo para pesquisar");
+                txt_search.Focus();
+                return;
+            }
+
+            //Listar todos os funcionários
+            List<Funcionario> funcionarios = new List<Funcionario>();
+            DBemployee dbEmployee = new DBemployee();
+            funcionarios = dbEmployee.SearchEmployeeName(txt_search.Text);
+
+            //Limpar o dgv
+            dgv_employe.Rows.Clear();
+
+            //Adicionar os funcionários no dgv
+            foreach (Funcionario funcionario in funcionarios)
+            {
+                dgv_employe.Rows.Add(funcionario.Id, funcionario.Nome, funcionario.Cargo, funcionario.Email, funcionario.Salario, funcionario.Usuario, funcionario.Senha, funcionario.Acesso);
+            }
+
+        }
+
+        private void bt_search_Click_1(object sender, EventArgs e)
         {
             //verifica se o campo de pesquisa está vazio
             if (txt_search.Text == "")

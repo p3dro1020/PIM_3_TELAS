@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TelaLogin.Infra;
 using TelaLogin.FormsMenu;
 using TelaLogin.Class;
+using TelaLogin.ClassGlobal;
 
 namespace TelaPIM
 {
@@ -36,6 +37,12 @@ namespace TelaPIM
 
         private void bt_add_Click(object sender, EventArgs e)
         {
+            if (VarGlobal.NivelAcesso != 3)
+            {
+                //exibe erro 
+                MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             FrmProductManagement frmProductManagement = new FrmProductManagement();
             frmProductManagement.bt_save.Enabled = false;
             frmProductManagement.bt_addNewPlantio.Enabled = true;
@@ -53,6 +60,12 @@ namespace TelaPIM
             string colName = dgv_Production.Columns[e.ColumnIndex].Name;
             if (colName == "Edit")
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 FrmProductManagement frmProductManagement = new FrmProductManagement();
                 // ativa o bt de salvar e desativa botao de adicionar
                 frmProductManagement.bt_save.Enabled = true;
@@ -75,6 +88,12 @@ namespace TelaPIM
             }
             else if (colName == "Delete")
             {
+                if (VarGlobal.NivelAcesso != 3)
+                {
+                    //exibe erro 
+                    MessageBox.Show("Você não tem permissão para acessar essa funcionalidade", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 // confirma se o usuario deseja excluir
                 DialogResult res = MessageBox.Show("Deseja realmente remover o produto?", "Remover", MessageBoxButtons.YesNo);
 
