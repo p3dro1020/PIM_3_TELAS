@@ -29,6 +29,19 @@ namespace TelaLogin.FormsMenu
         {
             // a partir da data selecionada, altera o valor da data final para x dias a frente
 
+            if(txt_dias_colheita.Text == "")
+            {
+                return;
+            }
+
+            // verifica se o numero digitado no txt_dias_colheita + a data de plantio é menor que a data limite 01/01/2026
+            if (dt_plantio.Value.AddDays(int.Parse(txt_dias_colheita.Text)) > Convert.ToDateTime("01/01/2026"))
+            {
+                MessageBox.Show("Data de colheita não pode ser maior que o limite do sistema 01/01/2026");
+                txt_dias_colheita.Clear();
+                txt_dias_colheita.Focus();
+                return;
+            }
 
             // verifica se o campo de dias de colheita é um numero
             if (!int.TryParse(txt_dias_colheita.Text, out int n))
@@ -102,20 +115,20 @@ namespace TelaLogin.FormsMenu
                 {
                     p.Status = "G";
                 }
-                else if(cb_status.Text == "Em crescimento")
+                else if (cb_status.Text == "Em crescimento")
                 {
                     p.Status = "EC";
                 }
-                else if(cb_status.Text == "Pronto para colheita")
+                else if (cb_status.Text == "Pronto colheita")
                 {
                     p.Status = "PC";
                 }
-                else if(cb_status.Text == "Colhido")
+                else if (cb_status.Text == "Colhido")
                 {
                     p.Status = "C";
                 }
 
-                
+
 
 
                 p.Id = id;
@@ -152,6 +165,25 @@ namespace TelaLogin.FormsMenu
         {
             // nao aceita nenhum caractere
             e.Handled = true;
+        }
+
+        private void cb_hortalica_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // nao aceita numeros 
+            if (char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void txt_qtd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // nao aceita letras
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

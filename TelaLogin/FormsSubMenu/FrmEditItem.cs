@@ -58,6 +58,15 @@ namespace TelaLogin.FormsSubMenu
                 MessageBox.Show("Preencha o campo de quantidade");
                 return;
             }
+            // verifica se digitou um numero maior que 0
+            if (Convert.ToInt32(txt_qtd.Text) <= 0)
+            {
+                MessageBox.Show("Quantidade inválida");
+                txt_qtd.Clear();
+                txt_qtd.Focus();
+                return;
+            }
+
 
             this.Close();
         }

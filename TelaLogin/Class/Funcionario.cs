@@ -9,9 +9,9 @@ namespace TelaLogin.Class
     public class Funcionario
     {
         public int Id { get; set; }
+        public int Acesso { get; set; }
         public string Nome { get; set; }
         public string Cargo { get; set; }
-        public string Endereco { get; set; }
         public string Cpf { get; set; }
         public string Email { get; set; }
         public double Salario { get; set; }

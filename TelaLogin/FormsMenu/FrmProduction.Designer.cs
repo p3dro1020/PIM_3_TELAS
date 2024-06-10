@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProduction));
-            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             panel1 = new Panel();
             rb_status = new RadioButton();
             rb_nome = new RadioButton();
@@ -129,6 +129,7 @@
             txt_search.Name = "txt_search";
             txt_search.Size = new Size(137, 23);
             txt_search.TabIndex = 3;
+            txt_search.KeyPress += txt_search_KeyPress;
             // 
             // label1
             // 
@@ -160,36 +161,37 @@
             dgv_Production.AllowUserToAddRows = false;
             dgv_Production.BackgroundColor = Color.White;
             dgv_Production.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = Color.Sienna;
-            dataGridViewCellStyle4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle4.ForeColor = Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.True;
-            dgv_Production.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.Sienna;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgv_Production.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgv_Production.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dgv_Production.Columns.AddRange(new DataGridViewColumn[] { cod, name, amount, date_p, date_c, status, Edit, Delete });
-            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = Color.White;
-            dataGridViewCellStyle5.Font = new Font("Segoe UI", 9F);
-            dataGridViewCellStyle5.ForeColor = Color.Black;
-            dataGridViewCellStyle5.SelectionBackColor = Color.White;
-            dataGridViewCellStyle5.SelectionForeColor = Color.Black;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dgv_Production.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgv_Production.DefaultCellStyle = dataGridViewCellStyle2;
             dgv_Production.Dock = DockStyle.Fill;
             dgv_Production.EnableHeadersVisualStyles = false;
             dgv_Production.Location = new Point(0, 0);
             dgv_Production.Name = "dgv_Production";
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = SystemColors.Control;
-            dataGridViewCellStyle6.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle6.ForeColor = SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dgv_Production.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dgv_Production.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = SystemColors.Control;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgv_Production.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgv_Production.RowHeadersVisible = false;
             dgv_Production.Size = new Size(903, 523);
             dgv_Production.TabIndex = 1;
@@ -200,6 +202,7 @@
             cod.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             cod.HeaderText = "Código";
             cod.Name = "cod";
+            cod.ReadOnly = true;
             cod.Width = 69;
             // 
             // name
@@ -208,12 +211,14 @@
             name.FillWeight = 35F;
             name.HeaderText = "Nome";
             name.Name = "name";
+            name.ReadOnly = true;
             // 
             // amount
             // 
             amount.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             amount.HeaderText = "Quantidade";
             amount.Name = "amount";
+            amount.ReadOnly = true;
             amount.Width = 95;
             // 
             // date_p
@@ -221,6 +226,7 @@
             date_p.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             date_p.HeaderText = "Data plantio";
             date_p.Name = "date_p";
+            date_p.ReadOnly = true;
             date_p.Width = 98;
             // 
             // date_c
@@ -228,6 +234,7 @@
             date_c.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             date_c.HeaderText = "Data colheita esperada";
             date_c.Name = "date_c";
+            date_c.ReadOnly = true;
             date_c.Width = 157;
             // 
             // status
@@ -235,6 +242,7 @@
             status.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             status.HeaderText = "Status";
             status.Name = "status";
+            status.ReadOnly = true;
             status.Width = 66;
             // 
             // Edit
@@ -243,6 +251,7 @@
             Edit.HeaderText = "";
             Edit.Image = (Image)resources.GetObject("Edit.Image");
             Edit.Name = "Edit";
+            Edit.ReadOnly = true;
             Edit.Width = 5;
             // 
             // Delete
@@ -251,6 +260,7 @@
             Delete.HeaderText = "";
             Delete.Image = (Image)resources.GetObject("Delete.Image");
             Delete.Name = "Delete";
+            Delete.ReadOnly = true;
             Delete.Width = 5;
             // 
             // FrmProduction

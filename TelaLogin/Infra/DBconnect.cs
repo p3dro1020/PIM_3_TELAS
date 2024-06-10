@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Npgsql;
+﻿using Npgsql;
 using TelaLogin.Class;
 using TelaLogin.ClassGlobal;
-using static System.Net.Mime.MediaTypeNames;
+using TelaLogin.FormsMenu;
+using TelaPIM;
 
 namespace TelaLogin.Infra
 {
+
     public class DBuser : IDBuser
     {
         private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
@@ -19,6 +14,7 @@ namespace TelaLogin.Infra
 
         public bool VerifyUser(string user, string password)
         {
+            MainMenu menu = new MainMenu();
             try
             {
                 Connection.Open();
@@ -33,7 +29,9 @@ namespace TelaLogin.Infra
                 if (dr.Read())
                 {
                     MessageBox.Show("Logado com sucesso!");
-                    //Globais.nomeUsuario = dr["nome"].ToString();
+                    VarGlobal.NomeUsuario = dr["nome"].ToString();
+                    //VarGlobal.NivelAcesso = dr["nivel_acesso"].ToString();
+                    VarGlobal.IdUsuario = Convert.ToInt32(dr["id"]);
                     return true;
                 }
                 else
@@ -806,13 +804,84 @@ namespace TelaLogin.Infra
 
         }
 
+        public List<ItemEstoque> SearchStockName(string name)
+        {
+            List<ItemEstoque> estoques = new List<ItemEstoque>();
+            Connection.Open();
+
+            string query = "SELECT * FROM estoque_itens WHERE UPPER(nome) LIKE UPPER(@name) ORDER BY id_item;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@name", $"%{name}%");
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ItemEstoque e = new ItemEstoque();
+                e.IdItem = Convert.ToInt32(dr["id_item"]);
+                e.Quantidade = Convert.ToInt32(dr["qtd"]);
+                e.CodigoBarras = dr["codigo_barra"].ToString();
+                e.Nome = dr["nome"].ToString();
+                e.Categoria = dr["categoria"].ToString();
+                e.Unidade = dr["unidade"].ToString();
+                e.Preco = Convert.ToDouble(dr["valor_venda"]);
+                e.Fornecedor = dr["fornecedor"].ToString();
+                estoques.Add(e);
+            }
+
+            dr.Close();
+            Connection.Close();
+            
+
+            // verifica se encontrou o produto no estoque, se nao encontrou retorna null
+            if (estoques == null)
+            {
+                return null;
+            }
+            else
+            {
+                return estoques;
+            }
+
+
+        }
+
+        public List<ItemEstoque> SearchStockCategory(string category)
+        {
+            List<ItemEstoque> estoques = new List<ItemEstoque>();
+            Connection.Open();
+
+            string query = "SELECT * FROM estoque_itens WHERE UPPER(categoria) LIKE UPPER(@category) ORDER BY id_item;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@category", $"%{category}%");
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                ItemEstoque e = new ItemEstoque();
+                e.IdItem = Convert.ToInt32(dr["id_item"]);
+                e.Quantidade = Convert.ToInt32(dr["qtd"]);
+                e.CodigoBarras = dr["codigo_barra"].ToString();
+                e.Nome = dr["nome"].ToString();
+                e.Categoria = dr["categoria"].ToString();
+                e.Unidade = dr["unidade"].ToString();
+                e.Preco = Convert.ToDouble(dr["valor_venda"]);
+                e.Fornecedor = dr["fornecedor"].ToString();
+                estoques.Add(e);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return estoques;
+        }
 
         public List<ItemEstoque> GetAllStock()
         {
             List<ItemEstoque> estoques = new List<ItemEstoque>();
             Connection.Open();
 
-            string query = "select * from estoque_itens;";
+            string query = "select * from estoque_itens order by id_item;";
             NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
             NpgsqlDataReader dr = cmd.ExecuteReader();
 
@@ -996,6 +1065,54 @@ namespace TelaLogin.Infra
             return lv;
         }
 
+        public List<Venda> SearchLastSales()
+        {
+            Connection.Open();
+            List<Venda> lv = new List<Venda>();
+            try
+            {
+                string query = @"
+                                SELECT 
+	                                p.data_pedido,
+                                    itf.nome,
+	                                ip.valor_un,
+                                    ip.qtd,
+	                                itf.lucro * ip.qtd AS lucro
+                                FROM 
+                                    item_pedido ip
+                                INNER JOIN 
+                                    itens_fornecidos itf ON ip.id_item = itf.id_item
+                                INNER JOIN 
+                                    pedido p ON p.id_pedido = ip.id_pedido
+                                 ORDER BY p.id_pedido DESC LIMIT 5;";
+
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                NpgsqlDataReader dr = cmd.ExecuteReader();
+
+                // busca todos os itens do pedido
+                while (dr.Read())
+                {
+                    Venda v = new Venda();
+                    v.DataVenda = Convert.ToDateTime(dr["data_pedido"]);
+                    v.Produto = dr["nome"].ToString();
+                    v.Ganhos = Convert.ToDouble(dr["lucro"]);
+                    v.ValorUnitario = Convert.ToDouble(dr["valor_un"]);
+                    v.Quantidade = Convert.ToInt32(dr["qtd"]);
+                    v.ValorTotal = v.ValorUnitario * v.Quantidade;
+                    lv.Add(v);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao buscar itens do pedido: " + e.Message);
+            }
+            finally
+            {
+                Connection.Close();
+            }
+            return lv;
+        }
+
     }
     public class DBpedido : IDBpedido
     {
@@ -1076,4 +1193,174 @@ namespace TelaLogin.Infra
             }
         }
     }
+    public class DBemployee 
+    {
+        private static string txt_conexao = "Server=localhost;Port=5432;User Id=postgres;Password=admin;Database=PIM";
+        private NpgsqlConnection Connection = new NpgsqlConnection(txt_conexao);
+
+        public bool CreateEmployee(Funcionario funcionario)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "insert into funcionario(nome,cargo,email,salario,usuario,senha)values(@nome, @cargo, @email, @salario, @usuario, @senha);";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
+                cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
+                cmd.Parameters.AddWithValue("@email", funcionario.Email);
+                cmd.Parameters.AddWithValue("@salario", funcionario.Salario);
+                cmd.Parameters.AddWithValue("@usuario", funcionario.Usuario);
+                cmd.Parameters.AddWithValue("@senha", funcionario.Senha);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao inserir novo funcionário: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public List<Funcionario> ListAllEmployees()
+        {
+            List<Funcionario> funcionarios = new List<Funcionario>();
+            Connection.Open();
+
+            string query = "SELECT * FROM funcionario ORDER BY id;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Funcionario f = new Funcionario();
+                f.Id = Convert.ToInt32(dr["id"]);
+                f.Nome = dr["nome"].ToString();
+                f.Cargo = dr["cargo"].ToString();
+                f.Email = dr["email"].ToString();
+                f.Salario = Convert.ToDouble(dr["salario"]);
+                f.Usuario = dr["usuario"].ToString();
+                f.Senha = dr["senha"].ToString();
+                funcionarios.Add(f);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return funcionarios;
+        }
+
+        public Funcionario SearchEmployee(int id)
+        {
+            Funcionario f = new Funcionario();
+            Connection.Open();
+
+            string query = "SELECT * FROM funcionario WHERE id = @id;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@id", id);
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                f.Id = Convert.ToInt32(dr["id"]);
+                f.Nome = dr["nome"].ToString();
+                f.Cargo = dr["cargo"].ToString();
+                f.Email = dr["email"].ToString();
+                f.Salario = Convert.ToDouble(dr["salario"]);
+                f.Usuario = dr["usuario"].ToString();
+                f.Senha = dr["senha"].ToString();
+                // f.Acesso = Convert.ToInt32(dr["acesso"]);
+
+            }
+
+            dr.Close();
+
+            Connection.Close();
+            return f;
+        }
+
+        public List<Funcionario> SearchEmployeeName(string name)
+        {
+            List<Funcionario> funcionarios = new List<Funcionario>();
+            Connection.Open();
+
+            string query = "SELECT * FROM funcionario WHERE UPPER(nome) LIKE UPPER(@name) ORDER BY id;";
+            NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+            cmd.Parameters.AddWithValue("@name", $"%{name}%");
+
+            NpgsqlDataReader dr = cmd.ExecuteReader();
+
+            while (dr.Read())
+            {
+                Funcionario f = new Funcionario();
+                f.Id = Convert.ToInt32(dr["id"]);
+                f.Nome = dr["nome"].ToString();
+                f.Cargo = dr["cargo"].ToString();
+                f.Email = dr["email"].ToString();
+                f.Salario = Convert.ToDouble(dr["salario"]);
+                f.Usuario = dr["usuario"].ToString();
+                f.Senha = dr["senha"].ToString();
+                funcionarios.Add(f);
+            }
+
+            dr.Close();
+            Connection.Close();
+            return funcionarios;
+        }
+
+        public bool UpdateEmployee(Funcionario funcionario)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "update funcionario set nome = @nome, cargo = @cargo, email = @email, salario = @salario, usuario = @usuario, senha = @senha where id = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@nome", funcionario.Nome);
+                cmd.Parameters.AddWithValue("@cargo", funcionario.Cargo);
+                cmd.Parameters.AddWithValue("@email", funcionario.Email);
+                cmd.Parameters.AddWithValue("@salario", funcionario.Salario);
+                cmd.Parameters.AddWithValue("@usuario", funcionario.Usuario);
+                cmd.Parameters.AddWithValue("@senha", funcionario.Senha);
+                cmd.Parameters.AddWithValue("@id", funcionario.Id);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao atualizar funcionário: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+        public bool DeleteEmployee(int id)
+        {
+            try
+            {
+                Connection.Open();
+                string query = "delete from funcionario where id = @id;";
+                NpgsqlCommand cmd = new NpgsqlCommand(query, Connection);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Erro ao deletar funcionário: " + e.Message);
+                return false;
+            }
+            finally
+            {
+                Connection.Close();
+            }
+        }
+
+    }
+
 }

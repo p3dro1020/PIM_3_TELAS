@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            txt_cnpj = new MaskedTextBox();
             txt_razaoSocial = new TextBox();
             label2 = new Label();
             label3 = new Label();
-            txt_cep = new TextBox();
             label4 = new Label();
             txt_endereco = new TextBox();
             bt_add = new Button();
@@ -54,6 +52,8 @@
             label12 = new Label();
             txt_email = new TextBox();
             bt_delete = new Button();
+            txt_cnpj = new MaskedTextBox();
+            txt_cep = new MaskedTextBox();
             SuspendLayout();
             // 
             // label1
@@ -65,13 +65,6 @@
             label1.Size = new Size(34, 15);
             label1.TabIndex = 0;
             label1.Text = "CNPJ";
-            // 
-            // txt_cnpj
-            // 
-            txt_cnpj.Location = new Point(39, 80);
-            txt_cnpj.Name = "txt_cnpj";
-            txt_cnpj.Size = new Size(175, 23);
-            txt_cnpj.TabIndex = 2;
             // 
             // txt_razaoSocial
             // 
@@ -99,13 +92,6 @@
             label3.Size = new Size(27, 15);
             label3.TabIndex = 5;
             label3.Text = "CEP";
-            // 
-            // txt_cep
-            // 
-            txt_cep.Location = new Point(39, 130);
-            txt_cep.Name = "txt_cep";
-            txt_cep.Size = new Size(90, 23);
-            txt_cep.TabIndex = 4;
             // 
             // label4
             // 
@@ -256,6 +242,7 @@
             txt_num.Name = "txt_num";
             txt_num.Size = new Size(42, 23);
             txt_num.TabIndex = 10;
+            txt_num.KeyPress += txt_num_KeyPress;
             // 
             // label12
             // 
@@ -284,11 +271,29 @@
             bt_delete.UseVisualStyleBackColor = true;
             bt_delete.Click += bt_delete_Click;
             // 
+            // txt_cnpj
+            // 
+            txt_cnpj.Location = new Point(39, 80);
+            txt_cnpj.Mask = "00.000.000/0000-00";
+            txt_cnpj.Name = "txt_cnpj";
+            txt_cnpj.Size = new Size(175, 23);
+            txt_cnpj.TabIndex = 28;
+            // 
+            // txt_cep
+            // 
+            txt_cep.Location = new Point(39, 130);
+            txt_cep.Mask = "00000-000";
+            txt_cep.Name = "txt_cep";
+            txt_cep.Size = new Size(90, 23);
+            txt_cep.TabIndex = 29;
+            // 
             // FrmNewSupplier
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(588, 394);
+            Controls.Add(txt_cep);
+            Controls.Add(txt_cnpj);
             Controls.Add(bt_delete);
             Controls.Add(label12);
             Controls.Add(txt_email);
@@ -310,10 +315,8 @@
             Controls.Add(label4);
             Controls.Add(txt_endereco);
             Controls.Add(label3);
-            Controls.Add(txt_cep);
             Controls.Add(label2);
             Controls.Add(txt_razaoSocial);
-            Controls.Add(txt_cnpj);
             Controls.Add(label1);
             Name = "FrmNewSupplier";
             StartPosition = FormStartPosition.CenterScreen;
@@ -326,7 +329,6 @@
 
         private Label label1;
         private Label label2;
-        private Label label3;
         private Label label4;
         private Button bt_cancel;
         private Label label5;
@@ -338,7 +340,6 @@
         private Label label12;
         public Button bt_add;
         public Button bt_save;
-        public MaskedTextBox txt_cnpj;
         public TextBox txt_razaoSocial;
         public TextBox txt_endereco;
         public TextBox txt_nomeFantasia;
@@ -348,7 +349,9 @@
         public TextBox txt_cidade;
         public TextBox txt_num;
         public TextBox txt_email;
-        public TextBox txt_cep;
         public Button bt_delete;
+        public MaskedTextBox txt_cnpj;
+        public MaskedTextBox txt_cep;
+        public Label label3;
     }
 }

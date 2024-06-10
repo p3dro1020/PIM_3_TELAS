@@ -42,9 +42,9 @@ namespace TelaLogin.Infra
     internal interface IDBemployee
     {
         // metodos employee
-        void CreateEmployee(Funcionario funcionario);
-        void UpdateEmployee(Funcionario funcionario);
-        void DeleteEmployee(int id);
+        bool CreateEmployee(Funcionario funcionario);
+        bool UpdateEmployee(Funcionario funcionario);
+        bool DeleteEmployee(int id);
         void SearchEmployee(int id);
         List<Funcionario> ObterTodos();
     }
@@ -56,6 +56,8 @@ namespace TelaLogin.Infra
         bool UpdateStock(ItemEstoque estoque);
         //bool DeleteStock(int id);
         ItemEstoque SearchStock(string cdgBarra);
+        List<ItemEstoque> SearchStockName(string name);
+        List<ItemEstoque> SearchStockCategory(string category);
         List<ItemEstoque> GetAllStock();
     }
 

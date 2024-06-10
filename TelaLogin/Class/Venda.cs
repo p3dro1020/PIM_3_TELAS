@@ -8,6 +8,7 @@ namespace TelaLogin.Class
 {
     public class Venda
     {
+        public DateTime DataVenda { get; set; }
         public string CodigoBarra { get; set; }
         public int QtdEstoque { get; set;}
         public int Quantidade { get; set; }
@@ -15,7 +16,7 @@ namespace TelaLogin.Class
         public string Unidade { get; set; }
         public double Ganhos { get; set; }
         public double ValorUnitario { get; set; }
-        public string ValorTotal { get; set; }
+        public double ValorTotal { get; set; }
         public int CodigoProduto { get; set; }
 
     }

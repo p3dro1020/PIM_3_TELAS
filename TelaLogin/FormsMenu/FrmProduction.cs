@@ -101,7 +101,7 @@ namespace TelaPIM
                 return;
             }
 
-            if(rb_nome.Checked == false && rb_status.Checked == false)
+            if (rb_nome.Checked == false && rb_status.Checked == false)
             {
                 MessageBox.Show("Por favor selecione um filtro de pesquisa");
                 return;
@@ -130,7 +130,7 @@ namespace TelaPIM
                     dgv_Production.Rows.Add(p.Id, p.Nome, p.Quantidade, p.DataPlantioFormatada, p.DataColheitaFormatada, p.Status);
                 }
             }
-            else if(rb_status.Checked == true)
+            else if (rb_status.Checked == true)
             {
                 // busca os plantios
                 List<Plantio> produtos = dbProduct.SearchProductStatus(txt_search.Text);
@@ -159,6 +159,15 @@ namespace TelaPIM
         {
             txt_search.Text = "";
             LoadProduct();
+        }
+
+        private void txt_search_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // so aceita letras e backspace
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 32)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

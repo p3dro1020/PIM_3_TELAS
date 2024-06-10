@@ -30,7 +30,7 @@ namespace TelaPIM
             // insere os produtos no datagridview
             foreach (ItemEstoque ie in itemEstoque)
             {
-                dgv_stock.Rows.Add(ie.IdItem, ie.CodigoBarras, ie.Nome, ie.Categoria, ie.Quantidade, ie.Unidade,"R$ " + ie.Preco, "R$ " + ie.Quantidade * ie.Preco, ie.Fornecedor);
+                dgv_stock.Rows.Add(ie.IdItem, ie.CodigoBarras, ie.Nome, ie.Categoria, ie.Quantidade, ie.Unidade, "R$ " + ie.Preco, "R$ " + ie.Quantidade * ie.Preco, ie.Fornecedor);
             }
         }
 
@@ -41,7 +41,7 @@ namespace TelaPIM
             frmNewStock.bt_save.Enabled = false;
             // passa as linhas do dgv_stock para o dgvRow do FrmNewStock
             frmNewStock.dgvRow = dgv_stock;
-            
+
             // limpa os campos
             frmNewStock.txt_cdg_barra.Clear();
             frmNewStock.txt_nome.Clear();
@@ -92,6 +92,71 @@ namespace TelaPIM
                     LoadEstoque();
                 }
             }
+        }
+
+        private void bt_search_Click(object sender, EventArgs e)
+        {
+            // verifica se o campo de pesquisa foi preenchido
+            if (txt_search.Text == "")
+            {
+                MessageBox.Show("Preencha o campo de pesquisa!");
+                return;
+            }
+
+            // verifica se algum radio button esta selecionado
+            if (rb_nome.Checked == false && rb_categoria.Checked == false)
+            {
+                MessageBox.Show("Selecione um filtro de pesquisa!");
+                return;
+            }
+
+            List<ItemEstoque> itemEstoque = new List<ItemEstoque>();
+
+            if (rb_nome.Checked == true)
+            {
+                itemEstoque = dbStock.SearchStockName(txt_search.Text);
+            }
+            else if (rb_categoria.Checked == true)
+            {
+                itemEstoque = dbStock.SearchStockCategory(txt_search.Text);
+            }
+
+            if (itemEstoque.Count == 0)
+            {
+                MessageBox.Show("Nenhum item encontrado!");
+                txt_search.Focus();
+                return;
+            }
+
+            dgv_stock.Rows.Clear();
+
+            // insere as linhas no datagridview
+            foreach (ItemEstoque ie in itemEstoque)
+            {
+                dgv_stock.Rows.Add(ie.IdItem, ie.CodigoBarras, ie.Nome, ie.Categoria, ie.Quantidade, ie.Unidade, "R$ " + ie.Preco, "R$ " + ie.Quantidade * ie.Preco, ie.Fornecedor);
+            }
+
+
+        }
+
+        private void bt_listAll_Click(object sender, EventArgs e)
+        {
+            LoadEstoque();
+            rb_categoria.Checked = false;
+            rb_nome.Checked = false;
+            txt_search.Clear();
+        }
+
+        private void txt_search_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // so aceita letras, backspace e espaço
+            if (!char.IsLetter(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != 32)
+            {
+                e.Handled = true;
+            }
+
+
+
         }
     }
 }

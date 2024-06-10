@@ -101,7 +101,6 @@ namespace TelaLogin.FormsSubMenu
                     txt_unidade.Text = itemEstoque.Unidade;
                     txt_preco_venda.Text = "R$ " + itemEstoque.Preco.ToString();
                     txt_fornecedor.Text = itemEstoque.Fornecedor;
-                    bt_save.Enabled = true;
                     txt_qtd.Focus();
                 }
                 else
@@ -114,7 +113,6 @@ namespace TelaLogin.FormsSubMenu
                     txt_qtd.Clear();
                     txt_preco_venda.Clear();
                     txt_fornecedor.Clear();
-                    bt_save.Enabled = false;
                 }
 
             }

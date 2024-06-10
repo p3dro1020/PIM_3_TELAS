@@ -14,6 +14,8 @@ namespace TelaLogin.ClassGlobal
         public static string nome { get; set; }
         public static int id_item { get; set; }
         public static int Qtd { get; set; }
-        public static List<Item> Itens { get; set; }
+        public static string NomeUsuario { get; set; }
+        public static string NivelAcesso { get; set; }
+        public static int IdUsuario { get; set; }
     }
 }

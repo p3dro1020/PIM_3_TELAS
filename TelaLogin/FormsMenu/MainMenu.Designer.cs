@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainMenu));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             panelMenu = new Panel();
             pictureBox4 = new PictureBox();
             pictureBox3 = new PictureBox();
@@ -41,6 +42,8 @@
             btnEmployees = new Button();
             btnHome = new Button();
             panel1 = new Panel();
+            txt_nivelAcesso = new Label();
+            txt_nomeUsuario = new Label();
             label5 = new Label();
             label4 = new Label();
             pictureBox1 = new PictureBox();
@@ -63,9 +66,9 @@
             label2 = new Label();
             dgv_lastSale = new DataGridView();
             date = new DataGridViewTextBoxColumn();
-            item = new DataGridViewTextBoxColumn();
+            nome = new DataGridViewTextBoxColumn();
             valor = new DataGridViewTextBoxColumn();
-            qtd = new DataGridViewTextBoxColumn();
+            ganhos = new DataGridViewTextBoxColumn();
             label1 = new Label();
             panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
@@ -253,6 +256,8 @@
             // panel1
             // 
             panel1.BackColor = Color.OliveDrab;
+            panel1.Controls.Add(txt_nivelAcesso);
+            panel1.Controls.Add(txt_nomeUsuario);
             panel1.Controls.Add(label5);
             panel1.Controls.Add(label4);
             panel1.Controls.Add(pictureBox1);
@@ -261,6 +266,26 @@
             panel1.Name = "panel1";
             panel1.Size = new Size(220, 94);
             panel1.TabIndex = 1;
+            // 
+            // txt_nivelAcesso
+            // 
+            txt_nivelAcesso.AutoSize = true;
+            txt_nivelAcesso.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_nivelAcesso.ForeColor = Color.White;
+            txt_nivelAcesso.Location = new Point(143, 54);
+            txt_nivelAcesso.Name = "txt_nivelAcesso";
+            txt_nivelAcesso.Size = new Size(0, 15);
+            txt_nivelAcesso.TabIndex = 5;
+            // 
+            // txt_nomeUsuario
+            // 
+            txt_nomeUsuario.AutoSize = true;
+            txt_nomeUsuario.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txt_nomeUsuario.ForeColor = Color.White;
+            txt_nomeUsuario.Location = new Point(112, 26);
+            txt_nomeUsuario.Name = "txt_nomeUsuario";
+            txt_nomeUsuario.Size = new Size(0, 15);
+            txt_nomeUsuario.TabIndex = 4;
             // 
             // label5
             // 
@@ -448,38 +473,56 @@
             // 
             // dgv_lastSale
             // 
+            dgv_lastSale.AllowUserToAddRows = false;
             dgv_lastSale.BackgroundColor = Color.White;
+            dgv_lastSale.BorderStyle = BorderStyle.None;
             dgv_lastSale.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgv_lastSale.Columns.AddRange(new DataGridViewColumn[] { date, item, valor, qtd });
+            dgv_lastSale.Columns.AddRange(new DataGridViewColumn[] { date, nome, valor, ganhos });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.White;
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = Color.White;
+            dataGridViewCellStyle2.SelectionForeColor = Color.Black;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgv_lastSale.DefaultCellStyle = dataGridViewCellStyle2;
             dgv_lastSale.Location = new Point(45, 108);
             dgv_lastSale.Name = "dgv_lastSale";
+            dgv_lastSale.ReadOnly = true;
             dgv_lastSale.RowHeadersVisible = false;
             dgv_lastSale.Size = new Size(384, 174);
             dgv_lastSale.TabIndex = 1;
             // 
             // date
             // 
+            date.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             date.HeaderText = "Data";
             date.Name = "date";
-            date.Width = 70;
+            date.ReadOnly = true;
+            date.Width = 56;
             // 
-            // item
+            // nome
             // 
-            item.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            item.HeaderText = "Item";
-            item.Name = "item";
+            nome.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            nome.HeaderText = "Desc.";
+            nome.Name = "nome";
+            nome.ReadOnly = true;
             // 
             // valor
             // 
-            valor.HeaderText = "Valor";
+            valor.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            valor.HeaderText = "Total";
             valor.Name = "valor";
-            valor.Width = 50;
+            valor.ReadOnly = true;
+            valor.Width = 57;
             // 
-            // qtd
+            // ganhos
             // 
-            qtd.HeaderText = "Quantidade";
-            qtd.Name = "qtd";
-            qtd.Width = 80;
+            ganhos.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            ganhos.HeaderText = "Ganhos";
+            ganhos.Name = "ganhos";
+            ganhos.ReadOnly = true;
+            ganhos.Width = 72;
             // 
             // label1
             // 
@@ -505,6 +548,7 @@
             StartPosition = FormStartPosition.CenterScreen;
             Text = "VisionFarm";
             Closed += MainMenu_Closed;
+            Load += MainMenu_Load;
             panelMenu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
@@ -540,10 +584,6 @@
         private DataGridView dgv_colheitas;
         private Label label2;
         private DataGridView dgv_lastSale;
-        private DataGridViewTextBoxColumn date;
-        private DataGridViewTextBoxColumn item;
-        private DataGridViewTextBoxColumn valor;
-        private DataGridViewTextBoxColumn qtd;
         private Label label1;
         private Label label5;
         private Label label4;
@@ -562,5 +602,11 @@
         private DataGridViewTextBoxColumn datePlantio;
         private DataGridViewTextBoxColumn dateColheitaEsperada;
         private DataGridViewTextBoxColumn status;
+        public Label txt_nivelAcesso;
+        public Label txt_nomeUsuario;
+        private DataGridViewTextBoxColumn date;
+        private DataGridViewTextBoxColumn nome;
+        private DataGridViewTextBoxColumn valor;
+        private DataGridViewTextBoxColumn ganhos;
     }
 }

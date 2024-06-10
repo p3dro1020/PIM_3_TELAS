@@ -19,7 +19,7 @@ namespace TelaLogin.FormsSubMenu
 
             foreach (Pedido item in p)
             {
-                dgv_history_sale.Rows.Add(item.IdPedido, item.DataVenda, item.Quantidade, "R$ " + item.Total);
+                dgv_history_sale.Rows.Add(item.IdPedido, item.DataVenda.ToString("dd/MM/yyyy"), item.Quantidade, "R$ " + item.Total);
             }
 
         }

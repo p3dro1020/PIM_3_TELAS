@@ -1,6 +1,6 @@
-using System;
-using System.Drawing;
-using System.Windows.Forms;
+using TelaLogin.Infra;
+using TelaLogin.ClassGlobal;
+using TelaLogin.Class;
 
 namespace TelaPIM
 {
@@ -79,6 +79,26 @@ namespace TelaPIM
         private void MainMenu_Closed(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void LoadDgvs()
+        {
+            DBsale dBsale = new DBsale();
+            List<Venda> v = new List<Venda>();
+            v = dBsale.SearchLastSales();
+
+
+            foreach (Venda item in v)
+            {
+                dgv_lastSale.Rows.Add(item.DataVenda.ToString("dd/MM/yyyy"), item.Produto, "R$ " + item.ValorTotal.ToString("0.00"), "R$ " + item.Ganhos);
+            }
+
+        }
+
+        private void MainMenu_Load(object sender, EventArgs e)
+        {
+            txt_nomeUsuario.Text = VarGlobal.NomeUsuario;
+            LoadDgvs();
         }
     }
 }

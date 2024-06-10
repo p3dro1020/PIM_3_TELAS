@@ -83,6 +83,8 @@ namespace TelaPIM
 
         private void txt_cod_barras_KeyUp(object sender, KeyEventArgs e)
         {
+
+
             // verifica se a tecla soltada foi o enter
             if (e.KeyCode == Keys.Enter)
             {
@@ -106,7 +108,7 @@ namespace TelaPIM
 
                 Qtd = v.QtdEstoque;
 
-                if(Qtd == 0)
+                if (Qtd == 0)
                 {
                     // verifica se a resposta foi sim
                     if (DialogResult.Yes == MessageBox.Show("Produto sem estoque, deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
@@ -155,34 +157,11 @@ namespace TelaPIM
 
         }
 
-        
+
 
         private void txt_qtd_produto_TextChanged(object sender, EventArgs e)
-        { 
+        {
             SomarValor();
-
-            // verifica se o campo de quantidade de produto está vazio
-            if (txt_qtd_produto.Text == "")
-            {
-                return;
-            }
-
-            // verifica se a quantidade de produto é maior que a quantidade em estoque
-            if (Convert.ToInt32(txt_qtd_produto.Text) > Qtd)
-            {
-                // exibe uma mensagem se deseja continuar mesmo assim
-                if (DialogResult.Yes == MessageBox.Show($"Quantidade maior que a quantidade em estoque ({Qtd}), deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
-                {
-                    return;
-                }
-                else
-                {
-                    LimpaTextBox();
-                    txt_cod_barras.Focus();
-                    return;
-                }
-
-            }
         }
 
         private void txt_valor_un_TextChanged(object sender, EventArgs e)
@@ -209,6 +188,30 @@ namespace TelaPIM
                 MessageBox.Show("Preencha todos os campos!");
                 return;
             }
+
+            // verifica se o usuario digitou um numero maior que 0
+            if (Convert.ToInt32(txt_qtd_produto.Text) <= 0)
+            {
+                MessageBox.Show("Quantidade inválida", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txt_qtd_produto.Clear();
+                txt_qtd_produto.Focus();
+                return;
+            }
+
+            // verifica se a quantidade de produto é maior que a quantidade em estoque
+            if (Convert.ToInt32(txt_qtd_produto.Text) > Qtd)
+            {
+                // exibe uma mensagem se deseja continuar mesmo assim
+                if (DialogResult.No == MessageBox.Show($"Quantidade maior que a quantidade em estoque ({Qtd}), deseja continuar mesmo assim?", "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question))
+                {
+                    LimpaTextBox();
+                    txt_cod_barras.Focus();
+                    return;
+                }
+
+            }
+
+
             // insere os dados no data grid view
             dgv_sales.Rows.Add("", CodigoProduto, txt_unidade.Text, txt_produto.Text, "R$ " + txt_valor_un.Text, txt_qtd_produto.Text, "R$ " + txt_valor_tot.Text);
 
@@ -347,6 +350,15 @@ namespace TelaPIM
         {
             FrmHistorySale frmHistorySale = new FrmHistorySale();
             frmHistorySale.ShowDialog();
+        }
+
+        private void txt_cod_barras_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // so aceita numeros backspace e enter
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8 && e.KeyChar != (char)13)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

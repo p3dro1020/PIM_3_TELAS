@@ -31,7 +31,6 @@
             bt_add = new Button();
             bt_save = new Button();
             bt_delete = new Button();
-            cb_un = new ComboBox();
             txt_estoque_minimo = new TextBox();
             label10 = new Label();
             txt_lucro = new TextBox();
@@ -51,6 +50,7 @@
             label13 = new Label();
             txt_categoria = new TextBox();
             txt_fornecedor = new TextBox();
+            cb_un = new TextBox();
             SuspendLayout();
             // 
             // bt_add
@@ -82,16 +82,6 @@
             bt_delete.Text = "Deletar";
             bt_delete.UseVisualStyleBackColor = true;
             bt_delete.Click += bt_delete_Click;
-            // 
-            // cb_un
-            // 
-            cb_un.Font = new Font("Segoe UI", 8.25F);
-            cb_un.FormattingEnabled = true;
-            cb_un.Items.AddRange(new object[] { "1", "10", "100", "1000", "CX" });
-            cb_un.Location = new Point(27, 99);
-            cb_un.Name = "cb_un";
-            cb_un.Size = new Size(40, 21);
-            cb_un.TabIndex = 4;
             // 
             // txt_estoque_minimo
             // 
@@ -152,17 +142,18 @@
             // txt_porcentagem
             // 
             txt_porcentagem.Font = new Font("Segoe UI", 8.25F);
-            txt_porcentagem.Location = new Point(202, 99);
+            txt_porcentagem.Location = new Point(208, 99);
             txt_porcentagem.Name = "txt_porcentagem";
             txt_porcentagem.Size = new Size(88, 22);
             txt_porcentagem.TabIndex = 6;
             txt_porcentagem.TextChanged += txt_porcentagem_TextChanged;
+            txt_porcentagem.KeyPress += txt_porcentagem_KeyPress;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
-            label7.Location = new Point(202, 81);
+            label7.Location = new Point(208, 81);
             label7.Name = "label7";
             label7.Size = new Size(81, 13);
             label7.TabIndex = 36;
@@ -201,17 +192,18 @@
             // txt_preco_custo
             // 
             txt_preco_custo.Font = new Font("Segoe UI", 8.25F);
-            txt_preco_custo.Location = new Point(83, 99);
+            txt_preco_custo.Location = new Point(93, 99);
             txt_preco_custo.Name = "txt_preco_custo";
             txt_preco_custo.Size = new Size(100, 22);
             txt_preco_custo.TabIndex = 5;
             txt_preco_custo.TextChanged += txt_preco_custo_TextChanged;
+            txt_preco_custo.KeyPress += txt_preco_custo_KeyPress;
             // 
             // label11
             // 
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI", 8.25F, FontStyle.Bold);
-            label11.Location = new Point(83, 81);
+            label11.Location = new Point(93, 81);
             label11.Name = "label11";
             label11.Size = new Size(72, 13);
             label11.TabIndex = 25;
@@ -270,14 +262,21 @@
             txt_fornecedor.Size = new Size(331, 22);
             txt_fornecedor.TabIndex = 10;
             // 
+            // cb_un
+            // 
+            cb_un.Location = new Point(27, 98);
+            cb_un.Name = "cb_un";
+            cb_un.Size = new Size(60, 23);
+            cb_un.TabIndex = 4;
+            // 
             // FrmAlterItem
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(543, 270);
+            Controls.Add(cb_un);
             Controls.Add(txt_fornecedor);
             Controls.Add(txt_categoria);
-            Controls.Add(cb_un);
             Controls.Add(txt_estoque_minimo);
             Controls.Add(label10);
             Controls.Add(txt_lucro);
@@ -320,7 +319,6 @@
         private Label label12;
         private Label label13;
         public TextBox txt_codigo_barras;
-        public ComboBox cb_un;
         public TextBox txt_estoque_minimo;
         public TextBox txt_lucro;
         public TextBox txt_valor_venda;
@@ -329,5 +327,6 @@
         public TextBox txt_nome;
         public TextBox txt_categoria;
         public TextBox txt_fornecedor;
+        public TextBox cb_un;
     }
 }

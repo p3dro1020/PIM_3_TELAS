@@ -95,6 +95,7 @@
             txt_qtd.Name = "txt_qtd";
             txt_qtd.Size = new Size(121, 23);
             txt_qtd.TabIndex = 3;
+            txt_qtd.KeyPress += txt_qtd_KeyPress;
             // 
             // label4
             // 
@@ -112,7 +113,7 @@
             dt_colheita.Font = new Font("Segoe UI", 9F);
             dt_colheita.Format = DateTimePickerFormat.Short;
             dt_colheita.Location = new Point(404, 53);
-            dt_colheita.MaxDate = new DateTime(2100, 12, 31, 0, 0, 0, 0);
+            dt_colheita.MaxDate = new DateTime(2026, 1, 1, 0, 0, 0, 0);
             dt_colheita.MinDate = new DateTime(2024, 1, 1, 0, 0, 0, 0);
             dt_colheita.Name = "dt_colheita";
             dt_colheita.Size = new Size(121, 23);
@@ -179,12 +180,13 @@
             cb_hortalica.Name = "cb_hortalica";
             cb_hortalica.Size = new Size(121, 23);
             cb_hortalica.TabIndex = 9;
+            cb_hortalica.KeyPress += cb_hortalica_KeyPress;
             // 
             // cb_status
             // 
             cb_status.Font = new Font("Segoe UI", 9F);
             cb_status.FormattingEnabled = true;
-            cb_status.Items.AddRange(new object[] { "Germinando", "Em crescimento", "Pronto para colheita", "Colhido" });
+            cb_status.Items.AddRange(new object[] { "Germinando", "Em crescimento", "Pronto colheita", "Colhido" });
             cb_status.Location = new Point(404, 156);
             cb_status.Name = "cb_status";
             cb_status.Size = new Size(121, 23);

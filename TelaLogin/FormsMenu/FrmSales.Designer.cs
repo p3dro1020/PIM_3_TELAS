@@ -200,6 +200,7 @@
             txt_cod_barras.Name = "txt_cod_barras";
             txt_cod_barras.Size = new Size(111, 23);
             txt_cod_barras.TabIndex = 1;
+            txt_cod_barras.KeyPress += txt_cod_barras_KeyPress;
             txt_cod_barras.KeyUp += txt_cod_barras_KeyUp;
             // 
             // label12

@@ -99,41 +99,31 @@ namespace TelaLogin.FormsSubMenu
 
         private void SomarLucro()
         {
-            try
+            //verifica se os campos foram preenchidos
+            if (txt_preco_custo.Text == "" || txt_porcentagem.Text == "")
             {
-                double preco = Convert.ToDouble(txt_preco_custo.Text);
-                double porcentagem = Convert.ToDouble(txt_porcentagem.Text);
-                double precoVenda = preco + (preco * porcentagem / 100);
-                txt_valor_venda.Text = precoVenda.ToString();
-
-
-                double lucro = precoVenda - preco;
-
-                // formata lucro com 2 casas decimais
-                lucro = Math.Round(lucro, 2);
-                txt_lucro.Text = lucro.ToString();
-
+                return;
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Digite apenas números!");
-            }
+            double preco = Convert.ToDouble(txt_preco_custo.Text);
+            double porcentagem = Convert.ToDouble(txt_porcentagem.Text);
+            double precoVenda = preco + (preco * porcentagem / 100);
+            txt_valor_venda.Text = precoVenda.ToString();
 
+
+            double lucro = precoVenda - preco;
+
+            // formata lucro com 2 casas decimais
+            lucro = Math.Round(lucro, 2);
+            txt_lucro.Text = lucro.ToString();
         }
 
         private void txt_preco_custo_TextChanged(object sender, EventArgs e)
         {
-            // so aceita numeros
-            if (!System.Text.RegularExpressions.Regex.IsMatch(txt_preco_custo.Text, "^[0-9.]*$"))
-            {
-                MessageBox.Show("Digite apenas números!");
-                txt_preco_custo.Text = "";
-            }
 
             // verifica se o campo porcentagem foi preenchido
             if (txt_porcentagem.Text == "")
             {
-                txt_porcentagem.Text = "0";
+                return;
             }
 
             SomarLucro();
@@ -143,7 +133,7 @@ namespace TelaLogin.FormsSubMenu
         {
             if (txt_preco_custo.Text == "")
             {
-                txt_preco_custo.Text = "0";
+                return;
             }
             SomarLucro();
         }
@@ -159,6 +149,24 @@ namespace TelaLogin.FormsSubMenu
                     MessageBox.Show("Item excluído com sucesso!");
                     this.Close();
                 }
+            }
+        }
+
+        private void txt_preco_custo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // so aceita numeros, virgula e backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)44 && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_porcentagem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // so aceita numeros e backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != (char)8)
+            {
+                e.Handled = true;
             }
         }
     }

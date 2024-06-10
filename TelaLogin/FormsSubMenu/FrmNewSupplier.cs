@@ -30,6 +30,22 @@ namespace TelaLogin.FormsSubMenu
                 return;
             }
 
+            // verifica se o cnpj do fornecedor foi preenchido no masked text box
+            if (txt_cnpj.MaskFull == false)
+            {
+                MessageBox.Show("Preencha o campo CNPJ corretamente!");
+                txt_cnpj.Focus();
+                return;
+            }
+
+            // verifica se o cep do fornecedor foi preenchido no masked text box
+            if (txt_cep.MaskFull == false)
+            {
+                MessageBox.Show("Preencha o campo CEP corretamente!");
+                txt_cep.Focus();
+                return;
+            }
+
             // instancia um novo fornecedor
             Fornecedor fornecedor = new Fornecedor();
             fornecedor.Cnpj = txt_cnpj.Text;
@@ -81,6 +97,24 @@ namespace TelaLogin.FormsSubMenu
                 MessageBox.Show("Preencha todos os campos!");
                 return;
             }
+
+            // verifica se o cnpj do fornecedor foi preenchido no masked text box
+            if (txt_cnpj.MaskFull == false)
+            {
+                MessageBox.Show("Preencha o campo CNPJ corretamente!");
+                txt_cnpj.Focus();
+                return;
+            }
+
+            // verifica se o cep do fornecedor foi preenchido no masked text box
+            if (txt_cep.MaskFull == false)
+            {
+                MessageBox.Show("Preencha o campo CEP corretamente!");
+                txt_cep.Focus();
+                return;
+            }
+
+
             Fornecedor fornecedor = new Fornecedor();
             DBsupplier dbSupplier = new DBsupplier();
             fornecedor = dbSupplier.SearchSupplier(VarGlobal.id);
@@ -127,6 +161,15 @@ namespace TelaLogin.FormsSubMenu
                     MessageBox.Show("Fornecedor excluído com sucesso!");
                     this.Close();
                 }
+            }
+        }
+
+        private void txt_num_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // so aceita digitos numericos e backspace
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 08)
+            {
+                e.Handled = true;
             }
         }
     }

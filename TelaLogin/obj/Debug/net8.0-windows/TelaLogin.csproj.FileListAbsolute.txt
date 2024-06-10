@@ -102,3 +102,4 @@ P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogi
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmHistorySale.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmSaleDetails.resources
 P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaPIM.FrmStock.resources
+P:\Garoto de Programa C#\PIM_3_TELAS\TelaLogin\obj\Debug\net8.0-windows\TelaLogin.FormsSubMenu.FrmNewEmployee.resources
