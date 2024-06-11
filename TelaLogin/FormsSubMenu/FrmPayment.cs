@@ -42,7 +42,7 @@ namespace TelaLogin.FormsSubMenu
 
         public void GerarCupomNaoFiscal(List<Item> produtos)
         {
-            string caminhoArquivo = "C:\\Users\\pedro\\OneDrive\\Área de Trabalho\\CupomNaoFiscal.pdf";
+            string caminhoArquivo = "C:\\PDFCupomNaoFiscal.pdf";
             Document doc = new Document(PageSize.A4, 10f, 10f, 10f, 0f);
             FileStream arquivoPDF = new FileStream(caminhoArquivo, FileMode.Create);
             PdfWriter writer = PdfWriter.GetInstance(doc, arquivoPDF);

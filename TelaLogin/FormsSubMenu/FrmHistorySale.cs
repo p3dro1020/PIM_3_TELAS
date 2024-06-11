@@ -123,7 +123,7 @@ namespace TelaLogin.FormsSubMenu
             // Cria o documento PDF
             Document doc = new Document();
             string dataAtual = DateTime.Now.ToString("dd-MM-yyyy");
-            string nomeArquivo = @"C:\Users\pedro\OneDrive\Área de Trabalho\RelatorioVendas_" + dataAtual + ".pdf";
+            string nomeArquivo = @"C:\PDF\RelatorioVendas_" + dataAtual + ".pdf";
             FileStream arquivoPDF = new FileStream(nomeArquivo, FileMode.Create);
             PdfWriter writer = PdfWriter.GetInstance(doc, arquivoPDF);
 
